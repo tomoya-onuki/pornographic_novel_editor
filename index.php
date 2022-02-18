@@ -11,11 +11,8 @@
 </head>
 <body>
     
-<div>
-    <a href="./app01/">app01 : スマホをジャイロセンサーにするプログラム</a>
-</div>
-<div>
-    <a href="./app02/">app02 : シミュレーションゲームの雛形</a>
-</div>
+<div><a href="./app01/">app01 : スマホをジャイロセンサーにするプログラム</a></div>
+<div><a href="./app02/">app02 : シミュレーションゲームの雛形</a></div>
+<div><a href="./app03/">app03 : 顔認識（姿勢, 表情の識別）</a></div>
 </body>
 </html>
