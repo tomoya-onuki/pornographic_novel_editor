@@ -1,6 +1,6 @@
 #img {
     width:600px;
     width:450px;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
