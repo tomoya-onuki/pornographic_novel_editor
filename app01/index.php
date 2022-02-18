@@ -48,7 +48,7 @@
             text-align: center;
             background-color: #000000;
             font-size: 20px;
-            color: #333;
+            color: #fff;
         }
 
         body {
