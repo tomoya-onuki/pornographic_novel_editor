@@ -42,7 +42,7 @@ function init() {
         //.             : https://qiita.com/nakakaz11/items/a9be602874bd54819a18
         if (DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function') {
             $('#cdiv').css('display', 'none');
-            var banner = '<div id="sensorrequest" onclick="ClickRequestDeviceSensor();" style="z-index:1; position:absolute; width:100%; background-color:#000; color:#fff;><p style="padding:10px;">センサーの有効化</p></div>';
+            var banner = '<div id="sensorrequest" onclick="ClickRequestDeviceSensor();" style="z-index:1; position:absolute; width:100%; background-color:#000; color:#fff;><p style="padding:10px;">センサーの有効化(最初にタップしてください)</p></div>';
             $('body').prepend(banner);
         } else {
             window.addEventListener("deviceorientation", deviceOrientation);
