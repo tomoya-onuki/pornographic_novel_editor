@@ -46,18 +46,18 @@
         html,
         body {
             text-align: center;
-            background-color: #fafafa;
+            background-color: #000000;
             font-size: 20px;
             color: #333;
         }
 
         body {
-            background-color: #ffffcc;
+            background-color: #000000;
         }
 
         #mycanvas {
             border: 1px solid #333;
-            background-color: #ffcccc;
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -71,7 +71,7 @@
         <div id="cdiv">
             <canvas width="80%" height="30%" id="mycanvas"></canvas>
         </div>
-
+        <div>白のエリアをタッチしながらスマホを振って、指を離すとセンサーで取得したデータがぐらふになります</div>
     </div>
 
     <script src="main.js"></script>
