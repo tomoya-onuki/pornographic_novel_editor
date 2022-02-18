@@ -35,6 +35,6 @@ $(function () {
 function init() {
     SCENE = 0;
     let src = screen[SCENE];
-    $('#img').attr('src', src);
+    $('#img').attr('src', './img/'+src);
 }
 
