@@ -23,25 +23,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="MOS" />
 
-    <!-- // OGP tags -->
-    <meta property="og:title" content="MOS" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="//dotnsf.github.io/mos/" />
-    <meta property="og:image" content="//dotnsf.github.io/mos/imgs/icon.png" />
-    <meta property="og:site_name" content="MOS" />
-    <meta property="og:description" content="MOS : Mostion & Orientation Sensor" />
-    <!-- OGP tags // -->
-
-    <!-- // Twitter Card -->
-    <meta property="twitter:card" content="summary" />
-    <meta property="twitter:site" content="@dotnsf" />
-    <meta property="twitter:creator" content="@dotnsf" />
-    <meta property="twitter:url" content="//dotnsf.github.io/mos/" />
-    <meta property="twitter:image" content="//dotnsf.github.io/mos/imgs/icon.png" />
-    <meta property="twitter:title" content="MOS" />
-    <meta property="twitter:description" content="MOS : Mostion & Orientation Sensor" />
-    <!-- Twitter Card // -->
-
     <style type="text/css">
         html,
         body {
