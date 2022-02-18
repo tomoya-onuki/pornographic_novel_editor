@@ -29,12 +29,7 @@ function ClickRequestDeviceSensor() {
 
 $(function () {
     init();
-    setInterval( function() {
-        window.addEventListener("deviceorientation", deviceOrientation);
-        window.addEventListener("devicemotion", deviceMotion);
-
-        draw();
-    }, 3000);
+    $('#resetBtn').on('click', init());
 });
 
 function init() {
