@@ -71,7 +71,7 @@
         <div id="cdiv">
             <canvas width="80%" height="10%" id="mycanvas"></canvas>
         </div>
-        <div>白のエリアをタッチしながらスマホを振って、指を離すとセンサーで取得したデータがぐらふになります</div>
+        <div style="font-size: 50%;">白のエリアをタッチしながらスマホを振って、指を離すとセンサーで取得したデータがぐらふになります</div>
     </div>
 
     <script src="main.js"></script>
