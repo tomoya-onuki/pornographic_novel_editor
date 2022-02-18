@@ -1,0 +1,10 @@
+#videoPreview {
+    /* display: none; */
+}
+
+#app {
+    position:relative;
+}
+#app * {
+    position: absolute;
+}

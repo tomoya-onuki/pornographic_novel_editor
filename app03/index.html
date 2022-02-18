@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>face</title>    
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- <div id="videoPreview">
+        <p>video preview</p>
+    </div>
+
+    <div id="canvasPreview">
+        <p>canvas preview</p>
+    </div> -->
+
+    <div id="app">
+        <video ref="video" width="720" height="560" @play="onPlay"></video>
+        <canvas ref="canvas" width="720" height="560"></canvas>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+    <script src="./face/dist/face-api.min.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
