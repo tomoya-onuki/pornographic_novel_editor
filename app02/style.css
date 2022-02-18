@@ -4,3 +4,11 @@
     /* object-fit: cover; */
 }
 
+
+#rstBtn {
+    display: none;
+}
+
+body {
+    margin: 50px 20px 50px 20px;
+}
