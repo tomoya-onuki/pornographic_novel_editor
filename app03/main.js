@@ -101,8 +101,21 @@ new Vue({
                 canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
                 faceapi.draw.drawDetections(canvas, resizedDetections);
                 faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-                faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+                faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+                const detectionsWithExpressions = await faceapi.detectAllFaces(video,
+                    new faceapi.TinyFaceDetectorOptions()).withFaceExpressions()
 
+
+                // 表情の計算
+                detectionsWithExpressions.map((detectionsWithExpression) => {
+                    const Array = Object.entries(detectionsWithExpression.expressions);
+                    const scoresArray = Array.map((i) => i[1]);
+                    const expressionsArray = Array.map((i) => i[0]);
+                    const max = Math.max.apply(null, scoresArray);
+                    const index = scoresArray.findIndex((score) => score === max);
+                    const expression = expressionsArray[index];
+                    console.log(expression);
+                });
             }, 10);
 
         }
