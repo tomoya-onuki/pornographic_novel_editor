@@ -69,7 +69,7 @@
         <canvas id="mychart2" style="position:relative; width:90%; height: 30%;"></canvas>
 
         <div id="cdiv">
-            <canvas width="80%" height="30%" id="mycanvas"></canvas>
+            <canvas width="80%" height="10%" id="mycanvas"></canvas>
         </div>
         <div>白のエリアをタッチしながらスマホを振って、指を離すとセンサーで取得したデータがぐらふになります</div>
     </div>
