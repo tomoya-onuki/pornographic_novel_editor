@@ -9,8 +9,8 @@
     <script src="./main.js"></script>
 </head>
 <body>
-    <div>under construction</div>
-    <img src="./img/snail.png" id="img">
+    <!-- <div>under construction</div> -->
+    <img src="./img/snail.jpg" id="img">
     <button class="selectBtn" id="btn0">恋の矢</button>
     <button class="selectBtn" id="btn1">ロイコクロリディウム</button>
 </body>
