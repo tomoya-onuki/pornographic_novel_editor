@@ -59,10 +59,10 @@ function init() {
     }
 
 
-    // if (window.TouchEvent) {
-    //     canvas.addEventListener("touchstart", touchStart); // 計測開始
-    //     canvas.addEventListener("touchend", touchEnd); // 計測終了
-    // }
+    if (window.TouchEvent) {
+        canvas.addEventListener("touchstart", touchStart); // 計測開始
+        canvas.addEventListener("touchend", touchEnd); // 計測終了
+    }
 
     //. リサイズ時に Canvas サイズを変更する
     $(window).on('load resize', function () {
@@ -109,11 +109,11 @@ function touchStart(e) {
 function touchEnd(e) {
     e.preventDefault();
     isTouch = false;
+
     draw();
 }
 
 function draw() {
-
     if (motionData && motionData.length > 0) {
         //. グラフ描画
         var labels = [];
