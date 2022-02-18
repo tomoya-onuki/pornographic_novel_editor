@@ -72,9 +72,6 @@
             <canvas width="80%" height="30%" id="mycanvas"></canvas>
         </div>
 
-        <div>
-            <button id="resetBtn">RESET</button>
-        </div>
     </div>
 
     <script src="main.js"></script>

@@ -29,7 +29,6 @@ function ClickRequestDeviceSensor() {
 
 $(function () {
     init();
-    $('#resetBtn').on('click', init());
 });
 
 function init() {
