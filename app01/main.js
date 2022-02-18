@@ -30,43 +30,7 @@ function ClickRequestDeviceSensor() {
 $(function () {
     init();
     setInterval( function() {
-        if (window.DeviceOrientationEvent) {
-            //. iOS 13 対応 : https://bagelee.com/webar-vr/ios13-webar-webvr/
-            //.             : https://qiita.com/nakakaz11/items/a9be602874bd54819a18
-            if (DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function') {
-                /*
-                DeviceOrientationEvent.requestPermission().then( function( response ){
-                  if( response === 'granted' ){
-                    window.addEventListener( "deviceorientation", deviceOrientation );
-                  }
-                }).catch( function( e ){
-                  console.log( e );
-                });
-                */
-                $('#cdiv').css('display', 'none');
-                var banner = '<div id="sensorrequest" onclick="ClickRequestDeviceSensor();" style="z-index:1; position:absolute; width:100%; background-color:#000; color:#fff;><p style="padding:10px;">センサーの有効化</p></div>';
-                $('body').prepend(banner);
-            } else {
-                window.addEventListener("deviceorientation", deviceOrientation);
-            }
-        }
-        if (window.DeviceMotionEvent) {
-            //. iOS 13 対応 : https://bagelee.com/webar-vr/ios13-webar-webvr/
-            //.             : https://qiita.com/nakakaz11/items/a9be602874bd54819a18
-            if (DeviceMotionEvent.requestPermission && typeof DeviceMotionEvent.requestPermission === 'function') {
-                /*
-                DeviceMotionEvent.requestPermission().then( function( response ){
-                  if( response === 'granted' ){
-                    window.addEventListener( "devicemotion", deviceMotion );
-                  }
-                }).catch( function( e ){
-                  console.log( e );
-                });
-                */
-            } else {
-                window.addEventListener("devicemotion", deviceMotion);
-            }
-        }
+        
     }, 3000);
 });
 
@@ -76,7 +40,25 @@ function init() {
         return false;
     }
 
-    
+    if (window.DeviceOrientationEvent) {
+        //. iOS 13 対応 : https://bagelee.com/webar-vr/ios13-webar-webvr/
+        //.             : https://qiita.com/nakakaz11/items/a9be602874bd54819a18
+        if (DeviceOrientationEvent.requestPermission && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            $('#cdiv').css('display', 'none');
+            var banner = '<div id="sensorrequest" onclick="ClickRequestDeviceSensor();" style="z-index:1; position:absolute; width:100%; background-color:#000; color:#fff;><p style="padding:10px;">センサーの有効化</p></div>';
+            $('body').prepend(banner);
+        } else {
+            window.addEventListener("deviceorientation", deviceOrientation);
+        }
+    }
+    if (window.DeviceMotionEvent) {
+        //. iOS 13 対応 : https://bagelee.com/webar-vr/ios13-webar-webvr/
+        //.             : https://qiita.com/nakakaz11/items/a9be602874bd54819a18
+        if (DeviceMotionEvent.requestPermission && typeof DeviceMotionEvent.requestPermission === 'function') {
+        } else {
+            window.addEventListener("devicemotion", deviceMotion);
+        }
+    }
 
     if (window.TouchEvent) {
         canvas.addEventListener("touchstart", touchStart);
