@@ -10,7 +10,7 @@
 </head>
 <body>
     <div>under construction</div>
-    <img src="snail.png" id="img">
+    <img src="./img/snail.png" id="img">
     <button class="selectBtn" id="btn0">恋の矢</button>
     <button class="selectBtn" id="btn1">ロイコクロリディウム</button>
 </body>

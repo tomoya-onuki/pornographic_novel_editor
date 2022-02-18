@@ -24,7 +24,7 @@ $(function () {
 
         } else {
             let src = screen[SCENE];
-            $('#img').attr('src', src);
+            $('#img').attr('src', './img/'+src);
         }
 
     });
