@@ -88,6 +88,7 @@ function getDB($pdo)
                     }
                     stmt += '<td><a href="./db_delete.php?id='+data.id+'">削除</a></td><tr>';
                     // $('#db_tbl').append('<td><a href="./db_delete.php?id='+data.id+'">削除</a></td>');
+                    $('#db_tbl').append(stmt);
                 }
             },
             "json"
