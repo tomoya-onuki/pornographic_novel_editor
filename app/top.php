@@ -70,13 +70,11 @@ if (!empty($_POST['key'])) {
     <div class="edit">
         <div class="edit_key"><?= $_POST['key'] ?></div>
         <div class="edit_word"><?= $word ?></div>
-        <div class="edit_meaning"><?= $word ?></div>
+        <div class="edit_meaning"><?= $meaning ?></div>
         
         <div id="status"></div>
         <div id="script"><?= $sentence ?></div>
-    </div>
-
-    <div class="edit_form">
+   
         <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
         <button id="update">更新</button>
         <button id="draft">入稿</button>
