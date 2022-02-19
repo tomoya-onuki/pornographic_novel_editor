@@ -45,10 +45,11 @@ function random_keyword()
     $keyword = random_keyword();
     $sentence = '';
     $editor = 1;
-    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word) VALUES (:key, :sentence, :editor, word)');
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word) VALUES (:key, :sentence, :editor, :word)');
     $stmt->bindParam(':key', $keyword, PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
     $stmt->bindParam(':editor', $editor, PDO::PARAM_INT);
+    $stmt->bindParam(':word', 'word', PDO::PARAM_STR);
     $stmt->execute();
     ?>
 
