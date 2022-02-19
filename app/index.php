@@ -40,7 +40,7 @@ $key = random_keyword();
     <div class="frame0"></div>
     <div class="frame1"></div>
 
-    <div class="my_title">#ふたりて書く官能小説</div>
+    <div class="my_title">＃ふたりて書く官能小説</div>
     <div class="my_bookbinding">製本する</div>
     <div class="my_create" id="create">作成する</div>
 
