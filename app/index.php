@@ -63,7 +63,7 @@ $key = random_keyword();
 
 
 
-    <div class="my_create_modal">
+    <div class="#my_create_modal">
         <div class="esc"></div>
         <form action="create.php" method="post">
             <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">

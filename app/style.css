@@ -118,7 +118,7 @@ input {
     color: #FCF9FB;
 }
 
-.my_create_modal {
+#my_create_modal {
     /* モーダル/作成する */
 
     position: absolute;
