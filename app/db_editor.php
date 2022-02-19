@@ -78,14 +78,11 @@ function getDB($pdo)
             function(data) {
                 // console.log(data)
                 // location.href = "./db_editor.php";
-                <?php
-                $stmt = getDB($pdo);
-                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                ?>
-                    $('#word<?=$result['id']?>').remove();
-                    let elem = '<tr id="word<?= $result['id'] ?>"><td><?= $result['id'] ?></td><td><?= $result['word'] ?></td><td><?= $result['meaning'] ?></td><td><?= $result['ex_sentence'] ?></td><td><?= $result['author'] ?> </td><td><a href="./db_delete.php?id=<?= $result['id'] ?> ">削除</a></td></tr>';
-                    $('#db_tbl').append(elem);
-                <?php } ?>
+                
+
+                data.foreach( (i, d) => {
+                    $('#db_tbl').append('<td>'+d+'</td>');
+                });
             },
             "json"
         )
