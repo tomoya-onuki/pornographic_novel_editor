@@ -19,7 +19,7 @@ if (!empty($_POST['keyword'])) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $sentence = $result['sentence'];
-    if (strcmp($result['editor'], $_POST['editor']) == 0) {
+    if ($result['editor'] == $_POST['editor']) {
         $isEditor = true;
     } else {
         $isEditor = false;
@@ -73,7 +73,7 @@ if (!empty($_POST['keyword'])) {
             var hostUrl = 'db_add.php';
             $.post('update.php', {
                         'sentence': $(this).val(),
-                        'editor': editor * -1,
+                        'editor': editor,
                         'keyword': <?=$_POST['keyword']?>
                     },
                     function(data) {
