@@ -110,7 +110,8 @@ input[type="text"] {
     font-feature-settings: 'vert'on;
 
     color: #FCF9FB;
-
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
     border: none;
     background: none;
 }
@@ -145,6 +146,9 @@ input[type="text"] {
     font-feature-settings: 'vert'on;
 
     color: #FCF9FB;
+
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
 
     border: none;
     background: none;
@@ -182,6 +186,9 @@ input[type="text"] {
     font-weight: 600;
     font-size: 12px;
     line-height: 17px;
+
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
 
     color: #FDFAFC;
 }
@@ -322,6 +329,8 @@ input[type="text"] {
     line-height: 18px;
     /* or 100% */
     font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
 
     color: #FFF5F5;
 }
@@ -334,12 +343,16 @@ input[type="text"] {
 
 .edit {
     position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translate(-50%, 0);
     /* width: 932px; */
     /* height: 684px; */
     /* left: 254px; */
     /* top: 170px; */
 
-    width: 60%;
+    /* width: 60%; */
+    width: 800px;
     height: 60%;
 
     background: #FCF9FB;
@@ -350,8 +363,12 @@ input[type="text"] {
     position: absolute;
     width: 18px;
     height: 128px;
+    left: calc(100% - 100px);
+    top: 50px;
+    /* width: 18px;
+    height: 128px;
     left: 1112px;
-    top: 234px;
+    top: 234px; */
 
     font-family: Source Han Serif JP;
     font-style: normal;
@@ -361,6 +378,9 @@ input[type="text"] {
     /* or 100% */
     font-feature-settings: 'vert'on;
 
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+
     color: #000000;
 }
 
@@ -368,8 +388,10 @@ input[type="text"] {
     position: absolute;
     width: 9px;
     height: 89px;
-    left: 1134px;
-    top: 234px;
+    left: calc(100% - 70px);
+    top: 50px;
+    /* left: 1134px;
+    top: 234px; */
 
     font-family: Source Han Serif JP;
     font-style: normal;
@@ -379,17 +401,37 @@ input[type="text"] {
     /* or 100% */
     font-feature-settings: 'vert'on;
 
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+
     color: #000000;
 }
 
-#script {}
+.edit_key {
+    position: relative;
+    top: 570px;
+    color: #E3E3E3;
+}
+
+#script {
+    position: absolute;
+    right: 200px;
+    top: 50px;
+
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+
+    width: 100%;
+    /* left: 974px; */
+    /* top: 234px; */
+}
 
 #script .sentence {
-    position: absolute;
-    width: 13px;
+    margin-left: 80px;
+    /* margin-left: 5vw; */
+
     height: 558px;
-    left: 974px;
-    top: 234px;
+    width: 13px;
 
     font-family: Source Han Serif JP;
     font-style: normal;
@@ -402,6 +444,142 @@ input[type="text"] {
     color: #000000;
 }
 
-.edit_form {}
-.edit_form .update {}
-.edit_form .draft {}
+#sentence {
+    position: absolute;
+    left: 0px;
+    top: -100px;
+    width: 400px;
+    height: 80px;
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 13px;
+    /* or 100% */
+    font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    color: #000000;
+
+    resize: none;
+/* 
+    writing-mode: initial;
+    transform: rotate(90deg);
+    transform-origin: top left;
+
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl; */
+}
+
+#update {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    left: 422.5px;
+    top: -52px;
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 13px;
+    /* or 100% */
+    font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    color: #000000;
+
+    cursor: pointer;
+}
+.update_ellipse {
+    position: absolute;
+    width: 30px;
+    height: 44px;
+    /* left: 193px;
+    top: 860px; */
+    /* left: -42.5px; */
+    /* bottom: 23px; */
+    left: 420px;
+    top: -60px;
+
+    background: #FCF9FB;
+}
+
+#draft {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    left: -40px;
+    bottom: -30px;
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 13px;
+    /* or 100% */
+    font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    color: #000000;
+
+    cursor: pointer;
+}
+
+.draft_ellipse {
+    position: absolute;
+    width: 30px;
+    height: 44px;
+    /* left: 193px;
+    top: 860px; */
+    left: -42.5px;
+    bottom: -37px;
+
+    background: #FCF9FB;
+}
+
+#status {
+    position: absolute;
+    width: 30px;
+    height: 100px;
+
+    top: -98px;
+    left: -40px;
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 13px;
+    /* or 100% */
+    font-feature-settings: 'vert'on;
+
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+
+    color: #E3E3E3;
+}
+
+.edit_msg {
+    /* ＊書き終わったら、左下の「入稿」ボタンをタッチしてください。 */
+
+    position: absolute;
+    width: 10px;
+    height: 539px;
+    right: -30px;
+    top: 0;
+    /* left: 1209px; */
+    /* top: 169px; */
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    /* or 100% */
+    font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    color: #E3E3E3;
+}

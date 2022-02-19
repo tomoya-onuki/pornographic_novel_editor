@@ -8,6 +8,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 $sentence = "";
 $word = "";
 $editor = 0;
+$meaning = "";
 
 
 if (!empty($_POST['key'])) {
@@ -25,6 +26,12 @@ if (!empty($_POST['key'])) {
     } else {
         header("Location: ./error.html");
     }
+
+    $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
+    $stmt->bindParam(':word', $word, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $meaning = $result['meaning'];
     // var_dump($result);
 }
 ?>
@@ -38,7 +45,7 @@ if (!empty($_POST['key'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title>ふたりの官能小説(仮)</title>
+    <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
             // DBの定期的な監視
