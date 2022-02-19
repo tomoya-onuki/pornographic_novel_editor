@@ -1,5 +1,4 @@
 <?php
-
 // データベースに接続
 $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
@@ -17,8 +16,13 @@ if (!empty($_POST['key'])) {
     $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $sentence = $result['sentence'];
-    $word = $result['word'];
+
+    if ($result) {
+        $sentence = $result['sentence'];
+        $word = $result['word'];
+    } else {
+        header("Location: ./error.html");
+    }
     var_dump($result);
 }
 ?>
