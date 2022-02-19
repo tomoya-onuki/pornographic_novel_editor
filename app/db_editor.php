@@ -76,12 +76,11 @@ function getDB($pdo)
                     'ex_sentence': $('#ex_sentence').val(),
                     'author': $('#author').val()
                 },
-                function(data) {},
+                function() {
+                    console.log("hoge")
+                },
                 "json"
-            ),
-            function() {
-                alert("hoge");
-            }
+            )
     });
 </script>
 
