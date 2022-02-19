@@ -28,10 +28,10 @@ $key = random_keyword();
     <script>
         $(function() {
             $('#create').on('click', function() {
-                $("#my_create_modal").fadeIn();
+                $("#modal").fadeIn();
             });
             $('#esc').on('click', function() {
-                $("#my_create_modal").fadeOut();
+                $("#modal").fadeOut();
             });
         });
     </script>
@@ -63,7 +63,7 @@ $key = random_keyword();
 
 
 
-    <div id="my_create_modal">
+    <div id="modal" class="my_create_modal">
         <div class="esc"></div>
         <form action="create.php" method="post">
             <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">
