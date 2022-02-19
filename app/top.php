@@ -53,7 +53,7 @@ if (!empty($_POST['key'])) {
         $(function() {
             const myEditId = <?=$_POST['editor']?>;
             const editor = <?= $editor ?>;
-            let line = <?=$line?>
+            let line = <?=$line?>;
             check_editor(editor);
 
             // console.log(editor);
