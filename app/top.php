@@ -61,8 +61,8 @@ if (!empty($_POST['key'])) {
         const editor = <?= $editor ?>;
         check_editor(editor);
 
-        console.log(editor);
-        console.log($('#sentence').val());
+        // console.log(editor);
+        // console.log($('#sentence').val());
 
         $('#update').click(function() {
             let new_sentence = $('#script').html() + '<br>' + $('#sentence').val();
@@ -98,7 +98,7 @@ if (!empty($_POST['key'])) {
 
         function check_db() {
             console.log('check data base')
-            $.post('update.php', {
+            $.post('check.php', {
                     'key': '<?= $_POST['key'] ?>'
                 },
                 function(data) {
