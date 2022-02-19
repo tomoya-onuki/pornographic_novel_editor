@@ -8,10 +8,11 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 if (!empty($_POST['key'])) {
 
     // 編集中の文書の情報
-    $stmt = $pdo->prepare('UPDATE script SET (sentence, editor)=(:sentence, :editor) WHERE key = :key');
+    $stmt = $pdo->prepare('UPDATE script SET (sentence, editor, line)=(:sentence, :editor, :line) WHERE key = :key');
     $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $_POST['sentence'], PDO::PARAM_STR);
     $stmt->bindParam(':editor', $_POST['editor'], PDO::PARAM_STR);
+    $stmt->bindParam(':line', $_POST['line'], PDO::PARAM_INT);
     $stmt->execute();
 
 

@@ -9,6 +9,7 @@ $sentence = "";
 $word = "";
 $editor = 0;
 $meaning = "";
+$line = 0;
 
 // var_dump($_POST);
 
@@ -24,6 +25,7 @@ if (!empty($_POST['key'])) {
         $sentence = $result['sentence'];
         $word = $result['word'];
         $editor = $result['editor'];
+        $line = $result['line'];
     } else {
         header("Location: ./error.html");
     }
@@ -51,6 +53,7 @@ if (!empty($_POST['key'])) {
         $(function() {
             const myEditId = <?=$_POST['editor']?>;
             const editor = <?= $editor ?>;
+            let line = <?=$line?>
             check_editor(editor);
 
             // console.log(editor);
@@ -78,13 +81,17 @@ if (!empty($_POST['key'])) {
                 $.post('update.php', {
                         'sentence': new_sentence,
                         'editor': myEditId * -1,
-                        'key': '<?= $_POST['key'] ?>'
+                        'key': '<?= $_POST['key'] ?>',
+                        'line': line++
                     },
                     function(data) {
                         // update(data);
-                        console.log(data.editor);
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
+                        if(data.line > 5) {
+                            $('#status').text('終了');
+                            $('#sentence').attr('readonly', true);
+                        }
                         $('#sentence').val('');
                     },
                     "json"
@@ -99,9 +106,13 @@ if (!empty($_POST['key'])) {
                     },
                     function(data) {
                         // update(data);
-                        console.log(data.editor);
+                        // console.log(data.editor);
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
+                        if(data.line > 5) {
+                            $('#status').text('終了');
+                            $('#sentence').attr('readonly', true);
+                        }
                     },
                     "json"
                 )
@@ -121,7 +132,7 @@ if (!empty($_POST['key'])) {
         <div id="status"></div>
         <div id="script"><?= $sentence ?></div>
 
-        <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
+        <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="40"></textarea>
         <div class="update_ellipse ellipse"></div>
         <div class="draft_ellipse ellipse"></div>
         <button id="update">更新</button>
