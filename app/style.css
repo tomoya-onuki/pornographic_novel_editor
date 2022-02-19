@@ -1,3 +1,6 @@
+* {
+    -webkit-appearance: none;
+}
 .main0 {
     position: relative;
     width: 1440px;
@@ -51,12 +54,11 @@
 }
 
 .my_bookbinding_ellipse {
-
     position: absolute;
     width: 30px;
     height: 67px;
     left: 193px;
-    top: 837px;
+    top: 750px;
 
     background: #3F3643;
 }
@@ -86,7 +88,7 @@
     width: 30px;
     height: 67px;
     left: 193px;
-    top: 750px;
+    top: 837px;
 
     background: #3F3643;
 }
