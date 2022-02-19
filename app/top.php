@@ -10,7 +10,7 @@ $word = "";
 $editor = 0;
 $meaning = "";
 
-var_dump($_POST);
+// var_dump($_POST);
 
 if (!empty($_POST['key'])) {
 
