@@ -45,6 +45,17 @@
     color: #3F3643;
 }
 
+.my_bookbinding_ellipse {
+
+    position: absolute;
+    width: 30px;
+    height: 67px;
+    left: 193px;
+    top: 837px;
+
+    background: #3F3643;
+}
+
 .my_bookbinding {
     /* 製本する */
 
@@ -65,8 +76,7 @@
     color: #FCF9FB;
 }
 
-.my_create {
-    /* 作成する */
+.my_create_ellipse {
     position: absolute;
     width: 30px;
     height: 67px;
@@ -74,8 +84,10 @@
     top: 750px;
 
     background: #3F3643;
+}
 
-
+.my_create {
+    /* 作成する */
     position: absolute;
     width: 13px;
     height: 50px;
