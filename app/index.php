@@ -77,7 +77,7 @@ $key = random_keyword();
         <!-- <button onclick="copyToClipboard()">Copy</button> -->
         <form action="top.php" method="post">
             <input class="form1" type="text" value="" name="key">
-            <input type="hidden" value="-1" name="editor ellipse">
+            <input type="hidden" value="-1" name="editor">
             <div class="btn1_ellipse ellipse"></div>
             <input type="submit" value="あわせる" class="btn1 ellipse">
         </form>

@@ -10,6 +10,7 @@ $word = "";
 $editor = 0;
 $meaning = "";
 
+var_dump($_POST);
 
 if (!empty($_POST['key'])) {
 
@@ -32,7 +33,7 @@ if (!empty($_POST['key'])) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $meaning = $result['meaning'];
-    // var_dump($result);
+    
 }
 ?>
 
@@ -48,7 +49,7 @@ if (!empty($_POST['key'])) {
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            const myEditId = <?= $_POST['editor'] ?>;
+            const myEditId = <?=$_POST['editor']?>;
             const editor = <?= $editor ?>;
             check_editor(editor);
 
