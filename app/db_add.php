@@ -15,4 +15,6 @@ if ($_POST['word'] != '' && $_POST['meaning'] != '' && $_POST['ex_sentence'] != 
     $stmt->bindParam(':author', $_POST['author'], PDO::PARAM_STR);
     $stmt->execute();
 }
+
+exit();
 ?>
