@@ -18,15 +18,14 @@ $stmt->execute();
         <th>用法</th>
         <th>作者</th>
     </tr>
-    <?php while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-        <tr>
-            <th>{$result['word']}</th>
-            <th>{$result['meaning']}</th>
-            <th>{$result['ex_sentence']}</th>
-            <th>{$result['author']}</th>
-        </tr>
-    <?php 
-    var_dump($result);
-} 
-?>
+    <?php while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '<tr>';
+        echo '<th>' . $result['word'] . '</th>';
+        echo '<th>' . $result['meaning'] . '</th>';
+        echo '<th>' . $result['ex_sentence'] . '</th>';
+        echo '<th>' . $result['author'] . '</th>';
+        echo '</tr>';
+        // var_dump($result);
+    }
+    ?>
 </table>
