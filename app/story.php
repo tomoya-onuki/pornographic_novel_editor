@@ -18,7 +18,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 </head>
 
 <body class="main1">
-    <a href="./"><h1>ふたりでかく官能小説</h1></a>
+    <a href="./" style="color:#fff">TOP</a>
     <div class="edit">
         <?php
         if (!empty($_GET['key'])) {
