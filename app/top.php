@@ -82,6 +82,8 @@ if (!empty($_POST['keyword'])) {
                     },
                     function(data) {
                         console.log(data);
+                        $('#script').text(data.sentence);
+                        $('#sentence').val() = '';
                     },
                     "json"
                 )
