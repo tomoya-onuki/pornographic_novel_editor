@@ -56,13 +56,10 @@ if (!empty($_POST['keyword'])) {
 
     <div id="script"><?= $sentence ?></div>
 
-
-    <?php if ($isEditor) { ?>
-        <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
-        <button id="update">更新</button>
-    <?php } else { ?>
-        <textarea name="sentence" id="sentence" cols="30" rows="10" readonly></textarea>
-    <?php } ?>
+    
+    <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
+    <button id="update">更新</button>
+    
 
 
 
