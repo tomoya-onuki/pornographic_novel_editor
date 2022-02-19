@@ -127,7 +127,7 @@ input {
 
     background: #3F3643;
 
-    display: none;
+    /* display: none; */
 }
 
 .my_create_modal .title {
