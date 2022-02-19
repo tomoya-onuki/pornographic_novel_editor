@@ -42,12 +42,10 @@ $key = random_keyword();
     <div class="frame1"></div>
 
     <div class="my_title">＃ふたりて書く官能小説</div>
-    <div class="my_bookbinding_ellipse">
-        <button class="my_bookbinding">製本する</button>
-    </div>
-    <div class="my_create_ellipse">
-        <button class="my_create" id="create">作成する</button>
-    </div>
+    <div class="my_bookbinding_ellipse"></div>
+    <button class="my_bookbinding">製本する</button>
+    <div class="my_create_ellipse"></div>
+    <button class="my_create" id="create">作成する</button>
 
     <!-- <div>作品一覧</div> -->
     <?php
