@@ -1,7 +1,8 @@
 * {
     -webkit-appearance: none;
 }
-button {
+button,
+input {
     -webkit-appearance: none;
 }
 .main0 {
