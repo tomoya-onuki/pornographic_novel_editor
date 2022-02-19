@@ -69,6 +69,7 @@ input {
 
 .my_bookbinding {
     /* 製本する */
+    -webkit-appearance: none;
 
     position: absolute;
     width: 13px;
@@ -99,6 +100,7 @@ input {
 
 .my_create {
     /* 作成する */
+    -webkit-appearance: none;
     position: absolute;
     width: 13px;
     height: 50px;
