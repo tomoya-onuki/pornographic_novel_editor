@@ -12,7 +12,10 @@ $(function () {
             },
             function (data) {},
             "json"
-        );
+        ), 
+        function () {
+            
+        }
     });
 
 
