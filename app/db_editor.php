@@ -41,7 +41,7 @@ function getDB($pdo)
 
     <div>削除を押すと、完全に消えます。undoとかないので、気をつけてください。</div>
 
-    <table border="1">
+    <table id="db_tbl" border="1">
         <tr>
             <th>no.</th>
             <th>用語</th>
@@ -54,11 +54,11 @@ function getDB($pdo)
         $stmt = getDB($pdo);
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr id="word' . $result['id'] . '">';
-            echo '<td>' . $result['id'] . '</td>';
-            echo '<td>' . $result['word'] . '</td>';
-            echo '<td>' . $result['meaning'] . '</td>';
-            echo '<td>' . $result['ex_sentence'] . '</td>';
-            echo '<td>' . $result['author'] . '</td>';
+            echo '<td class="id">' . $result['id'] . '</td>';
+            echo '<td class="word">' . $result['word'] . '</td>';
+            echo '<td class="meaning">' . $result['meaning'] . '</td>';
+            echo '<td class="ex_sentence">' . $result['ex_sentence'] . '</td>';
+            echo '<td class="author">' . $result['author'] . '</td>';
             echo '<td><a href="./db_delete.php?id=' . $result['id'] . '">削除</a></td>';
             echo '</tr>';
         }
@@ -77,7 +77,15 @@ function getDB($pdo)
             },
             function(data) {
                 // console.log(data)
-                location.href = "./db_editor.php";
+                // location.href = "./db_editor.php";
+                <?php
+                $stmt = getDB($pdo);
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                    $('#word' + <?= $result['id'] ?>).remove();
+                    const elem = '<tr id="word' + <?= $result['id'] ?> + '"><td>' + <?= $result['id'] ?> + '</td><td>' + <?= $result['word'] ?> + '</td><td>' + <?= $result['meaning'] ?> + '</td><td>' + <?= $result['ex_sentence'] ?> + '</td><td>' + <?= $result['author'] ?> + '</td><td><a href="./db_delete.php?id=' + <?= $result['id'] ?> + '">削除</a></td></tr>';
+                    $('#db_tbl').append(elem);
+                <?php } ?>
             },
             "json"
         )
