@@ -40,7 +40,20 @@ if (!empty($_POST['key'])) {
     <link rel="stylesheet" href="style.css">
     <title>ふたりの官能小説(仮)</title>
     <script>
-        window.setInterval(check_db(), 1000);
+        $(function() {
+            // DBの定期的な監視
+            window.setInterval(function() {
+                console.log('check data base')
+                $.post('check.php', {
+                        'key': '<?= $_POST['key'] ?>'
+                    },
+                    function(data) {
+                        update(data);
+                    },
+                    "json"
+                )
+            }, 1000);
+        });
     </script>
 </head>
 
@@ -96,18 +109,6 @@ if (!empty($_POST['key'])) {
             $('#script').html(data.sentence);
             $('#sentence').val('');
             check_editor(data.editor);
-        }
-
-        function check_db() {
-            console.log('check data base')
-            $.post('check.php', {
-                    'key': '<?= $_POST['key'] ?>'
-                },
-                function(data) {
-                    update(data);
-                },
-                "json"
-            )
         }
     </script>
 </body>
