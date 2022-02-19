@@ -118,6 +118,9 @@ input {
     color: #FCF9FB;
 }
 
+#modal {
+    display: none;
+}
 .my_create_modal {
     /* モーダル/作成する */
 
@@ -128,8 +131,6 @@ input {
     top: 460px;
 
     background: #3F3643;
-
-    /* display: none; */
 }
 
 .my_create_modal .title {
