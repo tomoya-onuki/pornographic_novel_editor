@@ -48,6 +48,22 @@ if (!empty($_POST['key'])) {
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
+            function check_editor(_editor) {
+                if (_editor === myEditId) {
+                    $('#status').text('あなたのばん');
+                    $('#sentence').attr('readonly', false);
+                } else {
+                    $('#status').text('あいてのばん');
+                    $('#sentence').attr('readonly', true);
+                }
+            }
+
+            function update(data) {
+                console.log(data.editor);
+                $('#script').html(data.sentence);
+                check_editor(data.editor);
+            }
+        
             // DBの定期的な監視
             window.setInterval(function() {
                 console.log('check data base')
@@ -118,22 +134,6 @@ if (!empty($_POST['key'])) {
                 "json"
             )
         });
-
-        function check_editor(_editor) {
-            if (_editor === myEditId) {
-                $('#status').text('あなたのばん');
-                $('#sentence').attr('readonly', false);
-            } else {
-                $('#status').text('あいてのばん');
-                $('#sentence').attr('readonly', true);
-            }
-        }
-
-        function update(data) {
-            console.log(data.editor);
-            $('#script').html(data.sentence);
-            check_editor(data.editor);
-        }
     </script>
 </body>
 
