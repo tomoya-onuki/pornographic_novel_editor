@@ -72,7 +72,7 @@ if (!empty($_POST['keyword'])) {
         $('#update').click(function() {
             var hostUrl = 'db_add.php';
             $.post('update.php', {
-                        'sentence': $(this).val(),
+                        'sentence': $('#sentence').val(),
                         'editor': editor,
                         'keyword': <?=$_POST['keyword']?>
                     },
