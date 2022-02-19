@@ -26,10 +26,10 @@ $stmt->execute();
     
 
 
-用語：<textarea id="word" cols="30" rows="10"></textarea>
-意味：<textarea id="meaning" cols="30" rows="10"></textarea>
-用法：<textarea id="ex_sentence" cols="30" rows="10"></textarea>
-作者：<textarea id="author" cols="30" rows="10"></textarea>
+<div>用語：<textarea id="word" cols="30" rows="10"></textarea></div>
+<div>意味：<textarea id="meaning" cols="30" rows="10"></textarea></div>
+<div>用法：<textarea id="ex_sentence" cols="30" rows="10"></textarea></div>
+<div>作者：<textarea id="author" cols="30" rows="10"></textarea></div>
 <button id="db_add_btn">追加</button>
 
 <table border="1">
@@ -38,6 +38,7 @@ $stmt->execute();
         <th>意味</th>
         <th>用法</th>
         <th>作者</th>
+        <th>削除</th>
     </tr>
     <?php while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo '<tr>';
@@ -45,6 +46,7 @@ $stmt->execute();
         echo '<td>' . $result['meaning'] . '</td>';
         echo '<td>' . $result['ex_sentence'] . '</td>';
         echo '<td>' . $result['author'] . '</td>';
+        echo '<td><a href="./db_delete.php?id=' . $result['id'] . '">削除</a></td>';
         echo '</tr>';
         // var_dump($result);
     }

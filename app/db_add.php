@@ -4,7 +4,7 @@ $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
-var_dump($_POST);
+// var_dump($_POST);
 
 if (count($_POST) > 0) {   
     // PDOでDBからデータを取得
@@ -16,5 +16,3 @@ if (count($_POST) > 0) {
     $stmt->execute();
 }
 ?>
-
-<a href="./db_editor.php">データベース編集</a>
