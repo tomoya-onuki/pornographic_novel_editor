@@ -53,8 +53,7 @@ $key = random_keyword();
         $stmt = $pdo->prepare('SELECT * FROM script');
         $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-            <div>
-
+            <div class="flex_item">
                 <a href="./story.php?key=<?= $result['key'] ?>">
                     <img class="story_img" src="./img/IMG_2104.jpg" alt="">
                     <div class="story_title"><?= $result['word'] ?></div>
@@ -68,17 +67,19 @@ $key = random_keyword();
 
     <div id="modal" class="my_create_modal">
         <div class="title">合言葉で小説をはじめる。</div>
-        <div class="esc" id="esc"></div>
+        <div class="esc" id="esc">×</div>
         <form action="create.php" method="post">
             <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">
             <input type="hidden" value="1" name="editor">
+            <div class="btn0_ellipse ellipse"></div>
             <input type="submit" value="つくる" class="btn0">
         </form>
         <!-- <button onclick="copyToClipboard()">Copy</button> -->
         <form action="top.php" method="post">
             <input class="form1" type="text" value="" name="key">
             <input type="hidden" value="-1" name="editor ellipse">
-            <input type="submit" value="START" class="btn1 ellipse">
+            <div class="btn1_ellipse ellipse"></div>
+            <input type="submit" value="あわせる" class="btn1 ellipse">
         </form>
     </div>
 
