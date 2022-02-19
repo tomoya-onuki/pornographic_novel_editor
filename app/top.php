@@ -39,6 +39,9 @@ if (!empty($_POST['key'])) {
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>ふたりの官能小説(仮)</title>
+    <script>
+        window.setInterval(check_db(), 1000);
+    </script>
 </head>
 
 <body>
@@ -77,7 +80,6 @@ if (!empty($_POST['key'])) {
                 "json"
             )
         });
-        window.setInterval(check_db(), 1000);
 
         function check_editor(_editor) {
             if (_editor === myEditId) {
