@@ -15,7 +15,7 @@ if (!empty($_POST['keyword'])) {
 
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
-    $stmt->bindParam(':key', $_POST['keyword'], PDO::PARAM_STR);
+    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $sentence = $result['sentence'];
@@ -37,7 +37,7 @@ if (!empty($_POST['keyword'])) {
 
     $stmt = $pdo->prepare('UPDATE script SET word = :word WHERE key = :key');
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
-    $stmt->bindParam(':key', $_POST['keyword'], PDO::PARAM_STR);
+    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->execute();
 }
 ?>
@@ -79,7 +79,7 @@ if (!empty($_POST['keyword'])) {
             $.post('update.php', {
                         'sentence': new_sentence,
                         'editor': editor * -1,
-                        'keyword': '<?=$_POST['keyword']?>'
+                        'key': '<?=$_POST['key']?>'
                     },
                     function(data) {
                         console.log(data);

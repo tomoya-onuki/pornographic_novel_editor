@@ -22,14 +22,14 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 <?php
 
 
-if (!empty($_GET['keyword'])) {
+if (!empty($_GET['key'])) {
     ?>
-    <h2><?=$_GET['keyword']?></h2>
+    <h2><?=$_GET['key']?></h2>
     <?php
 
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
-    $stmt->bindParam(':key', $_GET['keyword'], PDO::PARAM_STR);
+    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->execute();
     while($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <div>
@@ -40,3 +40,6 @@ if (!empty($_GET['keyword'])) {
     
 }
 ?>
+
+</body>
+</html>

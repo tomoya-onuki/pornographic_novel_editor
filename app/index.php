@@ -34,7 +34,7 @@ function random_keyword()
     $stmt->execute();
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <div>
-            <a href="./story.php?keyword=<?= $result['keyword'] ?>">
+            <a href="./story.php?key=<?=$result['key']?>">
             <?= $result['word'] ?>    
             </a>
         </div>
@@ -44,12 +44,12 @@ function random_keyword()
 
 
 
-    $keyword = random_keyword();
+    $key = random_keyword();
     $sentence = '';
     $editor = 1;
     $word = 'word';
     $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word) VALUES (:key, :sentence, :editor, :word)');
-    $stmt->bindParam(':key', $keyword, PDO::PARAM_STR);
+    $stmt->bindParam(':key', $key, PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
     $stmt->bindParam(':editor', $editor, PDO::PARAM_INT);
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
@@ -63,7 +63,7 @@ function random_keyword()
         <div>合言葉を共有した人と官能小説を作れます。</div>
         <div>
             <form action="top.php" method="post">
-                合言葉 : <input id="copyTarget" type="text" value="<?= $keyword ?>" readonly name="keyword">
+                合言葉 : <input id="copyTarget" type="text" value="<?= $key ?>" readonly name="key">
                 <input type="hidden" value="1" name="editor">
                 <input type="submit" value="START">
             </form>
@@ -76,7 +76,7 @@ function random_keyword()
         <div>共有した合言葉で官能小説を作れます。</div>
         <div>
             <form action="top.php" method="post">
-                合言葉 : <input type="text" value="" name="keyword">
+                合言葉 : <input type="text" value="" name="key">
                 <input type="hidden" value="-1" name="editor">
                 <input type="submit" value="START">
             </form>
