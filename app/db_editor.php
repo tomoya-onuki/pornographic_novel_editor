@@ -69,18 +69,18 @@ function getDB($pdo)
 
 <script>
     $('#db_add_btn').on('click', function() {
-        var hostUrl = 'db_add.php';
         $.post('db_add.php', {
-                    'word': $('#word').val(),
-                    'meaning': $('#meaning').val(),
-                    'ex_sentence': $('#ex_sentence').val(),
-                    'author': $('#author').val()
-                },
-                function() {
-                    console.log("hoge")
-                },
-                "json"
-            )
+                'word': $('#word').val(),
+                'meaning': $('#meaning').val(),
+                'ex_sentence': $('#ex_sentence').val(),
+                'author': $('#author').val()
+            },
+            function() {
+                // console.log("hoge")
+                location.href = "./db_editor.php";
+            },
+            "json"
+        )
     });
 </script>
 
