@@ -75,8 +75,9 @@ if (!empty($_POST['keyword'])) {
         console.log($('#sentence').val());
 
         $('#update').click(function() {
+            let new_sentence = $('#sentence').text() + '<br>' + $('#sentence').val();
             $.post('update.php', {
-                        'sentence': $('#sentence').val(),
+                        'sentence': new_sentence,
                         'editor': editor * -1,
                         'keyword': '<?=$_POST['keyword']?>'
                     },

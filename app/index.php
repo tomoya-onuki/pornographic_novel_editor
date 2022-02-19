@@ -34,7 +34,9 @@ function random_keyword()
     $stmt->execute();
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <div>
-            <?= $result['word'] ?>
+            <a href="./story.php?keyword=<?= $result['keyword'] ?>">
+            <?= $result['word'] ?>    
+            </a>
         </div>
 
     <?php
