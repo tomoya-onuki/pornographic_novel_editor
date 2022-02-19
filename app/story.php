@@ -23,21 +23,18 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 
 if (!empty($_GET['key'])) {
-    ?>
-    <h2><?=$_GET['key']?></h2>
-    <?php
 
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
     $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->execute();
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    ?>
+        <h2><?=$_GET['word']?></h2>
         <div>
             <?=$result['sentence']?>
         </div>
-    <?php
-    }
-    
+<?php
 }
 ?>
 
