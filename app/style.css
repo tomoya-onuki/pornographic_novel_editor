@@ -1,6 +1,9 @@
 * {
     -webkit-appearance: none;
 }
+button {
+    -webkit-appearance: none;
+}
 .main0 {
     position: relative;
     width: 1440px;
