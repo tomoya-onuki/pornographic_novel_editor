@@ -84,7 +84,7 @@ if (!empty($_POST['key'])) {
             let new_sentence = $('#script').html() + '<br>' + $('#sentence').val();
             $.post('update.php', {
                     'sentence': new_sentence,
-                    'editor': editor * -1,
+                    'editor': myEditId * -1,
                     'key': '<?= $_POST['key'] ?>'
                 },
                 function(data) {
