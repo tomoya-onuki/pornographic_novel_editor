@@ -8,12 +8,9 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 $targetID = 0;
 
 // PDOでDBからデータを取得
-$stmt = $pdo->prepare('SELECT * FROM dict WHERE id = :id');
-$stmt->bindParam(':id', $targetID, PDO::PARAM_STR);
+$stmt = $pdo->prepare('SELECT * FROM dict');
 $stmt->execute();
-
 ?>
-
 <table>
     <tr>
         <th>用語</th>
@@ -28,5 +25,8 @@ $stmt->execute();
             <th>{$result['ex_sentence']}</th>
             <th>{$result['author']}</th>
         </tr>
-    <?php } ?>
+    <?php 
+    var_dump($result);
+} 
+?>
 </table>
