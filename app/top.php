@@ -23,12 +23,15 @@ if( $_POST['keyword'] && $_POST['editor'] ) {
     } else {
         $isEditor = false;
     }
+    var_dump($result);
 
     // ランダムで単語を取得
     $stmt = $pdo->prepare('SELECT * FROM dict ORDER BY random() LIMIT 1');
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $word = $result['word'];
+
+    var_dump($result);
 }
 ?>
 
