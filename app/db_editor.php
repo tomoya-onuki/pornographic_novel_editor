@@ -87,7 +87,7 @@ function getDB($pdo)
                 $('#db_tbl').append(elem);
                 <?php } ?>
                 
-                data.forEach( (i, d) => {
+                data.forEach( (d) => {
                     $('#db_tbl').append('<td>'+d+'</td>');
                 });
             },
