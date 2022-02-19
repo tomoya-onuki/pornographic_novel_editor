@@ -79,14 +79,15 @@ function getDB($pdo)
             function(data) {
                 // console.log(data)
                 // location.href = "./db_editor.php";
-               
-
                 if (data != null) {
+                    let stmt = '<tr>';
                     for (let key in data) {
                         console.log(key, data[key]);
-                        $('#db_tbl').append('<td>' + data[key] + '</td>');
+                        stmt += '<td>' + data[key] + '</td>';
+                        // $('#db_tbl').append('<td>' + data[key] + '</td>');
                     }
-                    $('#db_tbl').append('<td><a href="./db_delete.php?id='+data.id+'">削除</a></td>');
+                    stmt += '<td><a href="./db_delete.php?id='+data.id+'">削除</a></td><tr>';
+                    // $('#db_tbl').append('<td><a href="./db_delete.php?id='+data.id+'">削除</a></td>');
                 }
             },
             "json"
