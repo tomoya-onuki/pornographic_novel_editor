@@ -55,7 +55,10 @@ if (!empty($_POST['key'])) {
                         'key': '<?= $_POST['key'] ?>'
                     },
                     function(data) {
-                        update(data);
+                        // update(data);
+                        console.log(data.editor);
+                        $('#script').html(data.sentence);
+                        check_editor(data.editor);
                     },
                     "json"
                 )
@@ -106,7 +109,10 @@ if (!empty($_POST['key'])) {
                     'key': '<?= $_POST['key'] ?>'
                 },
                 function(data) {
-                    update(data);
+                    // update(data);
+                    console.log(data.editor);
+                    $('#script').html(data.sentence);
+                    check_editor(data.editor);
                     $('#sentence').val('');
                 },
                 "json"
