@@ -30,8 +30,7 @@ function random_keyword()
 
     <?php
 
-    $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
-    $stmt->bindParam(':key', $_POST['keyword'], PDO::PARAM_STR);
+    $stmt = $pdo->prepare('SELECT * FROM script');
     $stmt->execute();
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <div>
