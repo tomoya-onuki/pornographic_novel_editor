@@ -33,6 +33,11 @@ if (!empty($_POST['keyword'])) {
     $word = $result['word'];
 
     var_dump($result);
+
+
+    $stmt = $pdo->prepare('UPDATE script SET word=:word WHERE key = :key');
+    $stmt->bindParam(':word', $word, PDO::PARAM_STR);
+    $stmt->execute();
 }
 ?>
 
