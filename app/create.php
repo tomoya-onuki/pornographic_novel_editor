@@ -16,7 +16,7 @@ if (!empty($_POST['key'])) {
     // $stmt->bindParam(':word', $word, PDO::PARAM_STR);
     // $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     // $stmt->execute();
-    $word = "ニュククヌーッ！";
+    $word = "温かくて美味しいジュース";
     
     $sentence = '';
     $line = 0;
