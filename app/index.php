@@ -23,7 +23,7 @@ $key = random_keyword();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>ふたりて書く官能小説</title>
+    <title>ふたりで書く官能小説</title>
 
     <script>
         $(function() {
@@ -41,7 +41,7 @@ $key = random_keyword();
     <div class="frame0 ellipse"></div>
     <div class="frame1 ellipse"></div>
 
-    <div class="my_title">＃ふたりて書く官能小説</div>
+    <div class="my_title">＃ふたりで書く官能小説</div>
     <div class="my_bookbinding_ellipse ellipse"></div>
     <button class="my_bookbinding">製本する</button>
     <div class="my_create_ellipse ellipse"></div>
