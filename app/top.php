@@ -88,6 +88,7 @@ if (!empty($_POST['key'])) {
                         // update(data);
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
+                        line = data.line;
                         if(data.line > 5) {
                             $('#status').text('終了');
                             $('#sentence').attr('readonly', true);
@@ -107,6 +108,7 @@ if (!empty($_POST['key'])) {
                     function(data) {
                         // update(data);
                         console.log(data.line);
+                        line = data.line;
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
                         if(data.line > 5) {
