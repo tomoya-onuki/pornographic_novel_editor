@@ -26,10 +26,10 @@ $stmt->execute();
     
 
 
-<div>用語：<textarea id="word" cols="30" rows="10"></textarea></div>
-<div>意味：<textarea id="meaning" cols="30" rows="10"></textarea></div>
-<div>用法：<textarea id="ex_sentence" cols="30" rows="10"></textarea></div>
-<div>作者：<textarea id="author" cols="30" rows="10"></textarea></div>
+<div>用語：<textarea id="word" cols="1" rows="20"></textarea></div>
+<div>意味：<textarea id="meaning" cols="1" rows="20"></textarea></div>
+<div>用法：<textarea id="ex_sentence" cols="2" rows="20"></textarea></div>
+<div>作者：<textarea id="author" cols="1" rows="20"></textarea></div>
 <button id="db_add_btn">追加</button>
 
 <table border="1">

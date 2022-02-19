@@ -12,4 +12,6 @@ if($_GET['id']) {
     $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
     $stmt->execute();
 }
+
+header('Location: ./db_editor.php');
 ?>

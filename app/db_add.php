@@ -6,7 +6,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 // var_dump($_POST);
 
-if (count($_POST) > 0) {   
+if ($_POST['word'] != '' && $_POST['meaning'] != '' && $_POST['ex_sentence'] != '' && $_POST['author'] != '') {   
     // PDOでDBからデータを取得
     $stmt = $pdo->prepare('INSERT INTO dict (word, meaning, ex_sentence, author) VALUES (:word, :meaning, :ex_sentence, :author)');
     $stmt->bindParam(':word', $_POST['word'], PDO::PARAM_STR);
