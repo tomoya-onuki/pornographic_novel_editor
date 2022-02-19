@@ -18,7 +18,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 </head>
 
 <body>
-    <h1>ふたりの官能小説(仮)</h1>
+<a href="./"><h1>ふたりの官能小説(仮)</h1></a>
 <?php
 
 

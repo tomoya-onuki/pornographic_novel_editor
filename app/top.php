@@ -58,10 +58,11 @@ if (!empty($_POST['key'])) {
 </head>
 
 <body>
-    <h1>ふたりの官能小説(仮)</h1>
-    <div>
-        最初のワード : <?= $word ?>
-    </div>
+    
+    <a href="./"><h1>ふたりの官能小説(仮)</h1></a>
+    
+    <div>愛言葉:<?=$_POST['key']?></div>
+    <div>最初のワード : <?= $word ?></div>
 
     <div id="status"></div>
     <div id="script"><?= $sentence ?></div>
