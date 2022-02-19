@@ -75,9 +75,9 @@ function getDB($pdo)
                 'ex_sentence': $('#ex_sentence').val(),
                 'author': $('#author').val()
             },
-            function() {
-                // console.log("hoge")
-                location.href = "./db_editor.php";
+            function(data) {
+                console.log(data)
+                // location.href = "./db_editor.php";
             },
             "json"
         )

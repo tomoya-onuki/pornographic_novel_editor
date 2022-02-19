@@ -16,5 +16,6 @@ if ($_POST['word'] != '' && $_POST['meaning'] != '' && $_POST['ex_sentence'] != 
     $stmt->execute();
 }
 
-exit();
+// exit();
+echo json_encode($_POST);
 ?>
