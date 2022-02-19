@@ -59,7 +59,7 @@ if (!empty($_POST['key'])) {
     <script>
         const myEditId = <?= $_POST['editor'] ?>;
         const editor = <?= $editor ?>;
-        check_editor();
+        check_editor(editor);
 
         console.log(editor);
         console.log($('#sentence').val());
@@ -75,15 +75,15 @@ if (!empty($_POST['key'])) {
                     console.log(data.editor);
                     $('#script').html(data.sentence);
                     $('#sentence').val('');
-                    check_editor();
+                    check_editor(data.editor);
                 },
                 "json"
             )
         });
 
 
-        function check_editor() {
-            if (data.editor === myEditId) {
+        function check_editor(_editor) {
+            if (_editor === myEditId) {
                 $('#status').text();
                 $('#sentence').attr('readonly', false);
             } else {
