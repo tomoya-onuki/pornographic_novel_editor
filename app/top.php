@@ -11,7 +11,7 @@ $isEditor = false;
 $word = "";
 
 
-if (!empty($_POST['keyword'])) {
+if (!empty($_POST['key'])) {
 
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
