@@ -11,15 +11,15 @@ $isEditor = false;
 $word = "";
 
 
-if( !empty($_POST['keyword']) ) {
-    
+if (!empty($_POST['keyword'])) {
+
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
     $stmt->bindParam(':key', $_POST['keyword'], PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $sentence = $result['sentence'];
-    if (strcmp($result['editor'], $_POST['editor']) == 0 ) {
+    if (strcmp($result['editor'], $_POST['editor']) == 0) {
         $isEditor = true;
     } else {
         $isEditor = false;
@@ -38,6 +38,7 @@ if( !empty($_POST['keyword']) ) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,19 +47,42 @@ if( !empty($_POST['keyword']) ) {
     <link rel="stylesheet" href="style.css">
     <title>ふたりの官能小説(仮)</title>
 </head>
+
 <body>
-<h1>ふたりの官能小説(仮)</h1>
+    <h1>ふたりの官能小説(仮)</h1>
     <div>
-        最初のワード : <?=$word?>
+        最初のワード : <?= $word ?>
     </div>
 
-    <div><?=$sentence?></div>
-    
-    
-    <?php if ($isEditor) {?>
+    <div id="script"><?= $sentence ?></div>
+
+
+    <?php if ($isEditor) { ?>
         <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
-    <?php } else {?>
+        <button id="update">更新</button>
+    <?php } else { ?>
         <textarea name="sentence" id="sentence" cols="30" rows="10" readonly></textarea>
-    <?php }?>
+    <?php } ?>
+
+
+
+    <script>
+        editor = <?=$_POST['editor']?>;
+        console.log(editor);
+        $('#update').click(function() {
+            var hostUrl = 'db_add.php';
+            $.post('update.php', {
+                        'sentence': $(this).val(),
+                        'editor': editor * -1,
+                        'keyword': <?=$_POST['keyword']?>
+                    },
+                    function(data) {
+                        console.log(data);
+                    },
+                    "json"
+                )
+        });
+    </script>
 </body>
+
 </html>

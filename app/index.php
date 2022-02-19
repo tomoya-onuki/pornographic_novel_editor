@@ -42,7 +42,7 @@ $stmt->execute();
         <div>
         <form action="top.php" method="post">
             合言葉 : <input id="copyTarget" type="text" value="<?= $keyword ?>" readonly name="keyword">
-            <input type="hidden" value="0" name="editor">
+            <input type="hidden" value="1" name="editor">
             <input type="submit" value="START">
         </form>
         </div>
@@ -55,7 +55,7 @@ $stmt->execute();
         <div>
             <form action="top.php" method="post">
                 合言葉 : <input type="text" value="" name="keyword">
-                <input type="hidden" value="1" name="editor">
+                <input type="hidden" value="-1" name="editor">
                 <input type="submit" value="START">
             </form>
         </div>
