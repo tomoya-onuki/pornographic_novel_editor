@@ -66,11 +66,13 @@ if (!empty($_POST['keyword'])) {
     <script>
         editor = <?=$_POST['editor']?>;
         console.log(editor);
+        console.log($('#sentence').val());
+
         $('#update').click(function() {
             var hostUrl = 'db_add.php';
             $.post('update.php', {
                         'sentence': $('#sentence').val(),
-                        'editor': editor,
+                        'editor': editor * -1,
                         'keyword': <?=$_POST['keyword']?>
                     },
                     function(data) {
