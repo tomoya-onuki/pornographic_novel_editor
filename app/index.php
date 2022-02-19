@@ -10,6 +10,8 @@ function random_keyword()
     $length = 8;
     return base_convert(mt_rand(pow(36, $length - 1), pow(36, $length) - 1), 10, 36);
 }
+
+$key = random_keyword();
 ?>
 
 <!DOCTYPE html>
@@ -39,22 +41,7 @@ function random_keyword()
             </a>
         </div>
 
-    <?php
-    }
-
-
-
-    $key = random_keyword();
-    $sentence = '';
-    $editor = 1;
-    $word = 'word';
-    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word) VALUES (:key, :sentence, :editor, :word)');
-    $stmt->bindParam(':key', $key, PDO::PARAM_STR);
-    $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
-    $stmt->bindParam(':editor', $editor, PDO::PARAM_INT);
-    $stmt->bindParam(':word', $word, PDO::PARAM_STR);
-    $stmt->execute();
-    ?>
+    <?php } ?>
 
 
 

@@ -12,9 +12,18 @@ if (!empty($_POST['key'])) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $word = $result['word'];
     
-    $stmt = $pdo->prepare('UPDATE script SET word = :word WHERE key = :key');
-    $stmt->bindParam(':word', $word, PDO::PARAM_STR);
+    // $stmt = $pdo->prepare('UPDATE script SET word = :word WHERE key = :key');
+    // $stmt->bindParam(':word', $word, PDO::PARAM_STR);
+    // $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    // $stmt->execute();
+
+    
+    $sentence = '';
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word) VALUES (:key, :sentence, :editor, :word)');
     $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
+    $stmt->bindParam(':editor', $_POST['editor'], PDO::PARAM_INT);
+    $stmt->bindParam(':word', $word, PDO::PARAM_STR);
     $stmt->execute();
 
 

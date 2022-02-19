@@ -7,7 +7,6 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 var_dump($_POST);
 $sentence = "";
-$isEditor = false;
 $word = "";
 
 
@@ -20,11 +19,6 @@ if (!empty($_POST['key'])) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $sentence = $result['sentence'];
     $word = $result['word'];
-    if ($result['editor'] == $_POST['editor']) {
-        $isEditor = true;
-    } else {
-        $isEditor = false;
-    }
     var_dump($result);
 }
 ?>
@@ -57,7 +51,7 @@ if (!empty($_POST['key'])) {
 
 
     <script>
-        editor = <?=$_POST['editor']?>;
+        const editor = <?=$_POST['editor']?>;
         console.log(editor);
         console.log($('#sentence').val());
 
@@ -72,6 +66,11 @@ if (!empty($_POST['key'])) {
                         console.log(data);
                         $('#script').html(data.sentence);
                         $('#sentence').val('');
+                        if(data.editor === editor) {
+                            $('#sentence').attr('readonly', false);
+                        }  else {
+                            $('#sentence').attr('readonly', true);
+                        }
                     },
                     "json"
                 )
