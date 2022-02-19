@@ -40,19 +40,19 @@ $stmt->execute();
         <h2>ゲームを作る人</h2>
         <div>合言葉を共有した人と官能小説を作れます。</div>
         <div>
-        <form action="./top.php" method="post"></form>
+        <form action="top.php" method="post"></form>
             合言葉 : <input id="copyTarget" type="text" value="<?= $keyword ?>" readonly name="keyword">
             <input type="hidden" value="0" name="editor">
             <input type="submit" value="START">
-            <button onclick="copyToClipboard()">Copy</button>
         </div>
+        <button onclick="copyToClipboard()">Copy</button>
     </div>
 
     <div>
         <h2>ゲームに参加する人</h2>
         <div>共有した合言葉で官能小説を作れます。</div>
         <div>
-            <form action="./top.php" method="post"></form>
+            <form action="top.php" method="post"></form>
             合言葉 : <input type="text" value="" name="keyword">
             <input type="hidden" value="1" name="editor">
             <input type="submit" value="START">
