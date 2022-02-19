@@ -48,21 +48,47 @@ if (!empty($_POST['key'])) {
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            function check_editor(_editor) {
-                if (_editor === myEditId) {
-                    $('#status').text('あなたのばん');
-                    $('#sentence').attr('readonly', false);
-                } else {
-                    $('#status').text('あいてのばん');
-                    $('#sentence').attr('readonly', true);
-                }
-            }
+            const myEditId = <?= $_POST['editor'] ?>;
+            const editor = <?= $editor ?>;
+            check_editor(editor);
 
-            function update(data) {
-                console.log(data.editor);
-                $('#script').html(data.sentence);
-                check_editor(data.editor);
-            }
+            // console.log(editor);
+            // console.log($('#sentence').val());
+
+        
+                function check_editor(_editor) {
+                    if (_editor === myEditId) {
+                        $('#status').text('あなたのばん');
+                        $('#sentence').attr('readonly', false);
+                    } else {
+                        $('#status').text('あいてのばん');
+                        $('#sentence').attr('readonly', true);
+                    }
+                }
+
+                function update(data) {
+                    console.log(data.editor);
+                    $('#script').html(data.sentence);
+                    check_editor(data.editor);
+                }
+
+                $('#update').click(function() {
+                let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
+                $.post('update.php', {
+                        'sentence': new_sentence,
+                        'editor': myEditId * -1,
+                        'key': '<?= $_POST['key'] ?>'
+                    },
+                    function(data) {
+                        // update(data);
+                        console.log(data.editor);
+                        $('#script').html(data.sentence);
+                        check_editor(data.editor);
+                        $('#sentence').val('');
+                    },
+                    "json"
+                )
+            });
         
             // DBの定期的な監視
             window.setInterval(function() {
@@ -110,30 +136,7 @@ if (!empty($_POST['key'])) {
 
 
     <script>
-        const myEditId = <?= $_POST['editor'] ?>;
-        const editor = <?= $editor ?>;
-        check_editor(editor);
-
-        // console.log(editor);
-        // console.log($('#sentence').val());
-
-        $('#update').click(function() {
-            let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
-            $.post('update.php', {
-                    'sentence': new_sentence,
-                    'editor': myEditId * -1,
-                    'key': '<?= $_POST['key'] ?>'
-                },
-                function(data) {
-                    // update(data);
-                    console.log(data.editor);
-                    $('#script').html(data.sentence);
-                    check_editor(data.editor);
-                    $('#sentence').val('');
-                },
-                "json"
-            )
-        });
+        
     </script>
 </body>
 
