@@ -10,7 +10,7 @@ $sentence = "";
 $isEditor = false;
 $word = "";
 
-if( $_POST['keyword'] && $_POST['editor'] ) {
+if( !empty($_POST['keyword']) && !empty($_POST['editor']) ) {
     
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
