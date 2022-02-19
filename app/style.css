@@ -187,8 +187,8 @@ input[type="text"] {
     font-size: 12px;
     line-height: 17px;
 
-    -ms-writing-mode: tb-rl;
-    writing-mode: vertical-rl;
+    /* -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl; */
 
     color: #FDFAFC;
 }
@@ -362,7 +362,7 @@ input[type="text"] {
 .edit_word {
     position: absolute;
     width: 18px;
-    height: 128px;
+    height: auto;
     left: calc(100% - 100px);
     top: 50px;
     /* width: 18px;
