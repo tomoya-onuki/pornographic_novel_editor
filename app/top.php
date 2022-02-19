@@ -77,7 +77,7 @@ if (!empty($_POST['key'])) {
                 "json"
             )
         });
-
+        window.setInterval(check_db(), 1000);
 
         function check_editor(_editor) {
             if (_editor === myEditId) {
