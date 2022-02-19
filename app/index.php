@@ -22,22 +22,37 @@ $key = random_keyword();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>ふたりの官能小説(仮)</title>
+    <title>ふたりて書く官能小説</title>
+
+    <script>
+        $(function() {
+            $('#create').on('click', function() {
+                $("#my_create_modal").fadeIn();
+            });
+            $('#esc').on('click', function() {
+                $("#my_create_modal").fadeOut();
+            });
+        });
+    </script>
 </head>
 
-<body>
-    <h1>ふたりの官能小説(仮)</h1>
-    <a href="./db_editor.php">データベース編集</a>
+<body class="main0">
+    <div class="frame0"></div>
+    <div class="frame1"></div>
 
-    <div>作品一覧</div>
+    <div class="my_title">#ふたりて書く官能小説</div>
+    <div class="my_bookbinding">製本する</div>
+    <div class="my_create" id="create">作成する</div>
+
+    <!-- <div>作品一覧</div> -->
     <?php
 
     $stmt = $pdo->prepare('SELECT * FROM script');
     $stmt->execute();
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <div>
-            <a href="./story.php?key=<?=$result['key']?>">
-            <?= $result['word'] ?>    
+            <a href="./story.php?key=<?= $result['key'] ?>">
+                <?= $result['word'] ?>
             </a>
         </div>
 
@@ -45,29 +60,22 @@ $key = random_keyword();
 
 
 
-    <div>
-        <h2>ゲームを作る人</h2>
-        <div>合言葉を共有した人と官能小説を作れます。</div>
-        <div>
-            <form action="create.php" method="post">
-                合言葉 : <input id="copyTarget" type="text" value="<?= $key ?>" readonly name="key">
-                <input type="hidden" value="1" name="editor">
-                <input type="submit" value="START">
-            </form>
-        </div>
-        <button onclick="copyToClipboard()">Copy</button>
+    <div class="my_create_modal">
+        <div class="esc"></div>
+        <form action="create.php" method="post">
+            合言葉 : <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">
+            <input type="hidden" value="1" name="editor">
+            <input type="submit" value="つくる" class="btn0">
+        </form>
+        <!-- <button onclick="copyToClipboard()">Copy</button> -->
     </div>
 
     <div>
-        <h2>ゲームに参加する人</h2>
-        <div>共有した合言葉で官能小説を作れます。</div>
-        <div>
-            <form action="top.php" method="post">
-                合言葉 : <input type="text" value="" name="key">
-                <input type="hidden" value="-1" name="editor">
-                <input type="submit" value="START">
-            </form>
-        </div>
+        <form action="top.php" method="post">
+            合言葉 : <input class="form1" type="text" value="" name="key">
+            <input type="hidden" value="-1" name="editor">
+            <input type="submit" value="START" class="btn1">
+        </form>
     </div>
 
 

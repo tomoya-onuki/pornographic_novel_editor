@@ -25,7 +25,7 @@ if (!empty($_POST['key'])) {
     } else {
         header("Location: ./error.html");
     }
-    var_dump($result);
+    // var_dump($result);
 }
 ?>
 
