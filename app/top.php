@@ -124,7 +124,7 @@ if (!empty($_POST['key'])) {
 </head>
 
 <body class="main1">
-    <!-- <a href="./"><h1>ふたりの官能小説(仮)</h1></a> -->
+    <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
     <div class="edit">
         <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
         <div class="edit_key">合言葉:<?= $_POST['key'] ?></div>
