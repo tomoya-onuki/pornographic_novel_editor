@@ -82,7 +82,7 @@ if (!empty($_POST['key'])) {
                         'sentence': new_sentence,
                         'editor': myEditId * -1,
                         'key': '<?= $_POST['key'] ?>',
-                        'line': line++
+                        'line': line+1
                     },
                     function(data) {
                         // update(data);
@@ -106,7 +106,7 @@ if (!empty($_POST['key'])) {
                     },
                     function(data) {
                         // update(data);
-                        // console.log(data.editor);
+                        console.log(data.line);
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
                         if(data.line > 5) {
