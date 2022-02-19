@@ -25,19 +25,6 @@ if (!empty($_POST['key'])) {
         $isEditor = false;
     }
     var_dump($result);
-
-    if(strcmp($_POST['editor'], '1')) {
-        // ランダムで単語を取得
-        $stmt = $pdo->prepare('SELECT * FROM dict ORDER BY random() LIMIT 1');
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $word = $result['word'];
-        
-        $stmt = $pdo->prepare('UPDATE script SET word = :word WHERE key = :key');
-        $stmt->bindParam(':word', $word, PDO::PARAM_STR);
-        $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
-        $stmt->execute();
-    }
 }
 ?>
 

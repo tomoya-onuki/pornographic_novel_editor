@@ -62,7 +62,7 @@ function random_keyword()
         <h2>ゲームを作る人</h2>
         <div>合言葉を共有した人と官能小説を作れます。</div>
         <div>
-            <form action="top.php" method="post">
+            <form action="create.php" method="post">
                 合言葉 : <input id="copyTarget" type="text" value="<?= $key ?>" readonly name="key">
                 <input type="hidden" value="1" name="editor">
                 <input type="submit" value="START">
