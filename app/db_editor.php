@@ -79,10 +79,11 @@ function getDB($pdo)
                 // console.log(data)
                 // location.href = "./db_editor.php";
                 
-                
-                data.forEach( (d) => {
-                    $('#db_tbl').append('<td>'+d+'</td>');
-                });
+
+                for (let key in data) {
+                    console.log(key, data[key]);
+                    $('#db_tbl').append('<td>' + data[key] + '</td>');
+                }
             },
             "json"
         )
