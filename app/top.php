@@ -72,10 +72,7 @@ if (!empty($_POST['key'])) {
                     'key': '<?= $_POST['key'] ?>'
                 },
                 function(data) {
-                    console.log(data.editor);
-                    $('#script').html(data.sentence);
-                    $('#sentence').val('');
-                    check_editor(data.editor);
+                    update(data)
                 },
                 "json"
             )
@@ -84,12 +81,30 @@ if (!empty($_POST['key'])) {
 
         function check_editor(_editor) {
             if (_editor === myEditId) {
-                $('#status').text();
+                $('#status').text('あなたのばん');
                 $('#sentence').attr('readonly', false);
             } else {
-                $('#status').text();
+                $('#status').text('あいてのばん');
                 $('#sentence').attr('readonly', true);
             }
+        }
+
+        function update(data) {
+            console.log(data.editor);
+            $('#script').html(data.sentence);
+            $('#sentence').val('');
+            check_editor(data.editor);
+        }
+
+        function check_db() {
+            $.post('update.php', {
+                    'key': '<?= $_POST['key'] ?>'
+                },
+                function(data) {
+                    update(data);
+                },
+                "json"
+            )
         }
     </script>
 </body>
