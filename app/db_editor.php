@@ -76,8 +76,8 @@ function getDB($pdo)
                 'author': $('#author').val()
             },
             function(data) {
-                console.log(data)
-                // location.href = "./db_editor.php";
+                // console.log(data)
+                location.href = "./db_editor.php";
             },
             "json"
         )
