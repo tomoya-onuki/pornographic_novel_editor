@@ -63,16 +63,13 @@ $key = random_keyword();
     <div class="my_create_modal">
         <div class="esc"></div>
         <form action="create.php" method="post">
-            合言葉 : <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">
+            <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">
             <input type="hidden" value="1" name="editor">
             <input type="submit" value="つくる" class="btn0">
         </form>
         <!-- <button onclick="copyToClipboard()">Copy</button> -->
-    </div>
-
-    <div>
         <form action="top.php" method="post">
-            合言葉 : <input class="form1" type="text" value="" name="key">
+            <input class="form1" type="text" value="" name="key">
             <input type="hidden" value="-1" name="editor">
             <input type="submit" value="START" class="btn1">
         </form>
