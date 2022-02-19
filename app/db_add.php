@@ -14,8 +14,18 @@ if ($_POST['word'] != '' && $_POST['meaning'] != '' && $_POST['ex_sentence'] != 
     $stmt->bindParam(':ex_sentence', $_POST['ex_sentence'], PDO::PARAM_STR);
     $stmt->bindParam(':author', $_POST['author'], PDO::PARAM_STR);
     $stmt->execute();
+
+
+    $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
+    $stmt->bindParam(':word', $_POST['word'], PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    echo json_encode($result);
+} else {
+    echo null;
 }
 
 // exit();
-echo json_encode($_POST);
+
 ?>

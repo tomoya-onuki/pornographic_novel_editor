@@ -5,7 +5,7 @@ $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
-$targetID = 0;
+$finID = 0;
 
 // PDOでDBからデータを取得
 function getDB($pdo)
@@ -62,6 +62,7 @@ function getDB($pdo)
             echo '<td><a href="./db_delete.php?id=' . $result['id'] . '">削除</a></td>';
             echo '</tr>';
         }
+        $finID = $result['id'];
         ?>
     </table>
 </body>
@@ -78,11 +79,21 @@ function getDB($pdo)
             function(data) {
                 // console.log(data)
                 // location.href = "./db_editor.php";
-                
+                <?php
+                $stmt = getDB($pdo);
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                    $('#word<?= $result['id'] ?>').remove();
+                    let elem = '<tr id="word<?= $result['id'] ?>"><td><?= $result['id'] ?></td><td><?= $result['word'] ?></td><td><?= $result['meaning'] ?></td><td><?= $result['ex_sentence'] ?></td><td><?= $result['author'] ?> </td><td><a href="./db_delete.php?id=<?= $result['id'] ?>">削除</a></td></tr>';
+                    $('#db_tbl').append(elem);
+                <?php } ?>
 
-                for (let key in data) {
-                    console.log(key, data[key]);
-                    $('#db_tbl').append('<td>' + data[key] + '</td>');
+                if (data != null) {
+                    for (let key in data) {
+                        console.log(key, data[key]);
+                        $('#db_tbl').append('<td>' + data[key] + '</td>');
+                    }
+                    $('#db_tbl').append('<td><a href="./db_delete.php?id='+data.id+'">削除</a></td>');
                 }
             },
             "json"
