@@ -38,8 +38,8 @@ $key = random_keyword();
 </head>
 
 <body class="main0">
-    <div class="frame0"></div>
-    <div class="frame1"></div>
+    <div class="frame0 ellipse"></div>
+    <div class="frame1 ellipse"></div>
 
     <div class="my_title">＃ふたりて書く官能小説</div>
     <div class="my_bookbinding_ellipse ellipse"></div>

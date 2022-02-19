@@ -272,6 +272,8 @@ input[type="text"] {
 }
 
 .story_img {
+    width: 223px;
+    height: 223px;
     background: rgba(255, 0, 0, 0.37);
 }
 
