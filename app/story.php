@@ -14,29 +14,30 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>ふたりの官能小説(仮)</title>
+    <title>ふたりで書く官能小説</title>
 </head>
 
-<body>
-<a href="./"><h1>ふたりの官能小説(仮)</h1></a>
-<?php
+<body class="main1">
+    <!-- <a href="./"><h1>ふたりの官能小説(仮)</h1></a> -->
+    <div class="edit">
+        <?php
+        if (!empty($_GET['key'])) {
+            // 編集中の文書の情報
+            $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
+            $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-if (!empty($_GET['key'])) {
-
-    // 編集中の文書の情報
-    $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
-    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    ?>
-        <h2><?=$_GET['word']?></h2>
-        <div>
-            <?=$result['sentence']?>
-        </div>
-<?php
-}
-?>
-
+            $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
+            $stmt->bindParam(':word', $word, PDO::PARAM_STR);
+            $stmt->execute();
+            $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        ?>
+        <div class="edit_word"><?= $result['word'] ?></div>
+        <div id="script"><?= $result['sentence'] ?></div>
+        <div class="edit_meaning"><?= $result2['meaning'] ?></div>
+    </div>
 </body>
+
 </html>

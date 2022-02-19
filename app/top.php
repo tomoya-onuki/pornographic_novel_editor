@@ -65,19 +65,26 @@ if (!empty($_POST['key'])) {
 </head>
 
 <body class="main1">
-    <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
     <!-- <a href="./"><h1>ふたりの官能小説(仮)</h1></a> -->
     <div class="edit">
-        <div class="edit_key"><?= $_POST['key'] ?></div>
+        <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
+        <div class="edit_key">合言葉:<?= $_POST['key'] ?></div>
         <div class="edit_word"><?= $word ?></div>
         <div class="edit_meaning"><?= $meaning ?></div>
-        
+
         <div id="status"></div>
         <div id="script"><?= $sentence ?></div>
-   
+
         <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
+        <div class="update_ellipse ellipse"></div>
+        <div class="draft_ellipse ellipse"></div>
         <button id="update">更新</button>
-        <button id="draft">入稿</button>
+
+        <form action="./story.php" method="get">
+            <!-- <button id="draft">入稿</button> -->
+            <input id="draft" name="draft" value="入稿">
+            <input type="hidden" name="key" value="<?=$_POST['key']?>">
+        </form>
     </div>
 
 
