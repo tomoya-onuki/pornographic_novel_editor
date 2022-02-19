@@ -13,8 +13,14 @@ if (!empty($_POST['key'])) {
     $stmt->bindParam(':sentence', $_POST['sentence'], PDO::PARAM_STR);
     $stmt->bindParam(':editor', $_POST['editor'], PDO::PARAM_STR);
     $stmt->execute();
+
+
+    $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
+    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    echo json_encode($_POST);
+    echo json_encode($result);
 } else {
     echo null;
 }

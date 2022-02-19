@@ -7,6 +7,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 var_dump($_POST);
 $sentence = "";
 $word = "";
+$editor = 0;
 
 
 if (!empty($_POST['key'])) {
@@ -20,6 +21,7 @@ if (!empty($_POST['key'])) {
     if ($result) {
         $sentence = $result['sentence'];
         $word = $result['word'];
+        $editor = $result['editor'];
     } else {
         header("Location: ./error.html");
     }
@@ -45,40 +47,50 @@ if (!empty($_POST['key'])) {
         最初のワード : <?= $word ?>
     </div>
 
+    <div id="status"></div>
     <div id="script"><?= $sentence ?></div>
 
-    
     <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
     <button id="update">更新</button>
-    
+
 
 
 
     <script>
-        const editor = <?=$_POST['editor']?>;
+        const myEditId = <?= $_POST['editor'] ?>;
+        const editor = <?= $editor ?>;
+        check_editor();
+
         console.log(editor);
         console.log($('#sentence').val());
 
         $('#update').click(function() {
             let new_sentence = $('#script').html() + '<br>' + $('#sentence').val();
             $.post('update.php', {
-                        'sentence': new_sentence,
-                        'editor': editor * -1,
-                        'key': '<?=$_POST['key']?>'
-                    },
-                    function(data) {
-                        console.log(data);
-                        $('#script').html(data.sentence);
-                        $('#sentence').val('');
-                        if(data.editor === editor) {
-                            $('#sentence').attr('readonly', false);
-                        }  else {
-                            $('#sentence').attr('readonly', true);
-                        }
-                    },
-                    "json"
-                )
+                    'sentence': new_sentence,
+                    'editor': editor * -1,
+                    'key': '<?= $_POST['key'] ?>'
+                },
+                function(data) {
+                    console.log(data.editor);
+                    $('#script').html(data.sentence);
+                    $('#sentence').val('');
+                    check_editor();
+                },
+                "json"
+            )
         });
+
+
+        function check_editor() {
+            if (data.editor === myEditId) {
+                $('#status').text();
+                $('#sentence').attr('readonly', false);
+            } else {
+                $('#status').text();
+                $('#sentence').attr('readonly', true);
+            }
+        }
     </script>
 </body>
 
