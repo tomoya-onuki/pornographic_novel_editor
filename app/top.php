@@ -88,7 +88,8 @@ if (!empty($_POST['key'])) {
                     'key': '<?= $_POST['key'] ?>'
                 },
                 function(data) {
-                    update(data)
+                    update(data);
+                    $('#sentence').val('');
                 },
                 "json"
             )
@@ -107,7 +108,6 @@ if (!empty($_POST['key'])) {
         function update(data) {
             console.log(data.editor);
             $('#script').html(data.sentence);
-            $('#sentence').val('');
             check_editor(data.editor);
         }
     </script>
