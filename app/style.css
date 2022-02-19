@@ -1,5 +1,9 @@
 .main0 {
-    background: #E5E5E5;
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+
+    background: #FCF9FB;
 }
 
 .main0 .frame0 {
