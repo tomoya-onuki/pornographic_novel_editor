@@ -97,6 +97,7 @@ if (!empty($_POST['key'])) {
         }
 
         function check_db() {
+            console.log('check data base')
             $.post('update.php', {
                     'key': '<?= $_POST['key'] ?>'
                 },
