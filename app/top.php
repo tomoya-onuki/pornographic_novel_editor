@@ -19,6 +19,7 @@ if (!empty($_POST['key'])) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $sentence = $result['sentence'];
+    $word = $result['word'];
     if ($result['editor'] == $_POST['editor']) {
         $isEditor = true;
     } else {
