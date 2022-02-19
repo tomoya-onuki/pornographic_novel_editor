@@ -29,14 +29,14 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
-            $stmt->bindParam(':word', $word, PDO::PARAM_STR);
+            $stmt->bindParam(':word', $result['word'], PDO::PARAM_STR);
             $stmt->execute();
             $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         }
         ?>
+        <div class="edit_meaning"><?= $result2['meaning'] ?></div>
         <div class="edit_word"><?= $result['word'] ?></div>
         <div id="script"><?= $result['sentence'] ?></div>
-        <div class="edit_meaning"><?= $result2['meaning'] ?></div>
     </div>
 </body>
 
