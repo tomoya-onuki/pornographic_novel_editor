@@ -4,7 +4,7 @@ $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
-var_dump($_POST);
+// var_dump($_POST);
 $sentence = "";
 $word = "";
 $editor = 0;
@@ -57,18 +57,23 @@ if (!empty($_POST['key'])) {
     </script>
 </head>
 
-<body>
-    
-    <a href="./"><h1>ふたりの官能小説(仮)</h1></a>
-    
-    <div>愛言葉:<?=$_POST['key']?></div>
-    <div>最初のワード : <?= $word ?></div>
+<body class="main1">
+    <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
+    <!-- <a href="./"><h1>ふたりの官能小説(仮)</h1></a> -->
+    <div class="edit">
+        <div class="edit_key"><?= $_POST['key'] ?></div>
+        <div class="edit_word"><?= $word ?></div>
+        <div class="edit_meaning"><?= $word ?></div>
+        
+        <div id="status"></div>
+        <div id="script"><?= $sentence ?></div>
+    </div>
 
-    <div id="status"></div>
-    <div id="script"><?= $sentence ?></div>
-
-    <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
-    <button id="update">更新</button>
+    <div class="edit_form">
+        <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
+        <button id="update">更新</button>
+        <button id="draft">入稿</button>
+    </div>
 
 
 
@@ -82,7 +87,7 @@ if (!empty($_POST['key'])) {
         // console.log($('#sentence').val());
 
         $('#update').click(function() {
-            let new_sentence = $('#script').html() + '<br>' + $('#sentence').val();
+            let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
             $.post('update.php', {
                     'sentence': new_sentence,
                     'editor': myEditId * -1,

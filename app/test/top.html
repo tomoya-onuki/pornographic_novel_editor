@@ -1,0 +1,87 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="style.css">
+      <title>ふたりの官能小説(仮)</title>
+      <script>
+          $(function() {
+              // DBの定期的な監視
+              window.setInterval(function() {
+                  console.log('check data base')
+                  $.post('check.php', {
+                          'key': '2opgf7gx'
+                      },
+                      function(data) {
+                          update(data);
+                      },
+                      "json"
+                  )
+              }, 1000);
+          });
+      </script>
+  </head>
+  
+  <body>
+      
+      <a href="./"><h1>ふたりの官能小説(仮)</h1></a>
+      
+      <div>愛言葉:2opgf7gx</div>
+      <div>最初のワード : 純ナマ</div>
+  
+      <div id="status"></div>
+      <div id="script"></div>
+  
+      <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
+      <button id="update">更新</button>
+  
+  
+  
+  
+      <script>
+          const myEditId = 1;
+          const editor = 1;
+          check_editor(editor);
+  
+          // console.log(editor);
+          // console.log($('#sentence').val());
+  
+          $('#update').click(function() {
+              let new_sentence = $('#script').html() + '<br>' + $('#sentence').val();
+              $.post('update.php', {
+                      'sentence': new_sentence,
+                      'editor': myEditId * -1,
+                      'key': '2opgf7gx'
+                  },
+                  function(data) {
+                      update(data);
+                      $('#sentence').val('');
+                  },
+                  "json"
+              )
+          });
+  
+          function check_editor(_editor) {
+              if (_editor === myEditId) {
+                  $('#status').text('あなたのばん');
+                  $('#sentence').attr('readonly', false);
+              } else {
+                  $('#status').text('あいてのばん');
+                  $('#sentence').attr('readonly', true);
+              }
+          }
+  
+          function update(data) {
+              console.log(data.editor);
+              $('#script').html(data.sentence);
+              check_editor(data.editor);
+          }
+      </script>
+  </body>
+  
+  </html>
