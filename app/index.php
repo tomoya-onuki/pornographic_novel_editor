@@ -10,15 +10,6 @@ function random_keyword()
     $length = 8;
     return base_convert(mt_rand(pow(36, $length - 1), pow(36, $length) - 1), 10, 36);
 }
-
-$keyword = random_keyword();
-$sentence = '';
-$editor = 1;
-$stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor) VALUES (:key, :sentence, :editor)');
-$stmt->bindParam(':key', $keyword, PDO::PARAM_STR);
-$stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
-$stmt->bindParam(':editor', $editor, PDO::PARAM_INT);
-$stmt->execute();
 ?>
 
 <!DOCTYPE html>
@@ -36,15 +27,43 @@ $stmt->execute();
     <h1>ふたりの官能小説(仮)</h1>
     <a href="./db_editor.php">データベース編集</a>
 
+
+    <?php
+
+    $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
+    $stmt->bindParam(':key', $_POST['keyword'], PDO::PARAM_STR);
+    $stmt->execute();
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+        <div>
+            <?= $result['word'] ?>
+        </div>
+
+    <?php
+    }
+
+
+
+    $keyword = random_keyword();
+    $sentence = '';
+    $editor = 1;
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor) VALUES (:key, :sentence, :editor)');
+    $stmt->bindParam(':key', $keyword, PDO::PARAM_STR);
+    $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
+    $stmt->bindParam(':editor', $editor, PDO::PARAM_INT);
+    $stmt->execute();
+    ?>
+
+
+
     <div>
         <h2>ゲームを作る人</h2>
         <div>合言葉を共有した人と官能小説を作れます。</div>
         <div>
-        <form action="top.php" method="post">
-            合言葉 : <input id="copyTarget" type="text" value="<?= $keyword ?>" readonly name="keyword">
-            <input type="hidden" value="1" name="editor">
-            <input type="submit" value="START">
-        </form>
+            <form action="top.php" method="post">
+                合言葉 : <input id="copyTarget" type="text" value="<?= $keyword ?>" readonly name="keyword">
+                <input type="hidden" value="1" name="editor">
+                <input type="submit" value="START">
+            </form>
         </div>
         <button onclick="copyToClipboard()">Copy</button>
     </div>
