@@ -20,8 +20,8 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
     <script>
         $(function() {
             $('#add_love').click(function() {
-                $.post('add_love.php', {
-                        'key': '<?= $_POST['key'] ?>',
+                $.post('./add_love.php', {
+                        'key': '<?= $_GET['key'] ?>',
                     },
                     function(data) {
                         // update(data);
