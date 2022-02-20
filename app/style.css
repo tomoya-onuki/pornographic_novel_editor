@@ -646,3 +646,31 @@ input[type="text"] {
 
     cursor: pointer;
 }
+
+
+#tweet {
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    left: -116px;
+    bottom: -28px;
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 8px;
+    line-height: 8px;
+    /* or 100% */
+    /* font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl; */
+    color: #000000;
+
+    cursor: pointer;
+}
+
+.tweet_ellipse {
+    position: absolute;
+    left: -102.5px;
+    bottom: -37px;
+}

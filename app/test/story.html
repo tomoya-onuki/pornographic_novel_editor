@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../style.css">
     <title>ふたりで書く官能小説</title>
 
@@ -20,6 +21,10 @@
                     },
                     "json"
                 );
+            });
+
+            $('#tweet').on('click', function () {
+                alert("ツイート画面(仮)")
             });
         });
     </script>
@@ -48,6 +53,15 @@
                 fill="#FCF9FB" />
         </svg>
         <button id="add_love">いいね:0</button>
+
+
+
+        <svg class="tweet_ellipse" style="transform:rotate(90deg)" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
+        </svg>
+        <button id="tweet">ツイート</button>
+
+        
     </div>
 </body>
 

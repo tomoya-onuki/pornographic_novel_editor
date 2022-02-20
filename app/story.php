@@ -25,10 +25,14 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
                     },
                     function(data) {
                         console.log(data.love);
-                        $('#add_love').text('いいね:'+data.love);
+                        $('#add_love').text('いいね:' + data.love);
                     },
                     "json"
                 );
+            });
+
+            $('#tweet').on('click', function () {
+                alert("ツイート画面(仮)")
             });
         });
     </script>
@@ -54,14 +58,18 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
         <div class="edit_meaning"><?= $result2['meaning'] ?></div>
         <div class="edit_word"><?= $result['word'] ?></div>
         <div class="edit_script"><?= $result['sentence'] ?></div>
-        
-        <svg class="draft_ellipse" style="transform:rotate(90deg)" width="30" height="44" viewBox="0 0 30 44" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
-                fill="#FCF9FB" />
+
+        <svg class="draft_ellipse" style="transform:rotate(90deg)" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
         </svg>
         <button id="add_love">いいね:<?= $result['love'] ?></button>
+
+
+        <svg class="tweet_ellipse" style="transform:rotate(90deg)" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
+        </svg>
+        <button id="tweet">ツイート</button>
+        </a>
     </div>
 </body>
 
