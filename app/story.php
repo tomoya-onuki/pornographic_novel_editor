@@ -7,8 +7,10 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 if (!empty($_GET['key'])) {
     $done = true;
-    $stmt = $pdo->prepare('UPDATE script SET done = :done WHERE key = :key');
+    $participant = 0;
+    $stmt = $pdo->prepare('UPDATE script SET (done, participant) = (:done, :participant) WHERE key = :key');
     $stmt->bindParam(':done', $done, PDO::PARAM_BOOL);
+    $stmt->bindParam(':participant', $participant, PDO::PARAM_BOOL);
     $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->execute();
 }
