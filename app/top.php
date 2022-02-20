@@ -10,6 +10,7 @@ $word = "";
 $editor = 0;
 $meaning = "";
 $line = 0;
+$ex_sentence = "";
 
 // var_dump($_POST);
 
@@ -35,7 +36,7 @@ if (!empty($_POST['key'])) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $meaning = $result['meaning'];
-    
+    $ex_sentence = $result['ex_sentence'];
 }
 ?>
 
@@ -119,6 +120,14 @@ if (!empty($_POST['key'])) {
                     "json"
                 )
             }, 1000);
+
+
+            $('#help').on('click', function() {
+                $('#ex_sentence').fadeIn();
+            });
+            $('#help_close').on('click', function() {
+                $('#ex_sentence').fadeOut();
+            });
         });
     </script>
 </head>
@@ -132,9 +141,14 @@ if (!empty($_POST['key'])) {
         <div class="edit_meaning"><?= $meaning ?></div>
 
         <div id="status"></div>
-        <div id="script"><?= $sentence ?></div>
+        <div id="script" class="edit_script"><?= $sentence ?></div>
+        <div id="ex_sentence" class="edit_script">
+            <div id="help_close" class="esc">×</div>
+            <div class="sentence"><?=$ex_sentence?></div>
+        </div>
+        <button id="help">help</button>
 
-        <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="40"></textarea>
+        <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="30"></textarea>
         <div class="update_ellipse ellipse"></div>
         <div class="draft_ellipse ellipse"></div>
         <button id="update">更新</button>

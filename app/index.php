@@ -87,6 +87,11 @@ $key = random_keyword();
 
 
     <script>
+        $(function() {
+            $('#copyTarget').on('click', function() {
+                
+            });
+        });
         function copyToClipboard() {
             // コピー対象をJavaScript上で変数として定義する
             var copyTarget = document.getElementById("copyTarget");

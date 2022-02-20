@@ -1,5 +1,5 @@
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 * {
@@ -272,7 +272,7 @@ input[type="text"] {
     color: #3F3643;
 }
 
-.my_create_modal .esc {
+.esc {
     position: absolute;
     left: 89.06%;
     right: 6.25%;
@@ -411,9 +411,11 @@ input[type="text"] {
     position: relative;
     top: 570px;
     color: #E3E3E3;
+
+    font-family: Source Han Serif JP;
 }
 
-#script {
+.edit_script {
     position: absolute;
     right: 200px;
     top: 50px;
@@ -426,7 +428,7 @@ input[type="text"] {
     /* top: 234px; */
 }
 
-#script .sentence {
+.edit_script .sentence {
     margin-left: 80px;
     /* margin-left: 5vw; */
 
@@ -458,8 +460,6 @@ input[type="text"] {
     line-height: 13px;
     /* or 100% */
     font-feature-settings: 'vert'on;
-    -ms-writing-mode: tb-rl;
-    writing-mode: vertical-rl;
     color: #000000;
 
     resize: none;
@@ -582,4 +582,8 @@ input[type="text"] {
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
     color: #E3E3E3;
+}
+
+#ex_sentence {
+    display: none;
 }
