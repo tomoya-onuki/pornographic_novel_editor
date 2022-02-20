@@ -300,11 +300,10 @@ input[type="text"] {
 .story_img {
     width: 100%;
     height: 100%;
-    background: rgba(255, 0, 0, 0.37);
 }
 
 .story_mask:hover {
-    opacity: 0.9;
+    opacity: 1.0;
 }
 
 
