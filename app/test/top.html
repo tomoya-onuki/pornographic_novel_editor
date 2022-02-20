@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,98 +8,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../style.css">
-    <title>ふたりの官能小説(仮)</title>
+    <title>ふたりで書く官能小説</title>
     <script>
-        $(function () {
+        $(function() {
+            const myEditId = 1;
+            const editor = 1;
+            let line = 0;
+            check_editor(editor);
+
+            // console.log(editor);
+            // console.log($('#sentence').val());
+
+        
+                function check_editor(_editor) {
+                    if (_editor === myEditId) {
+                        $('#status').text('あなたのばん');
+                        $('#sentence').attr('readonly', false);
+                    } else {
+                        $('#status').text('あいてのばん');
+                        $('#sentence').attr('readonly', true);
+                    }
+                }
+
+                function update(data) {
+                    console.log(data.editor);
+                    $('#script').html(data.sentence);
+                    check_editor(data.editor);
+                }
+
+                $('#update').click(function() {
+                let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
+                $.post('update.php', {
+                        'sentence': new_sentence,
+                        'editor': myEditId * -1,
+                        'key': '7wz3969q',
+                        'line': line+1
+                    },
+                    function(data) {
+                        // update(data);
+                        $('#script').html(data.sentence);
+                        check_editor(data.editor);
+                        line = data.line;
+                        if(data.line > 5) {
+                            $('#status').text('終了');
+                            $('#sentence').attr('readonly', true);
+                        }
+                        $('#sentence').val('');
+                    },
+                    "json"
+                )
+            });
+        
             // DBの定期的な監視
-            window.setInterval(function () {
+            window.setInterval(function() {
                 console.log('check data base')
                 $.post('check.php', {
-                    'key': 'gyayhfx5'
-                },
-                    function (data) {
-                        update(data);
+                        'key': '7wz3969q'
+                    },
+                    function(data) {
+                        // update(data);
+                        console.log(data.line);
+                        line = data.line;
+                        $('#script').html(data.sentence);
+                        check_editor(data.editor);
+                        if(data.line > 5) {
+                            $('#status').text('終了');
+                            $('#sentence').attr('readonly', true);
+                        }
                     },
                     "json"
                 )
             }, 1000);
+
+
+            $('#help').on('click', function() {
+                $('#ex_sentence').fadeIn();
+                $('#script').fadeOut();
+            });
+            $('#help_close').on('click', function() {
+                $('#ex_sentence').fadeOut();
+                $('#script').fadeIn();
+            });
         });
     </script>
 </head>
 
 <body class="main1">
-    <!-- <a href="./"><h1>ふたりの官能小説(仮)</h1></a> -->
+    <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
     <div class="edit">
         <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
-        <div class="edit_key">gyayhfx5</div>
-        <div class="edit_word">濃密な昼下がり</div>
-        <div class="edit_meaning">濃密な昼下がり</div>
+        <div class="edit_key">合言葉:7wz3969q</div>
+        <div class="edit_word">海藻</div>
+        <div class="edit_meaning">女性器／陰毛</div>
 
         <div id="status"></div>
-        <div id="script">
-            <div class="sentence">葦がうっそうと生え散らかる湖畔</div>
-
-            <div class="sentence">湖に浮かぶ孤島は深紅に紅葉している</div>
-
-            <div class="sentence">分け入るように指をすすめると女は身をよじった</div>
-
-            <div class="sentence">天変地異だ</div>
-
-            <div class="sentence">花は枯れ大地は吹き荒れる</div>
-
-            <div class="sentence">ぽたりっ、雫が落ちた。途端に、超巨大隕石は落ちてきたのだ</div>
-
+        <div id="script" class="edit_script"></div>
+        <div id="ex_sentence" class="edit_script">
+            <div>
+                <span id="help_close">×</span>
+                例文
+            </div>
+            根元まで裂けたものの奥を。英一は覗きこんだ。ひと握りの海藻が茂る蒼い海底に、貝がうっすら口をあけて、おずおずと二枚の舌を覗かせていた。舌の奥は海の色に沈んで濃い紫に見えた。
         </div>
-        
-            <textarea name="sentence" id="sentence" cols="30" rows="10"></textarea>
-            <div class="update_ellipse ellipse"></div>
-            <div class="draft_ellipse ellipse"></div>
-            <button id="update">更新</button>
-            <button id="draft">入稿</button>
+        <button id="help">help</button>
 
+        <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="30"></textarea>
+        <div class="update_ellipse ellipse"></div>
+        <div class="draft_ellipse ellipse"></div>
+        <button id="update">更新</button>
+
+        <button id="draft" onclick="location.href='./story.php?key=7wz3969q'">入稿</button>
+        <!-- <form action="./story.php" method="get">
+            <input id="draft" name="draft" value="入稿">
+            <input type="hidden" name="key" value="">
+        </form> -->
     </div>
 
 
 
 
     <script>
-        const myEditId = 1;
-        const editor = 1;
-        check_editor(editor);
-
-        // console.log(editor);
-        // console.log($('#sentence').val());
-
-        $('#update').click(function () {
-            let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
-            $.post('update.php', {
-                'sentence': new_sentence,
-                'editor': myEditId * -1,
-                'key': 'gyayhfx5'
-            },
-                function (data) {
-                    update(data);
-                    $('#sentence').val('');
-                },
-                "json"
-            )
-        });
-
-        function check_editor(_editor) {
-            if (_editor === myEditId) {
-                $('#status').text('あなたのばん');
-                $('#sentence').attr('readonly', false);
-            } else {
-                $('#status').text('あいてのばん');
-                $('#sentence').attr('readonly', true);
-            }
-        }
-
-        function update(data) {
-            console.log(data.editor);
-            $('#script').html(data.sentence);
-            check_editor(data.editor);
-        }
+        
     </script>
 </body>
 

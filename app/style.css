@@ -424,6 +424,9 @@ input[type="text"] {
     writing-mode: vertical-rl;
 
     width: 100%;
+
+    word-break:break-all;
+    
     /* left: 974px; */
     /* top: 234px; */
 }
@@ -439,8 +442,9 @@ input[type="text"] {
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
-    line-height: 13px;
+    /* line-height: 13px; */
     /* or 100% */
+    word-break:break-all;
     font-feature-settings: 'vert'on;
 
     color: #000000;
@@ -458,6 +462,7 @@ input[type="text"] {
     font-weight: bold;
     font-size: 13px;
     line-height: 13px;
+    /* line-height: 13px; */
     /* or 100% */
     font-feature-settings: 'vert'on;
     color: #000000;
@@ -585,5 +590,25 @@ input[type="text"] {
 }
 
 #ex_sentence {
+    position: relative;
+    /* position: absolute; */
+    left: -100px;
+    top: 23px;
     display: none;
+    line-height: 80px;
+    height:80%;
+
+    word-break:break-all;
+}
+#help_close {
+    color: #000000;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+#help {
+    position: absolute;
+    top: 100%;
+    left: calc(100% - 30px);
+    color: #E3E3E3;
+    
 }

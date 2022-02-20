@@ -52,45 +52,45 @@ if (!empty($_POST['key'])) {
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            const myEditId = <?=$_POST['editor']?>;
+            const myEditId = <?= $_POST['editor'] ?>;
             const editor = <?= $editor ?>;
-            let line = <?=$line?>;
+            let line = <?= $line ?>;
             check_editor(editor);
 
             // console.log(editor);
             // console.log($('#sentence').val());
 
-        
-                function check_editor(_editor) {
-                    if (_editor === myEditId) {
-                        $('#status').text('あなたのばん');
-                        $('#sentence').attr('readonly', false);
-                    } else {
-                        $('#status').text('あいてのばん');
-                        $('#sentence').attr('readonly', true);
-                    }
-                }
 
-                function update(data) {
-                    console.log(data.editor);
-                    $('#script').html(data.sentence);
-                    check_editor(data.editor);
+            function check_editor(_editor) {
+                if (_editor === myEditId) {
+                    $('#status').text('あなたのばん');
+                    $('#sentence').attr('readonly', false);
+                } else {
+                    $('#status').text('あいてのばん');
+                    $('#sentence').attr('readonly', true);
                 }
+            }
 
-                $('#update').click(function() {
+            function update(data) {
+                console.log(data.editor);
+                $('#script').html(data.sentence);
+                check_editor(data.editor);
+            }
+
+            $('#update').click(function() {
                 let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
                 $.post('update.php', {
                         'sentence': new_sentence,
                         'editor': myEditId * -1,
                         'key': '<?= $_POST['key'] ?>',
-                        'line': line+1
+                        'line': line + 1
                     },
                     function(data) {
                         // update(data);
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
                         line = data.line;
-                        if(data.line > 5) {
+                        if (data.line > 5) {
                             $('#status').text('終了');
                             $('#sentence').attr('readonly', true);
                         }
@@ -99,7 +99,7 @@ if (!empty($_POST['key'])) {
                     "json"
                 )
             });
-        
+
             // DBの定期的な監視
             window.setInterval(function() {
                 console.log('check data base')
@@ -112,7 +112,7 @@ if (!empty($_POST['key'])) {
                         line = data.line;
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
-                        if(data.line > 5) {
+                        if (data.line > 5) {
                             $('#status').text('終了');
                             $('#sentence').attr('readonly', true);
                         }
@@ -124,9 +124,11 @@ if (!empty($_POST['key'])) {
 
             $('#help').on('click', function() {
                 $('#ex_sentence').fadeIn();
+                $('#script').fadeOut();
             });
             $('#help_close').on('click', function() {
                 $('#ex_sentence').fadeOut();
+                $('#script').fadeIn();
             });
         });
     </script>
@@ -143,8 +145,11 @@ if (!empty($_POST['key'])) {
         <div id="status"></div>
         <div id="script" class="edit_script"><?= $sentence ?></div>
         <div id="ex_sentence" class="edit_script">
-            <div id="help_close" class="esc">×</div>
-            <div class="sentence"><?=$ex_sentence?></div>
+            <div>
+                <span id="help_close">×</span>
+                例文
+            </div>
+            <?= $ex_sentence ?>
         </div>
         <button id="help">help</button>
 
@@ -153,7 +158,7 @@ if (!empty($_POST['key'])) {
         <div class="draft_ellipse ellipse"></div>
         <button id="update">更新</button>
 
-        <button id="draft" onclick="location.href='./story.php?key=<?=$_POST['key']?>'">入稿</button>
+        <button id="draft" onclick="location.href='./story.php?key=<?= $_POST['key'] ?>'">入稿</button>
         <!-- <form action="./story.php" method="get">
             <input id="draft" name="draft" value="入稿">
             <input type="hidden" name="key" value="">
@@ -164,7 +169,7 @@ if (!empty($_POST['key'])) {
 
 
     <script>
-        
+
     </script>
 </body>
 
