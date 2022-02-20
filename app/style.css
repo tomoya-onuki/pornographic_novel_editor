@@ -1,6 +1,4 @@
-body {
-    /* overflow: hidden; */
-}
+
 
 * {
     -webkit-appearance: none;
@@ -50,7 +48,7 @@ input[type="text"] {
     /* left: 193px; */
     top: 200px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -61,7 +59,7 @@ input[type="text"] {
     color: #3F3643;
 }
 
-.ellipse {}
+/* .ellipse {} */
 
 .my_bookbinding_ellipse {
     position: absolute;
@@ -86,7 +84,7 @@ input[type="text"] {
     /* left: 196px; */
     top: 554px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -125,7 +123,7 @@ input[type="text"] {
     left: calc(12% + 3px);
     top: 641px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -171,7 +169,7 @@ input[type="text"] {
     left: 20px;
     top: 16px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -222,7 +220,7 @@ input[type="text"] {
     left: 132px;
     top: 51px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 8px;
@@ -251,7 +249,7 @@ input[type="text"] {
     left: 135px;
     top: 73px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 8px;
@@ -303,7 +301,7 @@ input[type="text"] {
 }
 
 .story_mask:hover {
-    opacity: 1.0;
+    opacity: 0.9;
 }
 
 
@@ -330,7 +328,7 @@ input[type="text"] {
     transform: translate(-50%, -50%);
     /* text-align: center; */
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -379,7 +377,7 @@ input[type="text"] {
     left: 1112px;
     top: 234px; */
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -402,7 +400,7 @@ input[type="text"] {
     /* left: 1134px;
     top: 234px; */
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 9px;
@@ -421,7 +419,7 @@ input[type="text"] {
     top: 570px;
     color: #E3E3E3;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
 }
 
 .edit_script {
@@ -432,7 +430,7 @@ input[type="text"] {
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
@@ -466,7 +464,7 @@ input[type="text"] {
     width: 400px;
     height: 80px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -493,7 +491,7 @@ input[type="text"] {
     left: 422.5px;
     top: -52px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -528,7 +526,7 @@ input[type="text"] {
     left: -40px;
     bottom: -30px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -562,7 +560,7 @@ input[type="text"] {
     top: -98px;
     left: -40px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -587,7 +585,7 @@ input[type="text"] {
     /* left: 1209px; */
     /* top: 169px; */
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -632,7 +630,7 @@ input[type="text"] {
     left: -56px;
     bottom: -28px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 8px;
@@ -654,7 +652,7 @@ input[type="text"] {
     left: -116px;
     bottom: -28px;
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 8px;
@@ -691,8 +689,7 @@ input[type="text"] {
     width: 50px;
     height: 30px;
 }
-#color_select .c_ellipse {
-}
+
 #color_select #code {
     position: fixed;
 
@@ -703,7 +700,7 @@ input[type="text"] {
     transform: translate(-50%, -50%);
     /* text-align: center; */
 
-    font-family: Source Han Serif JP;
+    font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
