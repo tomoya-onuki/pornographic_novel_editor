@@ -77,7 +77,7 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
         ?>
             <div class="flex_item">
                 <a href="./story.php?key=<?= $result['key'] ?>">
-                    <img class="story_img" src="./img/<?=$img_array[$idx]?>" alt="">
+                    <img class="story_img" src="<?=$img_array[$idx]?>" alt="">
                     <div class="story_title"><?= $result['word'] ?></div>
                 </a>
             </div>
