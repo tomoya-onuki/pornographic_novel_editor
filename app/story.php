@@ -10,7 +10,7 @@ if (!empty($_GET['key'])) {
     $participant = 0;
     $stmt = $pdo->prepare('UPDATE script SET (done, participant) = (:done, :participant) WHERE key = :key');
     $stmt->bindParam(':done', $done, PDO::PARAM_BOOL);
-    $stmt->bindParam(':participant', $participant, PDO::PARAM_BOOL);
+    $stmt->bindParam(':participant', $participant, PDO::PARAM_INT);
     $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->execute();
 }
