@@ -25,7 +25,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
                     },
                     function(data) {
                         console.log(data.love);
-                        $('#add_love').val('いいね:'+data.love);
+                        $('#add_love').text('いいね:'+data.love);
                     },
                     "json"
                 );
