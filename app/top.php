@@ -138,13 +138,47 @@ if (!empty($_POST['key'])) {
                 $('#ex_sentence').fadeOut();
                 $('#script').fadeIn();
             });
+
+
+            $('#picker').on('input', function () {
+                let hex = $(this).val();
+                $('#code').text(hex);
+                $('#code').css('color', hex);
+                $('#color_select').css('background', hex);
+            });
+            $('#color_submit').on('click', function () {
+                $.post('update_color.php', {
+                    'key': '7wz3969q',
+                    'color': $('#picker').val()
+                },
+                    function (data) {
+                        $('#editor').fadeIn();
+                        $('#color_select').fadeOut();
+                    },
+                    "json"
+                )
+
+            });
         });
     </script>
 </head>
 
 <body class="main1">
     <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
-    <div class="edit">
+    <div id="color_select">
+        <svg class=".c_ellipse" width="300" height="440" viewBox="0 0 30 44" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
+                fill="#FCF9FB" />
+        </svg>
+        <div id="code">#000000</div>
+        <input id="picker" type="color" name="col" value="#000000">
+        <button id="color_submit">決定</button>
+    </div>
+
+
+    <div id="editor" class="edit">
         <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
         <div class="edit_key">合言葉:<?= $_POST['key'] ?></div>
         <div class="edit_word"><?= $word ?></div>
