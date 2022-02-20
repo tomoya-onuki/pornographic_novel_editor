@@ -15,6 +15,22 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>ふたりで書く官能小説</title>
+
+    <script>
+        $(function() {
+            $('#add_love').click(function() {
+                $.post('add_love.php', {
+                        'key': '<?= $_POST['key'] ?>',
+                    },
+                    function(data) {
+                        // update(data);
+                        $(this).val('いいね:'+data.love);
+                    },
+                    "json"
+                );
+            });
+        });
+    </script>
 </head>
 
 <body class="main1">
@@ -37,6 +53,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
         <div class="edit_meaning"><?= $result2['meaning'] ?></div>
         <div class="edit_word"><?= $result['word'] ?></div>
         <div class="edit_script"><?= $result['sentence'] ?></div>
+        <button id="add_love">いいね:<?= $result['love'] ?></button>
     </div>
 </body>
 

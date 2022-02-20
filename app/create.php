@@ -19,12 +19,14 @@ if (!empty($_POST['key'])) {
     
     $sentence = '';
     $line = 0;
-    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word, line) VALUES (:key, :sentence, :editor, :word, :line)');
+    $love = 0;
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word, line, love) VALUES (:key, :sentence, :editor, :word, :line, :love)');
     $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
     $stmt->bindParam(':editor', $_POST['editor'], PDO::PARAM_INT);
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
     $stmt->bindParam(':line', $line, PDO::PARAM_INT);
+    $stmt->bindParam(':love', $love, PDO::PARAM_INT);
     $stmt->execute();
 
 
