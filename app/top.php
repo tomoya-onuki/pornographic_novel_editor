@@ -148,7 +148,7 @@ if (!empty($_POST['key'])) {
             });
             $('#color_submit').on('click', function () {
                 $.post('update_color.php', {
-                    'key': '7wz3969q',
+                    'key': '<?= $_POST['key'] ?>',
                     'color': $('#picker').val()
                 },
                     function (data) {
