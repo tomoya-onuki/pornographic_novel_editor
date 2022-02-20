@@ -84,7 +84,7 @@ if (!empty($_POST['key'])) {
             $('#update').click(function() {
                 const sentence = $('#sentence').val();
                 console.log(sentence);
-                if (!sentence) {
+                if (sentence) {
                     let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
                     $.post('update.php', {
                             'sentence': new_sentence,
