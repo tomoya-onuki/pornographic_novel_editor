@@ -208,7 +208,7 @@ if (!empty($_POST['key'])) {
                 fill="#FCF9FB" />
         </svg>
         <button id="update">更新</button>
-        <button id="draft" onclick="location.href='./story.php?key=7wz3969q'">入稿</button>
+        <button id="draft" onclick="location.href='./story.php?key=<?=$_POST['key']?>'">入稿</button>
 
         <!-- <form action="./story.php" method="get">
             <input id="draft" name="draft" value="入稿">
