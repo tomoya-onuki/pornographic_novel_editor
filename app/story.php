@@ -4,6 +4,14 @@
 $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
+
+if (!empty($_GET['key'])) {
+    $done = true;
+    $stmt = $pdo->prepare('UPDATE script SET done = :done WHERE key = :key');
+    $stmt->bindParam(':done', $done, PDO::PARAM_BOOL);
+    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
+    $stmt->execute();
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +39,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
                 );
             });
 
-            $('#tweet').on('click', function () {
+            $('#tweet').on('click', function() {
                 alert("ツイート画面(仮)")
             });
         });
