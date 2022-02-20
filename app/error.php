@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2>エラー</h2>
-    <div>部屋が見つかりません</div>
+    <div><?=$_GET["stmt"]?></div>
     <div><a href="./index.php">トップページ</a></div>
 </body>
 </html>

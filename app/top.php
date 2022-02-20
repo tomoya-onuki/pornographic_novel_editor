@@ -11,11 +11,11 @@ $editor = 0;
 $meaning = "";
 $line = 0;
 $ex_sentence = "";
+$participant = 0;
 
 // var_dump($_POST);
 
 if (!empty($_POST['key'])) {
-
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
     $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
@@ -27,9 +27,21 @@ if (!empty($_POST['key'])) {
         $word = $result['word'];
         $editor = $result['editor'];
         $line = $result['line'];
+        $participant = $result['participant'] + 1;
+
+        if ($participant > 2) {
+            header("Location: ./error.php?stmt=この部屋には入れません");
+        }
     } else {
-        header("Location: ./error.html");
+        header("Location: ./error.php?stmt=部屋が見つかりません");
     }
+
+
+    $stmt = $pdo->prepare('UPDATE script SET participant = :participant WHERE key = :key');
+    $stmt->bindParam(':participant', $participant, PDO::PARAM_INT);
+    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    $stmt->execute();
+
 
     $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
