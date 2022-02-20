@@ -65,9 +65,11 @@ if (!empty($_POST['key'])) {
                 if (_editor === myEditId) {
                     $('#status').text('あなたのばん');
                     $('#sentence').attr('readonly', false);
+                    $('#update').fadeIn();
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
+                    $('#update').fadeOut();
                 }
             }
 
@@ -78,26 +80,29 @@ if (!empty($_POST['key'])) {
             }
 
             $('#update').click(function() {
-                let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
-                $.post('update.php', {
-                        'sentence': new_sentence,
-                        'editor': myEditId * -1,
-                        'key': '<?= $_POST['key'] ?>',
-                        'line': line + 1
-                    },
-                    function(data) {
-                        // update(data);
-                        $('#script').html(data.sentence);
-                        check_editor(data.editor);
-                        line = data.line;
-                        if (data.line > 5) {
-                            $('#status').text('終了');
-                            $('#sentence').attr('readonly', true);
-                        }
-                        $('#sentence').val('');
-                    },
-                    "json"
-                )
+                const sentence = $('#sentence').val();
+                if (!sentence) {
+                    let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
+                    $.post('update.php', {
+                            'sentence': new_sentence,
+                            'editor': myEditId * -1,
+                            'key': '<?= $_POST['key'] ?>',
+                            'line': line + 1
+                        },
+                        function(data) {
+                            // update(data);
+                            $('#script').html(data.sentence);
+                            check_editor(data.editor);
+                            line = data.line;
+                            if (data.line > 5) {
+                                $('#status').text('終了');
+                                $('#sentence').attr('readonly', true);
+                            }
+                            $('#sentence').val('');
+                        },
+                        "json"
+                    );
+                }
             });
 
             // DBの定期的な監視

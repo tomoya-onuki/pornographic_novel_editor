@@ -36,7 +36,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
         ?>
         <div class="edit_meaning"><?= $result2['meaning'] ?></div>
         <div class="edit_word"><?= $result['word'] ?></div>
-        <div id="script"><?= $result['sentence'] ?></div>
+        <div class="edit_script"><?= $result['sentence'] ?></div>
     </div>
 </body>
 
