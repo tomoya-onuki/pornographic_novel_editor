@@ -29,30 +29,16 @@ input[type="text"] {
 
 .main0 .frame0 {
     position: absolute;
-    width: 1258px;
-    height: 1425px;
     left: 50%;
     transform: translate(-50%, 0);
-    /* left: 1349px; */
-    top: -62px;
-
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    /* transform: matrix(-1, 0, 0, 1, 0, 0); */
+    top: -49px;
 }
 
 .main0 .frame1 {
     position: absolute;
-    width: 1235px;
-    height: 1399px;
-    /* left: 1337px; */
     left: 50%;
     transform: translate(-50%, 0);
-    top: -49px;
-
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    /* transform: matrix(-1, 0, 0, 1, 0, 0); */
+    top: -62px;
 }
 
 .my_title {
@@ -76,18 +62,18 @@ input[type="text"] {
 }
 
 .ellipse {
-    border-radius: 45%;
 }
 
 .my_bookbinding_ellipse {
     position: absolute;
-    width: 30px;
-    height: 67px;
+    /* width: 30px; */
+    /* width: 67px; */
+    /* height: 67px; */
     left: 12%;
-    /* left: 193px; */
     top: 550px;
+    /* left: 193px; */
 
-    background: #3F3643;
+    /* background: #3F3643; */
 }
 
 .my_bookbinding {
@@ -118,13 +104,14 @@ input[type="text"] {
 
 .my_create_ellipse {
     position: absolute;
-    width: 30px;
-    height: 67px;
+    /* width: 30px; */
+    /* height: 67px; */
+    /* transform: scale(0.5, 1.0); */
     /* left: 193px; */
     left: 12%;
     top: 637px;
 
-    background: #3F3643;
+    /* background: #3F3643; */
 }
 
 .my_create {
@@ -176,7 +163,7 @@ input[type="text"] {
 .my_create_modal .title {
     /* 合言葉で小説をはじめる。 */
     position: absolute;
-    width: 145px;
+    width: 200px;
     height: 23px;
     left: 20px;
     top: 16px;
@@ -215,12 +202,12 @@ input[type="text"] {
 
 .my_create_modal .btn0_ellipse {
     position: absolute;
-    height: 15px;
-    width: 33px;
+    /* height: 15px; */
+    /* width: 33px; */
     left: 132px;
     top: 50px;
 
-    background: #FCF9FB;
+    /* background: #FCF9FB; */
 }
 
 .my_create_modal .btn0 {
@@ -245,12 +232,12 @@ input[type="text"] {
 
 .my_create_modal .btn1_ellipse {
     position: absolute;
-    height: 15px;
-    width: 44px;
+    /* height: 15px;
+    width: 44px; */
     left: 132px;
     top: 72px;
 
-    background: #FCF9FB;
+    /* background: #FCF9FB; */
 }
 
 .my_create_modal .btn1 {
@@ -431,8 +418,8 @@ input[type="text"] {
 
     width: 100%;
 
-    word-break:break-all;
-    
+    word-break: break-all;
+
     /* left: 974px; */
     /* top: 234px; */
 }
@@ -445,7 +432,7 @@ input[type="text"] {
     width: 13px;
     /* line-height: 13px; */
     /* or 100% */
-    word-break:break-all;
+    word-break: break-all;
     font-feature-settings: 'vert'on;
 
     color: #000000;
@@ -469,7 +456,7 @@ input[type="text"] {
     color: #000000;
 
     resize: none;
-/* 
+    /* 
     writing-mode: initial;
     transform: rotate(90deg);
     transform-origin: top left;
@@ -498,6 +485,7 @@ input[type="text"] {
 
     cursor: pointer;
 }
+
 .update_ellipse {
     position: absolute;
     width: 30px;
@@ -597,19 +585,21 @@ input[type="text"] {
     top: 23px;
     display: none;
     line-height: 80px;
-    height:80%;
+    height: 80%;
 
-    word-break:break-all;
+    word-break: break-all;
 }
+
 #help_close {
     color: #000000;
     margin-bottom: 10px;
     cursor: pointer;
 }
+
 #help {
     position: absolute;
     top: 100%;
     left: calc(100% - 30px);
     color: #E3E3E3;
-    
+
 }
