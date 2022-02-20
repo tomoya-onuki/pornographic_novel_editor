@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="../style.css">
     <title>ふたりで書く官能小説</title>
     <script>
-        $(function() {
+        $(function () {
             const myEditId = 1;
             const editor = 1;
             let line = 0;
@@ -19,37 +18,37 @@
             // console.log(editor);
             // console.log($('#sentence').val());
 
-        
-                function check_editor(_editor) {
-                    if (_editor === myEditId) {
-                        $('#status').text('あなたのばん');
-                        $('#sentence').attr('readonly', false);
-                    } else {
-                        $('#status').text('あいてのばん');
-                        $('#sentence').attr('readonly', true);
-                    }
-                }
 
-                function update(data) {
-                    console.log(data.editor);
-                    $('#script').html(data.sentence);
-                    check_editor(data.editor);
+            function check_editor(_editor) {
+                if (_editor === myEditId) {
+                    $('#status').text('あなたのばん');
+                    $('#sentence').attr('readonly', false);
+                } else {
+                    $('#status').text('あいてのばん');
+                    $('#sentence').attr('readonly', true);
                 }
+            }
 
-                $('#update').click(function() {
+            function update(data) {
+                console.log(data.editor);
+                $('#script').html(data.sentence);
+                check_editor(data.editor);
+            }
+
+            $('#update').click(function () {
                 let new_sentence = $('#script').html() + '<div class="sentence">' + $('#sentence').val() + '</div>';
                 $.post('update.php', {
-                        'sentence': new_sentence,
-                        'editor': myEditId * -1,
-                        'key': '7wz3969q',
-                        'line': line+1
-                    },
-                    function(data) {
+                    'sentence': new_sentence,
+                    'editor': myEditId * -1,
+                    'key': '7wz3969q',
+                    'line': line + 1
+                },
+                    function (data) {
                         // update(data);
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
                         line = data.line;
-                        if(data.line > 5) {
+                        if (data.line > 5) {
                             $('#status').text('終了');
                             $('#sentence').attr('readonly', true);
                         }
@@ -58,20 +57,20 @@
                     "json"
                 )
             });
-        
+
             // DBの定期的な監視
-            window.setInterval(function() {
+            window.setInterval(function () {
                 console.log('check data base')
                 $.post('check.php', {
-                        'key': '7wz3969q'
-                    },
-                    function(data) {
+                    'key': '7wz3969q'
+                },
+                    function (data) {
                         // update(data);
                         console.log(data.line);
                         line = data.line;
                         $('#script').html(data.sentence);
                         check_editor(data.editor);
-                        if(data.line > 5) {
+                        if (data.line > 5) {
                             $('#status').text('終了');
                             $('#sentence').attr('readonly', true);
                         }
@@ -81,11 +80,11 @@
             }, 1000);
 
 
-            $('#help').on('click', function() {
+            $('#help').on('click', function () {
                 $('#ex_sentence').fadeIn();
                 $('#script').fadeOut();
             });
-            $('#help_close').on('click', function() {
+            $('#help_close').on('click', function () {
                 $('#ex_sentence').fadeOut();
                 $('#script').fadeIn();
             });
@@ -113,8 +112,19 @@
         <button id="help">help</button>
 
         <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="30"></textarea>
-        <div class="update_ellipse ellipse"></div>
-        <div class="draft_ellipse ellipse"></div>
+        <!-- <div class="update_ellipse ellipse"></div> -->
+        <svg class="update_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
+                fill="#FCF9FB" />
+        </svg>
+
+        <!-- <div class="draft_ellipse ellipse"></div> -->
+        <svg class="draft_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
+                fill="#FCF9FB" />
+        </svg>
         <button id="update">更新</button>
 
         <button id="draft" onclick="location.href='./story.php?key=7wz3969q'">入稿</button>
@@ -128,7 +138,7 @@
 
 
     <script>
-        
+
     </script>
 </body>
 

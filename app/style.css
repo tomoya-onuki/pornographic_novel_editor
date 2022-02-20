@@ -488,8 +488,8 @@ input[type="text"] {
 
 .update_ellipse {
     position: absolute;
-    width: 30px;
-    height: 44px;
+    /* width: 30px; */
+    /* height: 44px; */
     /* left: 193px;
     top: 860px; */
     /* left: -42.5px; */
@@ -497,7 +497,7 @@ input[type="text"] {
     left: 420px;
     top: -60px;
 
-    background: #FCF9FB;
+    /* background: #FCF9FB; */
 }
 
 #draft {
@@ -523,14 +523,14 @@ input[type="text"] {
 
 .draft_ellipse {
     position: absolute;
-    width: 30px;
-    height: 44px;
+    /* width: 30px; */
+    /* height: 44px; */
     /* left: 193px;
     top: 860px; */
     left: -42.5px;
     bottom: -37px;
 
-    background: #FCF9FB;
+    /* background: #FCF9FB; */
 }
 
 #status {
@@ -602,4 +602,25 @@ input[type="text"] {
     left: calc(100% - 30px);
     color: #E3E3E3;
 
+}
+
+#add_love {
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    left: -56px;
+    bottom: -28px;
+
+    font-family: Source Han Serif JP;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 8px;
+    line-height: 8px;
+    /* or 100% */
+    /* font-feature-settings: 'vert'on;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl; */
+    color: #000000;
+
+    cursor: pointer;
 }
