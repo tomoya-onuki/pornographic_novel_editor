@@ -27,10 +27,11 @@ if (!empty($_POST['key'])) {
         $word = $result['word'];
         $editor = $result['editor'];
         $line = $result['line'];
-        $participant = $result['participant'] + 1;
-
-        if ($participant > 2) {
+        
+        if ($result['participant'] + 1 > 2) {
             header("Location: ./error.php?stmt=この部屋には入れません");
+        } else {
+            $participant = $result['participant'] + 1;
         }
     } else {
         header("Location: ./error.php?stmt=部屋が見つかりません");
