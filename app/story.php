@@ -24,7 +24,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
                         'key': '<?= $_GET['key'] ?>',
                     },
                     function(data) {
-                        console.log(data);
+                        console.log(data.love);
                         $(this).val('いいね:'+data.love);
                     },
                     "json"
