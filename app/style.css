@@ -99,6 +99,8 @@ input[type="text"] {
     writing-mode: vertical-rl;
     border: none;
     background: none;
+
+    cursor: pointer;
 }
 
 .my_create_ellipse {
@@ -138,6 +140,8 @@ input[type="text"] {
 
     border: none;
     background: none;
+
+    cursor: pointer;
 }
 
 #modal {
