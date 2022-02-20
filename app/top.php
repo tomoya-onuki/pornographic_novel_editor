@@ -66,10 +66,12 @@ if (!empty($_POST['key'])) {
                     $('#status').text('あなたのばん');
                     $('#sentence').attr('readonly', false);
                     $('#update').fadeIn();
+                    $('.update_ellipse').fadeIn();
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
                     $('#update').fadeOut();
+                    $('.update_ellipse').fadeOut();
                 }
             }
 
