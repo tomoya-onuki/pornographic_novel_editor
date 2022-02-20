@@ -12,6 +12,16 @@ function random_keyword()
 }
 
 $key = random_keyword();
+
+
+
+$img_array = array();
+foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
+    if (is_file($file)) {
+        array_push($img_array, htmlspecialchars($file));
+    }
+    var_dump($img_array);
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,10 +72,12 @@ $key = random_keyword();
         <?php
         $stmt = $pdo->prepare('SELECT * FROM script');
         $stmt->execute();
-        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $idx = random_int(0, count($img_array));
+        ?>
             <div class="flex_item">
                 <a href="./story.php?key=<?= $result['key'] ?>">
-                    <img class="story_img" src="./img/IMG_2104.jpg" alt="">
+                    <img class="story_img" src="./img/<?=$img_array[$idx]?>" alt="">
                     <div class="story_title"><?= $result['word'] ?></div>
                 </a>
             </div>
