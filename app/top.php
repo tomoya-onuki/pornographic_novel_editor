@@ -162,7 +162,7 @@ if (!empty($_POST['key'])) {
         <button id="help">help</button>
 
         <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="30"></textarea>
-        <<svg class="update_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="update_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
                 fill="#FCF9FB" />
@@ -174,7 +174,7 @@ if (!empty($_POST['key'])) {
         </svg>
         <button id="update">更新</button>
         <button id="draft" onclick="location.href='./story.php?key=7wz3969q'">入稿</button>
-        
+
         <!-- <form action="./story.php" method="get">
             <input id="draft" name="draft" value="入稿">
             <input type="hidden" name="key" value="">
