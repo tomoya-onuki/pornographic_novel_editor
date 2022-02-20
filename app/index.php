@@ -73,17 +73,21 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
         $stmt = $pdo->prepare('SELECT * FROM script');
         $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $idx = random_int(0, count($img_array)-1);
+            $idx = random_int(0, count($img_array) - 1);
+            if ($result['done']) {
         ?>
-            <div class="flex_item">
-                <a href="./story.php?key=<?= $result['key'] ?>">
-                    <div class="story_mask" style="background:<?=$result['color']?>"></div>
-                    <img class="story_img" style="background:<?=$result['color']?>" src="<?=$img_array[$idx]?>" alt="">
-                    <div class="story_title"><?= $result['word'] ?></div>
-                </a>
-            </div>
+                <div class="flex_item">
+                    <a href="./story.php?key=<?= $result['key'] ?>">
+                        <div class="story_mask" style="background:<?= $result['color'] ?>"></div>
+                        <img class="story_img" style="background:<?= $result['color'] ?>" src="<?= $img_array[$idx] ?>" alt="">
+                        <div class="story_title"><?= $result['word'] ?></div>
+                    </a>
+                </div>
 
-        <?php } ?>
+        <?php
+            }
+        }
+        ?>
     </div>
 
 
