@@ -73,7 +73,7 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
         $stmt = $pdo->prepare('SELECT * FROM script');
         $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $idx = random_int(0, count($img_array));
+            $idx = random_int(0, count($img_array)-1);
         ?>
             <div class="flex_item">
                 <a href="./story.php?key=<?= $result['key'] ?>">
