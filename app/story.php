@@ -69,7 +69,6 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
             <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
         </svg>
         <button id="tweet">ツイート</button>
-        </a>
     </div>
 </body>
 
