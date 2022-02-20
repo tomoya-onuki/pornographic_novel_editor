@@ -20,13 +20,15 @@ if (!empty($_POST['key'])) {
     $sentence = '';
     $line = 0;
     $love = 0;
-    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word, line, love) VALUES (:key, :sentence, :editor, :word, :line, :love)');
+    $color = '#000000';
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word, line, love, color) VALUES (:key, :sentence, :editor, :word, :line, :love, :color)');
     $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
     $stmt->bindParam(':editor', $_POST['editor'], PDO::PARAM_INT);
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
     $stmt->bindParam(':line', $line, PDO::PARAM_INT);
     $stmt->bindParam(':love', $love, PDO::PARAM_INT);
+    $stmt->bindParam(':color', $color, PDO::PARAM_STR);
     $stmt->execute();
 
 
