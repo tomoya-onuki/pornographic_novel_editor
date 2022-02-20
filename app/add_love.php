@@ -6,8 +6,8 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 
 if (!empty($_POST['key'])) {
-    $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
-    $stmt->bindParam(':word', $result['word'], PDO::PARAM_STR);
+    $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
+    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $love = $result['love']+1;
