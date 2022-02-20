@@ -18,10 +18,10 @@ $key = random_keyword();
 $img_array = array();
 foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
     if (is_file($file)) {
-        array_push($img_array, htmlspecialchars($file));
+        array_push($img_array, $file);
     }
-    var_dump($img_array);
 }
+// var_dump($img_array);
 ?>
 
 <!DOCTYPE html>
