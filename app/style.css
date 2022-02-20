@@ -580,7 +580,7 @@ input[type="text"] {
     position: absolute;
     width: 10px;
     height: 539px;
-    right: -30px;
+    right: -60px;
     top: 0;
     /* left: 1209px; */
     /* top: 169px; */
@@ -588,8 +588,8 @@ input[type="text"] {
     font-family: Source Han Serif JP, serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 28px;
     /* or 100% */
     font-feature-settings: 'vert'on;
     -ms-writing-mode: tb-rl;

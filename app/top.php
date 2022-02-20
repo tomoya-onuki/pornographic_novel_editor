@@ -166,6 +166,7 @@ if (!empty($_POST['key'])) {
 <body class="main1">
     <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
     <div id="color_select">
+    <div class="edit_msg">＊ふたりだけの色を指定してください。</div>
         <svg class=".c_ellipse" width="300" height="440" viewBox="0 0 30 44" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
@@ -179,7 +180,7 @@ if (!empty($_POST['key'])) {
 
 
     <div id="editor" class="edit">
-        <div class="edit_msg">＊描き終わったら、左下の入稿ボタンをタッチしてください。</div>
+        <div class="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
         <div class="edit_key">合言葉:<?= $_POST['key'] ?></div>
         <div class="edit_word"><?= $word ?></div>
         <div class="edit_meaning"><?= $meaning ?></div>
