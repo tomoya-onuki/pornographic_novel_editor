@@ -168,6 +168,7 @@ if (!empty($_GET['key'])) {
                         'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
+                        participant = data.participant;
                         if (data.participant === 2) {
                             if (anotherId === '' || anotherId == undefined) {
                                 console.log(data);
