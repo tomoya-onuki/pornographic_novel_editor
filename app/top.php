@@ -168,9 +168,9 @@ if (!empty($_GET['key'])) {
                         'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
-                        // console.log(data.line);
                         if (data.participant === 2) {
-                            if (anotherId === '') {
+                            if (anotherId === '' || anotherId == undefined) {
+                                console.log(data);
                                 anotherId = (myUserId !== data.user0) ? data.uesr0 : data.user1;
                                 console.log(myUserId, anotherId);
                             }
