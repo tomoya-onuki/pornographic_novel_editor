@@ -146,7 +146,7 @@ if (!empty($_GET['key'])) {
                             },
                             function(data) {
 
-                                check_editor(editor); // エディタがどちらか判定
+                                check_editor(data.editor); // エディタがどちらか判定
                                 $('#script').html(data.sentence);
                                 line = data.line;
                                 if (data.line > 5) {
