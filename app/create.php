@@ -26,7 +26,7 @@ if (!empty($_GET['key'])) {
     $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word, line, love, color, done) VALUES (:key, :sentence, :editor, :word, :line, :love, :color, :done)');
     $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
-    // $stmt->bindParam(':editor', $_GET['editor'], PDO::PARAM_INT);
+    $stmt->bindParam(':editor', $_GET['editor'], PDO::PARAM_INT);
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
     $stmt->bindParam(':line', $line, PDO::PARAM_INT);
     $stmt->bindParam(':love', $love, PDO::PARAM_INT);

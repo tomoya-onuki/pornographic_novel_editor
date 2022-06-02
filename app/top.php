@@ -159,26 +159,26 @@ if (!empty($_GET['key'])) {
                 $('#code').css('color', hex);
                 $('#color_select').css('background', hex);
             });
-            $('#color_submit').on('click', function () {
-                $.post('update_color.php', {
-                    'key': '<?= $_GET['key'] ?>',
-                    'color': $('#picker').val()
-                },
-                    function (data) {
-                        $('#editor').fadeIn();
-                        $('#color_select').fadeOut();
-                    },
-                    "json"
-                )
+            // $('#color_submit').on('click', function () {
+            //     $.post('update_color.php', {
+            //         'key': '<?= $_GET['key'] ?>',
+            //         'color': $('#picker').val()
+            //     },
+            //         function (data) {
+            //             $('#editor').fadeIn();
+            //             $('#color_select').fadeOut();
+            //         },
+            //         "json"
+            //     )
 
-            });
+            // });
         });
     </script>
 </head>
 
 <body class="main1">
     <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
-    <div id="color_select">
+    <!-- <div id="color_select">
     <div class="edit_msg">＊ふたりだけの色を指定してください。</div>
         <svg class=".c_ellipse" width="300" height="440" viewBox="0 0 30 44" fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +189,7 @@ if (!empty($_GET['key'])) {
         <div id="code">#000000</div>
         <input id="picker" type="color" name="col" value="#000000">
         <button id="color_submit">決定</button>
-    </div>
+    </div> -->
 
 
     <div id="editor" class="edit">

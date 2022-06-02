@@ -632,5 +632,5 @@ input[type="text"] {
     cursor: pointer;
 }
 #editor {
-    display: none;
+    display: block;
 }

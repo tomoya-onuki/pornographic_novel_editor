@@ -69,7 +69,7 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
         <button class="my_create" id="create">作成する</button>
         <script>
             $("#create").on('click', function() {
-                location.href = './create.php?key=<?= $key ?>';
+                location.href = './create.php?key=<?= $key ?>&editor=1';
             });
         </script>
     </div>
