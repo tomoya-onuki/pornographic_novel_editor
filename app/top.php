@@ -172,7 +172,7 @@ if (!empty($_GET['key'])) {
                         paticipant = data.participant;
                         if (paticipant === 2) {
                             anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
-                            $("#sentence").prop('disabled', true); // 入力を有効化
+                            $("#sentence").prop('disabled', false); // 入力を有効化
                             check_editor(editor); // エディタがどちらか判定
                             $('#script').html(data.sentence);
                             line = data.line;
