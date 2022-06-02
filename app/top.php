@@ -127,7 +127,7 @@ if (!empty($_GET['key'])) {
             }
 
             function update(data) {
-                console.log(data.editor);
+                // console.log(data.editor);
                 $('#script').html(data.sentence);
                 check_editor(data.editor);
             }
@@ -163,15 +163,17 @@ if (!empty($_GET['key'])) {
 
             // DBの定期的な監視
             window.setInterval(function() {
-                console.log('check data base')
+                // console.log('check data base')
                 $.post('check.php', {
                         'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
-                        console.log(data.line);
+                        // console.log(data.line);
                         paticipant = data.participant;
                         if (paticipant === 2) {
-                            anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
+                            if(anotherId === '') {
+                                anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
+                            }
                             $("#sentence").prop('disabled', false); // 入力を有効化
                             check_editor(editor); // エディタがどちらか判定
                             $('#script').html(data.sentence);
