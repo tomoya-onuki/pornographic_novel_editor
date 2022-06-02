@@ -7,7 +7,7 @@ $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 function random_keyword($length)
 {
-    return base_convert(mt_rand(pow(36, $length - 1), pow(36, $length) - 1), 10, 36);
+    return base_convert(mt_rand(pow(36, (int)$length - 1), pow(36, (int)$length) - 1), 10, 36);
 }
 
 $key = random_keyword(20); // 原稿のID
