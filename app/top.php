@@ -100,7 +100,10 @@ if (!empty($_GET['key'])) {
             let anotherId = '';
             let line = <?= $line ?>;
             let paticipant = <?= $participant ?>;
+            // DBの定期的な監視
+            let db_checker = setInterval(check_db(), 1000);
 
+            // 
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
                 check_editor(editor); // エディタがどちらか判定
@@ -109,61 +112,59 @@ if (!empty($_GET['key'])) {
                 $('#status').text('あいてがいません');
             }
 
-            // console.log(editor);
-            // console.log($('#sentence').val());
-
+            
             function check_editor(_editor) {
-                console.log(myUserId, _editor);
+                // console.log(myUserId, _editor);
                 if (_editor === myUserId) {
                     $('#status').text('あなたのばん');
                     $('#sentence').attr('readonly', false);
                     $('#update').fadeIn();
                     $('.update_ellipse').fadeIn();
+
+                    // DBの定期的な監視の再開
+                    db_checker = setInterval(check_db(), 1000);
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
                     $('#update').fadeOut();
                     $('.update_ellipse').fadeOut();
+
+                    // DBの定期的な監視の停止
+                    clearInterval(db_checker);
                 }
             }
 
-            function update(data) {
-                // console.log(data.editor);
-                $('#script').html(data.sentence);
-                check_editor(data.editor);
-            }
-
+            // 更新
             $('#update').click(function() {
-                console.log(myUserId, anotherId);
-                // if (paticipant === 2) {
-                    const sentence = $('#sentence').val();
-                    if (sentence) {
-                        let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
-                        $.post('update.php', {
-                                'sentence': new_sentence,
-                                'editor': anotherId,
-                                'key': '<?= $_GET['key'] ?>',
-                                'line': line + 1
-                            },
-                            function(data) {
-                                console.log(data);
-                                check_editor(data.editor); // エディタがどちらか判定
-                                $('#script').html(data.sentence);
-                                line = data.line;
-                                if (data.line > 5) {
-                                    $('#status').text('終了');
-                                    $('#sentence').attr('readonly', true);
-                                }
-                                $('#sentence').val('');
-                            },
-                            "json"
-                        );
-                    }
+                // console.log(myUserId, anotherId);
+                const sentence = $('#sentence').val();
+                if (sentence) {
+                    let new_sentence = `${$('#script').html()}<div class="sentence">${sentence}</div>`;
+                    // let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
+                    $.post('update.php', {
+                            'sentence': new_sentence,
+                            'editor': anotherId,
+                            'key': '<?= $_GET['key'] ?>',
+                            'line': line + 1
+                        },
+                        function(data) {
+                            console.log(data);
+                            check_editor(data.editor); // エディタがどちらか判定
+                            $('#script').html(data.sentence);
+                            line = data.line;
+                            if (data.line > 5) {
+                                $('#status').text('終了');
+                                $('#sentence').attr('readonly', true);
+                            }
+                            $('#sentence').val('');
+                        }, "json");
+                }
                 // }
             });
 
-            // DBの定期的な監視
-            window.setInterval(function() {
+            
+            // DBの監視
+            function check_db() {
                 // console.log('check data base')
                 $.post('check.php', {
                         'key': '<?= $_GET['key'] ?>'
@@ -185,19 +186,8 @@ if (!empty($_GET['key'])) {
                                 $('#sentence').attr('readonly', true);
                             }
                         }
-                        // // update(data);
-
-                        // line = data.line;
-                        // $('#script').html(data.sentence);
-                        // check_editor(data.editor);
-                        // if (data.line > 5) {
-                        //     $('#status').text('終了');
-                        //     $('#sentence').attr('readonly', true);
-                        // }
-                    },
-                    "json"
-                )
-            }, 1000);
+                    }, "json");
+            }
 
 
             $('#help').on('click', function() {
@@ -208,8 +198,6 @@ if (!empty($_GET['key'])) {
                 $('#ex_sentence').fadeOut();
                 $('#script').fadeIn();
             });
-
-
             $('#picker').on('input', function() {
                 let hex = $(this).val();
                 $('#code').text(hex);
