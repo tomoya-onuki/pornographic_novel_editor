@@ -133,9 +133,9 @@ if (!empty($_GET['key'])) {
             }
 
             $('#update').click(function() {
+                console.log(myUserId, anotherId);
                 if (paticipant === 2) {
                     const sentence = $('#sentence').val();
-                    console.log(myUserId, anotherId);
                     if (sentence) {
                         let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
                         $.post('update.php', {
