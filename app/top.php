@@ -168,12 +168,11 @@ if (!empty($_GET['key'])) {
                         'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
-                        // console.log(myUserId, anotherId);
                         // console.log(data.line);
-                        paticipant = data.participant;
-                        if (paticipant === 2) {
+                        if (data.participant === 2) {
                             if(anotherId === '') {
                                 anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
+                                console.log(myUserId, anotherId);
                             }
                             $("#sentence").prop('disabled', false); // 入力を有効化
                             check_editor(editor); // エディタがどちらか判定
