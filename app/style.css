@@ -26,17 +26,21 @@ input[type="text"] {
 }
 
 .main0 .frame0 {
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translate(-50%, 0);
     top: -49px;
 }
 
 .main0 .frame1 {
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translate(-50%, 0);
     top: -62px;
+}
+
+.main0 .ui {
+    position: fixed;
 }
 
 .my_title {
@@ -142,24 +146,7 @@ input[type="text"] {
     cursor: pointer;
 }
 
-#modal {
-    display: none;
-}
 
-.my_create_modal {
-    /* モーダル/作成する */
-
-    position: absolute;
-    width: 192px;
-    height: 104px;
-    /* left: 624px; */
-    /* top: 460px; */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 0%);
-
-    background: #3F3643;
-}
 
 .my_create_modal .title {
     /* 合言葉で小説をはじめる。 */

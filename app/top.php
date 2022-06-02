@@ -4,7 +4,7 @@ $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
-// var_dump($_POST);
+// var_dump($_GET);
 $sentence = "";
 $word = "";
 $editor = 0;
@@ -13,12 +13,12 @@ $line = 0;
 $ex_sentence = "";
 $participant = 0;
 
-// var_dump($_POST);
+// var_dump($_GET);
 
-if (!empty($_POST['key'])) {
+if (!empty($_GET['key'])) {
     // 編集中の文書の情報
     $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
-    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -40,7 +40,7 @@ if (!empty($_POST['key'])) {
 
     $stmt = $pdo->prepare('UPDATE script SET participant = :participant WHERE key = :key');
     $stmt->bindParam(':participant', $participant, PDO::PARAM_INT);
-    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->execute();
 
 
@@ -65,7 +65,7 @@ if (!empty($_POST['key'])) {
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            const myEditId = <?= $_POST['editor'] ?>;
+            const myEditId = <?= $_GET['editor'] ?>;
             const editor = <?= $editor ?>;
             let line = <?= $line ?>;
             check_editor(editor);
@@ -102,7 +102,7 @@ if (!empty($_POST['key'])) {
                     $.post('update.php', {
                             'sentence': new_sentence,
                             'editor': myEditId * -1,
-                            'key': '<?= $_POST['key'] ?>',
+                            'key': '<?= $_GET['key'] ?>',
                             'line': line + 1
                         },
                         function(data) {
@@ -125,7 +125,7 @@ if (!empty($_POST['key'])) {
             window.setInterval(function() {
                 console.log('check data base')
                 $.post('check.php', {
-                        'key': '<?= $_POST['key'] ?>'
+                        'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
                         // update(data);
@@ -161,7 +161,7 @@ if (!empty($_POST['key'])) {
             });
             $('#color_submit').on('click', function () {
                 $.post('update_color.php', {
-                    'key': '<?= $_POST['key'] ?>',
+                    'key': '<?= $_GET['key'] ?>',
                     'color': $('#picker').val()
                 },
                     function (data) {
@@ -194,7 +194,7 @@ if (!empty($_POST['key'])) {
 
     <div id="editor" class="edit">
         <div class="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
-        <div class="edit_key">合言葉:<?= $_POST['key'] ?></div>
+        <div class="edit_key">合言葉:<?= $_GET['key'] ?></div>
         <div class="edit_word"><?= $word ?></div>
         <div class="edit_meaning"><?= $meaning ?></div>
 
@@ -221,7 +221,7 @@ if (!empty($_POST['key'])) {
                 fill="#FCF9FB" />
         </svg>
         <button id="update">更新</button>
-        <button id="draft" onclick="location.href='./story.php?key=<?=$_POST['key']?>'">入稿</button>
+        <button id="draft" onclick="location.href='./story.php?key=<?=$_GET['key']?>'">入稿</button>
 
         <!-- <form action="./story.php" method="get">
             <input id="draft" name="draft" value="入稿">
