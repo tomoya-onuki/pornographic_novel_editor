@@ -44,13 +44,14 @@ if (!empty($_GET['key'])) {
         $word = $result['word'];
         $editor = $result['editor'];
         $line = $result['line'];
-        // $user_id_list[0] = $result['user0'];
-        // $user_id_list[1] = $result['user1'];
+        $participant = $result['participant'];
+        $user_id_list[0] = $result['user0'];
+        $user_id_list[1] = $result['user1'];
 
-        var_dump($result['participant']);
-        var_dump($result['user0']);
-        var_dump($result['user1']);
-        var_dump($_SESSION['user_id']);
+        // var_dump($result['participant']);
+        // var_dump($result['user0']);
+        // var_dump($result['user1']);
+        // var_dump($_SESSION['user_id']);
 
         // 参加者が2人なら参加不可
         if ($result['participant'] > 1) {
@@ -98,12 +99,12 @@ if (!empty($_GET['key'])) {
             const editor = <?= $editor ?>;
             let anotherId = '';
             let line = <?= $line ?>;
-            let paticipant = <?= $result['participant']?>;
+            let paticipant = <?= $participant?>;
 
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
                 check_editor(editor); // エディタがどちらか判定
-                anotherId = <?= $result['user1'] ?>;
+                anotherId = <?= ($user_id_list[1] !== "") ? $user_id_list[1] : "''" ?>;
             } else {
                 $('#status').text('あいてがいません');
             }
