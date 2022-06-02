@@ -57,7 +57,7 @@ if (!empty($_GET['key'])) {
             header("Location: ./error.php?stmt=この部屋には入れません");
         }
         // 参加者が1人でかつ自分でないなら参加できる
-        else if ($result['participant'] == 1 && !strcmp($result['user0'], $_SESSION['user_id'])) {
+        else if ($result['participant'] == 1 && strcmp($result['user0'], $_SESSION['user_id']) != 0) {
             // 参加者数をインクリメント
             $participant = $result['participant'] + 1;
 
@@ -104,6 +104,8 @@ if (!empty($_GET['key'])) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
                 check_editor(editor); // エディタがどちらか判定
                 anotherId = <?= $result['user1'] ?>;
+            } else {
+                $('#status').text('あいてがいません');
             }
 
             // console.log(editor);
