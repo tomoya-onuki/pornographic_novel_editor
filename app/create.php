@@ -4,7 +4,7 @@ $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
-var_dump($_GET);
+// var_dump($_GET);
 
 if (!empty($_GET['key'])) {
     // ランダムで単語を取得
@@ -35,7 +35,7 @@ if (!empty($_GET['key'])) {
     $stmt->execute();
 
 
-    // header("Location: ./top.php?key=".$_GET['key'], true, 307);
+    header("Location: ./top.php?key=".$_GET['key'], true, 307);
 }
 
 
