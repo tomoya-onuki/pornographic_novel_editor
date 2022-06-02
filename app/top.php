@@ -95,8 +95,8 @@ if (!empty($_GET['key'])) {
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            const myUserId = <?= $_SESSION['user_id'] ?>;
-            const editor = <?= $editor ?>;
+            const myUserId = '<?= $_SESSION['user_id'] ?>';
+            const editor = '<?= $editor ?>';
             let anotherId = '';
             let line = <?= $line ?>;
             let paticipant = <?= $participant ?>;
@@ -104,7 +104,7 @@ if (!empty($_GET['key'])) {
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
                 check_editor(editor); // エディタがどちらか判定
-                anotherId = <?= ($user_id_list[1] !== "") ? $user_id_list[1] : "''" ?>;
+                anotherId = '<?= $user_id_list[1]  ?>';
             } else {
                 $('#status').text('あいてがいません');
             }
