@@ -99,7 +99,7 @@ if (!empty($_GET['key'])) {
             const editor = <?= $editor ?>;
             let anotherId = '';
             let line = <?= $line ?>;
-            let paticipant = <?= $participant?>;
+            let paticipant = <?= $participant ?>;
 
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
@@ -145,18 +145,13 @@ if (!empty($_GET['key'])) {
                                 'line': line + 1
                             },
                             function(data) {
-                                // update(data);
-                                paticipant = data.participant;
-                                if (paticipant === 2) {
-                                    anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
-                                    $("#sentence").prop('disabled', true); // 入力を有効化
-                                    check_editor(editor); // エディタがどちらか判定
-                                    $('#script').html(data.sentence);
-                                    line = data.line;
-                                    if (data.line > 5) {
-                                        $('#status').text('終了');
-                                        $('#sentence').attr('readonly', true);
-                                    }
+
+                                check_editor(editor); // エディタがどちらか判定
+                                $('#script').html(data.sentence);
+                                line = data.line;
+                                if (data.line > 5) {
+                                    $('#status').text('終了');
+                                    $('#sentence').attr('readonly', true);
                                 }
                                 $('#sentence').val('');
                             },
@@ -173,15 +168,28 @@ if (!empty($_GET['key'])) {
                         'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
-                        // update(data);
                         console.log(data.line);
-                        line = data.line;
-                        $('#script').html(data.sentence);
-                        check_editor(data.editor);
-                        if (data.line > 5) {
-                            $('#status').text('終了');
-                            $('#sentence').attr('readonly', true);
+                        paticipant = data.participant;
+                        if (paticipant === 2) {
+                            anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
+                            $("#sentence").prop('disabled', true); // 入力を有効化
+                            check_editor(editor); // エディタがどちらか判定
+                            $('#script').html(data.sentence);
+                            line = data.line;
+                            if (data.line > 5) {
+                                $('#status').text('終了');
+                                $('#sentence').attr('readonly', true);
+                            }
                         }
+                        // // update(data);
+                        
+                        // line = data.line;
+                        // $('#script').html(data.sentence);
+                        // check_editor(data.editor);
+                        // if (data.line > 5) {
+                        //     $('#status').text('終了');
+                        //     $('#sentence').attr('readonly', true);
+                        // }
                     },
                     "json"
                 )
