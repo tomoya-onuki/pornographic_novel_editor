@@ -170,8 +170,8 @@ if (!empty($_GET['key'])) {
                     function(data) {
                         // console.log(data.line);
                         if (data.participant === 2) {
-                            if(anotherId === '') {
-                                anotherId = (myUserId === data.user1) ? data.uesr0 : data.user1;
+                            if (anotherId === '') {
+                                anotherId = (myUserId !== data.user0) ? data.uesr0 : data.user1;
                                 console.log(myUserId, anotherId);
                             }
                             $("#sentence").prop('disabled', false); // 入力を有効化
@@ -184,7 +184,7 @@ if (!empty($_GET['key'])) {
                             }
                         }
                         // // update(data);
-                        
+
                         // line = data.line;
                         // $('#script').html(data.sentence);
                         // check_editor(data.editor);
