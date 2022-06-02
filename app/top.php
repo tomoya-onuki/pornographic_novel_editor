@@ -47,6 +47,11 @@ if (!empty($_GET['key'])) {
         // $user_id_list[0] = $result['user0'];
         // $user_id_list[1] = $result['user1'];
 
+        var_dump($result['participant']);
+        var_dump($result['user0']);
+        var_dump($result['user1']);
+        var_dump($_SESSION['user_id']);
+
         // 参加者が2人なら参加不可
         if ($result['participant'] > 1) {
             header("Location: ./error.php?stmt=この部屋には入れません");
@@ -93,7 +98,7 @@ if (!empty($_GET['key'])) {
             const editor = <?= $editor ?>;
             let anotherId = '';
             let line = <?= $line ?>;
-            let paticipant = $result['participant'];
+            let paticipant = <?= $result['participant']?>;
 
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
