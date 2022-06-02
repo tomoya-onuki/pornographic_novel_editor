@@ -148,7 +148,7 @@ if (!empty($_GET['key'])) {
                             'line': line + 1
                         },
                         function(data) {
-                            console.log(data);
+                            // console.log(data);
                             check_editor(data.editor); // エディタがどちらか判定
                             $('#script').html(data.sentence);
                             line = data.line;
@@ -165,7 +165,7 @@ if (!empty($_GET['key'])) {
             
             // DBの監視
             function check_db() {
-                // console.log('check data base')
+                console.log('check data base')
                 $.post('check.php', {
                         'key': '<?= $_GET['key'] ?>'
                     },
