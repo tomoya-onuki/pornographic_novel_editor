@@ -134,7 +134,7 @@ if (!empty($_GET['key'])) {
 
             $('#update').click(function() {
                 console.log(myUserId, anotherId);
-                if (paticipant === 2) {
+                // if (paticipant === 2) {
                     const sentence = $('#sentence').val();
                     if (sentence) {
                         let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
@@ -158,7 +158,7 @@ if (!empty($_GET['key'])) {
                             "json"
                         );
                     }
-                }
+                // }
             });
 
             // DBの定期的な監視
