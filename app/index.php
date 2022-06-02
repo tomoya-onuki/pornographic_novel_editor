@@ -5,14 +5,15 @@ $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1))
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 
-function random_keyword()
+function random_keyword($length)
 {
-    $length = 8;
     return base_convert(mt_rand(pow(36, $length - 1), pow(36, $length) - 1), 10, 36);
 }
 
-$key = random_keyword();
+$key = random_keyword(20); // 原稿のID
 
+session_start();
+$_SESSION['user_id'] = random_keyword(12);
 
 
 $img_array = array();
@@ -69,7 +70,7 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
         <button class="my_create" id="create">作成する</button>
         <script>
             $("#create").on('click', function() {
-                location.href = './create.php?key=<?= $key ?>&editor=1';
+                location.href = './create.php?key=<?= $key ?>';
             });
         </script>
     </div>
