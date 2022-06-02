@@ -135,7 +135,7 @@ if (!empty($_GET['key'])) {
             $('#update').click(function() {
                 if (paticipant === 2) {
                     const sentence = $('#sentence').val();
-                    console.log(sentence);
+                    console.log(myUserId, anotherId);
                     if (sentence) {
                         let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
                         $.post('update.php', {
@@ -168,6 +168,7 @@ if (!empty($_GET['key'])) {
                         'key': '<?= $_GET['key'] ?>'
                     },
                     function(data) {
+                        // console.log(myUserId, anotherId);
                         // console.log(data.line);
                         paticipant = data.participant;
                         if (paticipant === 2) {
