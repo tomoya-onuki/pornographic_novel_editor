@@ -177,7 +177,7 @@ if (!empty($_GET['key'])) {
                                 console.log(myUserId, anotherId);
                             }
                             $("#sentence").prop('disabled', false); // 入力を有効化
-                            check_editor(editor); // エディタがどちらか判定
+                            check_editor(data.editor); // エディタがどちらか判定
                             $('#script').html(data.sentence);
                             line = data.line;
                             if (data.line > 5) {
