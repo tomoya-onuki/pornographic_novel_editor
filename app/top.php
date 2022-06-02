@@ -113,6 +113,7 @@ if (!empty($_GET['key'])) {
             // console.log($('#sentence').val());
 
             function check_editor(_editor) {
+                console.log(myUserId, _editor);
                 if (_editor === myUserId) {
                     $('#status').text('あなたのばん');
                     $('#sentence').attr('readonly', false);
