@@ -171,7 +171,7 @@ if (!empty($_GET['key'])) {
                         if (data.participant === 2) {
                             if (anotherId === '' || anotherId == undefined) {
                                 console.log(data);
-                                anotherId = (myUserId !== data.user0) ? data.uesr0 : data.user1;
+                                anotherId = (myUserId != data.user0) ? data.uesr0 : data.user1;
                                 console.log(myUserId, anotherId);
                             }
                             $("#sentence").prop('disabled', false); // 入力を有効化
