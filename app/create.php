@@ -24,10 +24,10 @@ if (!empty($_GET['key'])) {
     $love = 0;
     $color = '#000000';
     $done = false;
-    $stmt = $pdo->prepare('INSERT INTO script (key, sentence,  participant, user0, editor, word, line, love, color, done) VALUES (:key, :sentence, : participant, :user0, :editor, :word, :line, :love, :color, :done)');
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence,  participant, user0, editor, word, line, love, color, done) VALUES (:key, :sentence, 1, :user0, :editor, :word, :line, :love, :color, :done)');
     $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
-    $stmt->bindParam(':participant', 1, PDO::PARAM_INT);
+    // $stmt->bindParam(':participant', 1, PDO::PARAM_INT);
     $stmt->bindParam(':user0', $_SESSION['user_id'], PDO::PARAM_STR);
     $stmt->bindParam(':editor', $_SESSION['user_id'], PDO::PARAM_STR);
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
