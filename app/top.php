@@ -145,7 +145,7 @@ if (!empty($_GET['key'])) {
                                 'line': line + 1
                             },
                             function(data) {
-
+                                console.log(data);
                                 check_editor(data.editor); // エディタがどちらか判定
                                 $('#script').html(data.sentence);
                                 line = data.line;
