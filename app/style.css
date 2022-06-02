@@ -40,12 +40,12 @@ input[type="text"] {
 }
 
 .main0 .ui {
-    position: fixed;
+    /* position: fixed; */
 }
 
 .my_title {
     /* ＃ふたりて書く官能小説 */
-    position: absolute;
+    position: fixed;
     width: 30px;
     height: 328px;
     left: 12%;
@@ -66,7 +66,7 @@ input[type="text"] {
 /* .ellipse {} */
 
 .my_bookbinding_ellipse {
-    position: absolute;
+    position: fixed;
     /* width: 30px; */
     /* width: 67px; */
     /* height: 67px; */
@@ -81,7 +81,7 @@ input[type="text"] {
     /* 製本する */
     -webkit-appearance: none;
 
-    position: absolute;
+    position: fixed;
     width: 20px;
     height: 60px;
     left: calc(12% + 3px);
@@ -106,7 +106,7 @@ input[type="text"] {
 }
 
 .my_create_ellipse {
-    position: absolute;
+    position: fixed;
     /* width: 30px; */
     /* height: 67px; */
     /* transform: scale(0.5, 1.0); */
@@ -120,7 +120,7 @@ input[type="text"] {
 .my_create {
     /* 作成する */
     -webkit-appearance: none;
-    position: absolute;
+    position: fixed;
     width: 20px;
     height: 60px;
     /* left: 196px; */
@@ -168,84 +168,6 @@ input[type="text"] {
     color: #FDFAFC;
 }
 
-.my_create_modal .form0 {
-    position: absolute;
-    width: 100px;
-    height: 15px;
-    left: 20px;
-    top: 48px;
-
-    background: #FDFAFC;
-}
-
-.my_create_modal .form1 {
-    position: absolute;
-    width: 100px;
-    height: 15px;
-    left: 20px;
-    top: 69px;
-
-    background: #FDFAFC;
-}
-
-.my_create_modal .btn0_ellipse {
-    position: absolute;
-    /* height: 15px; */
-    /* width: 33px; */
-    left: 132px;
-    top: 50px;
-
-    /* background: #FCF9FB; */
-}
-
-.my_create_modal .btn0 {
-    /* つくる */
-
-    position: absolute;
-    width: auto;
-    height: auto;
-    left: 132px;
-    top: 51px;
-
-    font-family: Source Han Serif JP, serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 8px;
-    line-height: 11px;
-    text-align: center;
-    font-feature-settings: 'vert'on;
-
-    color: #3F3643
-}
-
-.my_create_modal .btn1_ellipse {
-    position: absolute;
-    /* height: 15px;
-    width: 44px; */
-    left: 132px;
-    top: 72px;
-
-    /* background: #FCF9FB; */
-}
-
-.my_create_modal .btn1 {
-    /* あわせる */
-    position: absolute;
-    width: auto;
-    height: auto;
-    left: 135px;
-    top: 73px;
-
-    font-family: Source Han Serif JP, serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 8px;
-    line-height: 11px;
-    text-align: center;
-    font-feature-settings: 'vert'on;
-
-    color: #3F3643;
-}
 
 .esc {
     position: absolute;
