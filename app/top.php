@@ -8,8 +8,9 @@ session_start();
 
 function random_keyword($length)
 {
-    return base_convert(mt_rand(pow(36, $length - 1), pow(36, $length) - 1), 10, 36);
+    return base_convert(mt_rand((int)pow(36, (int)$length - 1), (int)pow(36, (int)$length) - 1), 10, 36);
 }
+
 
 // var_dump($_GET);
 $sentence = "";
