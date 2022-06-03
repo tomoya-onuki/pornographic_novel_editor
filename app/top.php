@@ -122,16 +122,18 @@ if (!empty($_GET['key'])) {
                     $('#update').fadeIn();
                     $('.update_ellipse').fadeIn();
 
-                    // DBの定期的な監視の再開
-                    check_db();
+                    // DBの定期的な監視の停止
+                    clearInterval(db_checker);
+                    
+                    
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
                     $('#update').fadeOut();
                     $('.update_ellipse').fadeOut();
 
-                    // DBの定期的な監視の停止
-                    clearInterval(db_checker);
+                    // DBの定期的な監視の再開
+                    check_db();
                 }
             }
 
