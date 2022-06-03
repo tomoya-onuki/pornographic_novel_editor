@@ -22,7 +22,7 @@ if (!empty($_GET['key'])) {
     $sentence = '';
     $line = 0;
     $love = 0;
-    $color = '#000000';
+    $color = '#ffffff';
     $done = false;
     $stmt = $pdo->prepare('INSERT INTO script (key, sentence,  participant, user0, editor, word, line, love, color, done) VALUES (:key, :sentence, 1, :user0, :editor, :word, :line, :love, :color, :done)');
     $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);

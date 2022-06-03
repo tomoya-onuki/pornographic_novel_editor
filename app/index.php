@@ -78,7 +78,7 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
     <!-- <div>作品一覧</div> -->
     <div class="flex">
         <?php
-        $stmt = $pdo->prepare('SELECT * FROM script');
+        $stmt = $pdo->prepare('SELECT * FROM script WHERE done = true');
         $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $idx = random_int(0, count($img_array) - 1);

@@ -144,18 +144,41 @@ if (!empty($_GET['key'])) {
                         },
                         function(data) {
                             // console.log(data);
-                            check_editor(data.editor); // エディタがどちらか判定
                             $('#script').html(data.sentence);
-                            line = data.line;
                             if (data.line > 5) {
                                 $('#status').text('終了');
                                 $('#sentence').attr('readonly', true);
+                                $('#update').fadeOut();
+                                $('.update_ellipse').fadeOut();
+                            } else {
+                                // エディタがどちらか判定
+                                check_editor(data.editor);
                             }
                             $('#sentence').val('');
                         }, "json");
                 }
                 // }
             });
+
+
+            // 更新
+            $('#submit').click(function() {
+                // location.href='./submit.php?key=<?= $_GET['key'] ?>';
+                $.post('submit.php', {
+                        'key': '<?= $_GET['key'] ?>',
+                    },
+                    function(data) {
+                        if (data.done) {
+                            $('#status').text('入稿済み');
+                            $('#submit').fadeOut();
+                            $('.submit_ellipse').fadeOut();
+                            $('#update').fadeOut();
+                            $('.update_ellipse').fadeOut();
+                            clearInterval(db_checker);
+                        }
+                    }, "json");
+            });
+
 
             function check_db() {
                 db_checker = setInterval(function() {
@@ -180,6 +203,21 @@ if (!empty($_GET['key'])) {
                                     $('#status').text('終了');
                                     $('#sentence').attr('readonly', true);
                                 }
+                            }
+
+                            // 
+                            if (data.done) {
+                                $('#status').text('入稿済み');
+                                $('#submit').fadeOut();
+                                $('.submit_ellipse').fadeOut();
+                                $('#update').fadeOut();
+                                $('.update_ellipse').fadeOut();
+                                clearInterval(db_checker);
+
+                                $('<a></a>')
+                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                .appendTo($('#edit_key'));
                             }
                         }, "json");
                 }, 1000);
@@ -206,7 +244,7 @@ if (!empty($_GET['key'])) {
 <body class="main1">
     <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
     <!-- <div id="color_select">
-    <div class="edit_msg">＊ふたりだけの色を指定してください。</div>
+    <div id="edit_msg">＊ふたりだけの色を指定してください。</div>
         <svg class=".c_ellipse" width="300" height="440" viewBox="0 0 30 44" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
@@ -220,16 +258,16 @@ if (!empty($_GET['key'])) {
 
 
     <div id="editor" class="edit">
-        <div class="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
-        <div class="edit_key">リンク:https://team-mizu.herokuapp.com/app/top.php?key=<?= $_GET['key'] ?></div>
-        <div class="edit_word"><?= $word ?></div>
-        <div class="edit_meaning"><?= $meaning ?></div>
+        <div id="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
+        <div id="edit_key">リンク:https://team-mizu.herokuapp.com/app/top.php?key=<?= $_GET['key'] ?></div>
+        <div id="edit_word"><?= $word ?></div>
+        <div id="edit_meaning"><?= $meaning ?></div>
 
         <div id="status"></div>
-        <div id="script" class="edit_script"><?= $sentence ?></div>
+        <div id="script" id="edit_script"><?= $sentence ?></div>
 
         <!-- 例文 -->
-        <div id="ex_sentence" class="edit_script">
+        <div id="ex_sentence" id="edit_script">
             <div>
                 <span id="help_close">×</span>
                 例文
@@ -242,14 +280,14 @@ if (!empty($_GET['key'])) {
         <svg class="update_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
         </svg>
-        <svg class="draft_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="submit_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
         </svg>
         <button id="update">更新</button>
-        <button id="draft" onclick="location.href='./story.php?key=<?= $_GET['key'] ?>'">入稿</button>
+        <button id="submit">入稿</button>
 
         <!-- <form action="./story.php" method="get">
-            <input id="draft" name="draft" value="入稿">
+            <input id="submit" name="submit" value="入稿">
             <input type="hidden" name="key" value="">
         </form> -->
     </div>

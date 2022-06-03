@@ -428,7 +428,7 @@ input[type="text"] {
     /* background: #FCF9FB; */
 }
 
-#draft {
+#submit {
     position: absolute;
     width: 20px;
     height: 30px;
@@ -449,7 +449,7 @@ input[type="text"] {
     cursor: pointer;
 }
 
-.draft_ellipse {
+.submit_ellipse {
     position: absolute;
     /* width: 30px; */
     /* height: 44px; */
