@@ -33,7 +33,7 @@
 </head>
 
 <body class="main1">
-    <a href="./" style="color:#fff">TOP</a>
+    <a href="./">TOP</a>
     <div class="edit">
         <?php
         if (!empty($_GET['key'])) {

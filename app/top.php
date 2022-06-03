@@ -147,7 +147,6 @@ if (!empty($_GET['key'])) {
                             $('#script').html(data.sentence);
                             if (data.line > 5) {
                                 $('#status').text('終了');
-                                $("#sentence").prop('disabled', true);
                                 $('#sentence').attr('readonly', true);
                                 $('#update').fadeOut();
                                 $('.update_ellipse').fadeOut();
@@ -207,7 +206,7 @@ if (!empty($_GET['key'])) {
                                 $('#script').html(data.sentence);
                                 if (data.line > 5) {
                                     $('#status').text('終了');
-                                    $("#sentence").prop('disabled', true);
+                                    // $("#sentence").prop('disabled', true);
                                     $('#sentence').attr('readonly', true);
                                     $('#update').fadeOut();
                                     $('.update_ellipse').fadeOut();
