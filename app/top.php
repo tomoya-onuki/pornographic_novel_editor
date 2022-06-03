@@ -166,8 +166,8 @@ if (!empty($_GET['key'])) {
             $('#submit').click(function() {
                 // location.href='./submit.php?key=<?= $_GET['key'] ?>';
                 $.post('submit.php', {
-                        'key': '<?= $_GET['key'] ?>',
-                    });
+                    'key': '<?= $_GET['key'] ?>',
+                });
             });
 
 
@@ -187,7 +187,6 @@ if (!empty($_GET['key'])) {
                                     console.log(myUserId, anotherId);
                                 }
                                 $("#sentence").prop('disabled', false); // 入力を有効化
-                                check_editor(data.editor); // エディタがどちらか判定
                                 $('#script').html(data.sentence);
                                 line = data.line;
                                 if (data.line > 5) {
@@ -196,6 +195,8 @@ if (!empty($_GET['key'])) {
                                     $('#sentence').attr('readonly', true);
                                     $('#update').fadeOut();
                                     $('.update_ellipse').fadeOut();
+                                } else {
+                                    check_editor(data.editor); // エディタがどちらか判定
                                 }
                             }
 
@@ -209,11 +210,12 @@ if (!empty($_GET['key'])) {
                                 $('.update_ellipse').fadeOut();
                                 clearInterval(db_checker);
 
-                                $('#edit_key').empty();
-                                $('<a></a>')
-                                    .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                    .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                    .appendTo($('#edit_key'));
+                                $('#edit_link')
+                                .attr('id', 'stroy_link')
+                                // .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                .text('https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>');
+
+                                
                             }
                         }, "json");
                 }, 1000);
@@ -232,6 +234,25 @@ if (!empty($_GET['key'])) {
                 $('#code').text(hex);
                 $('#code').css('color', hex);
                 $('#color_select').css('background', hex);
+            });
+
+            $('#edit_link').on('click', function() {
+                // コピーする文章の取得
+                let text = $(this).text();
+                // テキストエリアの作成
+                let $textarea = $('<textarea></textarea>');
+                // テキストエリアに文章を挿入
+                $textarea.text(text);
+                //　テキストエリアを挿入
+                $(this).append($textarea);
+                //　テキストエリアを選択
+                $textarea.select();
+                // コピー
+                document.execCommand('copy');
+                // テキストエリアの削除
+                $textarea.remove();
+                // アラート文の表示
+                $('#js-copyalert').show().delay(2000).fadeOut(400);
             });
         });
     </script>
@@ -255,7 +276,7 @@ if (!empty($_GET['key'])) {
 
     <div id="editor" class="edit">
         <div id="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
-        <div id="edit_key">リンク:https://team-mizu.herokuapp.com/app/top.php?key=<?= $_GET['key'] ?></div>
+        <div id="edit_key">リンク:<span id="edit_link">https://team-mizu.herokuapp.com/app/top.php?key=<?= $_GET['key'] ?></span></div>
         <div id="edit_word"><?= $word ?></div>
         <div id="edit_meaning"><?= $meaning ?></div>
 
