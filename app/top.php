@@ -145,6 +145,7 @@ if (!empty($_GET['key'])) {
                         function(data) {
                             // console.log(data);
                             $('#script').html(data.sentence);
+                            line = data.line;
                             if (data.line > 5) {
                                 $('#status').text('終了');
                                 $('#sentence').attr('readonly', true);
@@ -166,23 +167,7 @@ if (!empty($_GET['key'])) {
                 // location.href='./submit.php?key=<?= $_GET['key'] ?>';
                 $.post('submit.php', {
                         'key': '<?= $_GET['key'] ?>',
-                    },
-                    // function(data) {
-                    //     if (data.done) {
-                    //         $('#status').text('入稿済み');
-                    //         $('#submit').fadeOut();
-                    //         $('.submit_ellipse').fadeOut();
-                    //         $('#update').fadeOut();
-                    //         $('.update_ellipse').fadeOut();
-                    //         clearInterval(db_checker);
-
-                    //         $('<a></a>')
-                    //             .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                    //             .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                    //             .appendTo($('#edit_key'));
-                    //     }
-                    // }, "json"
-                );
+                    });
             });
 
 
@@ -204,6 +189,7 @@ if (!empty($_GET['key'])) {
                                 $("#sentence").prop('disabled', false); // 入力を有効化
                                 check_editor(data.editor); // エディタがどちらか判定
                                 $('#script').html(data.sentence);
+                                line = data.line;
                                 if (data.line > 5) {
                                     $('#status').text('終了');
                                     // $("#sentence").prop('disabled', true);
