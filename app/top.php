@@ -101,9 +101,10 @@ if (!empty($_GET['key'])) {
             let line = <?= $line ?>;
             let paticipant = <?= $participant ?>;
             // DBの定期的な監視
-            let db_checker = setInterval(check_db(), 1000);
+            let db_checker;
+            check_db();
 
-            // 
+
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
                 check_editor(editor); // エディタがどちらか判定
@@ -112,7 +113,7 @@ if (!empty($_GET['key'])) {
                 $('#status').text('あいてがいません');
             }
 
-            
+
             function check_editor(_editor) {
                 // console.log(myUserId, _editor);
                 if (_editor === myUserId) {
@@ -122,7 +123,7 @@ if (!empty($_GET['key'])) {
                     $('.update_ellipse').fadeIn();
 
                     // DBの定期的な監視の再開
-                    db_checker = setInterval(check_db(), 1000);
+                    check_db();
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
@@ -162,33 +163,33 @@ if (!empty($_GET['key'])) {
                 // }
             });
 
-            
-            // DBの監視
             function check_db() {
-                console.log('check data base')
-                $.post('check.php', {
-                        'key': '<?= $_GET['key'] ?>'
-                    },
-                    function(data) {
-                        participant = data.participant;
-                        if (data.participant === 2) {
-                            if (anotherId === '' || anotherId == undefined) {
-                                console.log(data);
-                                anotherId = (String(myUserId) != String(data.user0)) ? data.user0 : data.user1;
-                                console.log(myUserId, anotherId);
+                db_checker = setInterval(function() {
+                    // DBの監視
+                    console.log('check data base')
+                    $.post('check.php', {
+                            'key': '<?= $_GET['key'] ?>'
+                        },
+                        function(data) {
+                            participant = data.participant;
+                            if (data.participant === 2) {
+                                if (anotherId === '' || anotherId == undefined) {
+                                    console.log(data);
+                                    anotherId = (String(myUserId) != String(data.user0)) ? data.user0 : data.user1;
+                                    console.log(myUserId, anotherId);
+                                }
+                                $("#sentence").prop('disabled', false); // 入力を有効化
+                                check_editor(data.editor); // エディタがどちらか判定
+                                $('#script').html(data.sentence);
+                                line = data.line;
+                                if (data.line > 5) {
+                                    $('#status').text('終了');
+                                    $('#sentence').attr('readonly', true);
+                                }
                             }
-                            $("#sentence").prop('disabled', false); // 入力を有効化
-                            check_editor(data.editor); // エディタがどちらか判定
-                            $('#script').html(data.sentence);
-                            line = data.line;
-                            if (data.line > 5) {
-                                $('#status').text('終了');
-                                $('#sentence').attr('readonly', true);
-                            }
-                        }
-                    }, "json");
+                        }, "json");
+                }, 1000);
             }
-
 
             $('#help').on('click', function() {
                 $('#ex_sentence').fadeIn();
