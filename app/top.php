@@ -252,7 +252,12 @@ if (!empty($_GET['key'])) {
                 // テキストエリアの削除
                 $textarea.remove();
                 // アラート文の表示
-                $('#js-copyalert').show().delay(2000).fadeOut(400);
+                $('<span></span>')
+                .attr('id', 'copy_msg')
+                .text('copyしました')
+                .appendTo($('#edti_key'))
+
+                $('#copy_msg').fadeOut(10000);
             });
         });
     </script>

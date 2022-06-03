@@ -12,17 +12,28 @@
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            const myEditId = 1;
-            const editor = 1;
-            let line = 0;
-            check_editor(editor);
+            const myUserId = '5pezfmyik9n8';
+            const editor = 'giymtfvroc5e';
+            let anotherId = '';
+            let line = 6;
+            let paticipant = 0;
+            // DBの定期的な監視
+            let db_checker;
+            // check_db();
 
-            // console.log(editor);
-            // console.log($('#sentence').val());
+
+            if (paticipant === 2) {
+                $("#sentence").prop('disabled', true); // 入力を有効化
+                check_editor(editor); // エディタがどちらか判定
+                anotherId = 'tfl5bhm2iu6e';
+            } else {
+                $('#status').text('あいてがいません');
+            }
 
 
             function check_editor(_editor) {
-                if (_editor === myEditId) {
+                // console.log(myUserId, _editor);
+                if (_editor === myUserId) {
                     $('#status').text('あなたのばん');
                     $('#sentence').attr('readonly', false);
                     $('#update').fadeIn();
@@ -35,61 +46,98 @@
                 }
             }
 
-            function update(data) {
-                console.log(data.editor);
-                $('#script').html(data.sentence);
-                check_editor(data.editor);
-            }
-
+            // 更新
             $('#update').click(function() {
+                // console.log(myUserId, anotherId);
                 const sentence = $('#sentence').val();
-                console.log(sentence);
                 if (sentence) {
-                    let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
+                    let new_sentence = `${$('#script').html()}<div class="sentence">${sentence}</div>`;
+                    // let new_sentence = $('#script').html() + '<div class="sentence">' + sentence + '</div>';
                     $.post('update.php', {
                             'sentence': new_sentence,
-                            'editor': myEditId * -1,
-                            'key': '6i4skhv0',
+                            'editor': anotherId,
+                            'key': 'fezpxack5ecq',
                             'line': line + 1
                         },
                         function(data) {
-                            // update(data);
+                            // console.log(data);
                             $('#script').html(data.sentence);
-                            check_editor(data.editor);
                             line = data.line;
                             if (data.line > 5) {
                                 $('#status').text('終了');
                                 $('#sentence').attr('readonly', true);
+                                $('#update').fadeOut();
+                                $('.update_ellipse').fadeOut();
+                            } else {
+                                // エディタがどちらか判定
+                                check_editor(data.editor);
                             }
                             $('#sentence').val('');
-                        },
-                        "json"
-                    );
+                        }, "json");
                 }
+                // }
             });
 
-            // DBの定期的な監視
-            window.setInterval(function() {
-                console.log('check data base')
-                $.post('check.php', {
-                        'key': '6i4skhv0'
-                    },
-                    function(data) {
-                        // update(data);
-                        console.log(data.line);
-                        line = data.line;
-                        $('#script').html(data.sentence);
-                        check_editor(data.editor);
-                        if (data.line > 5) {
-                            $('#status').text('終了');
-                            $('#sentence').attr('readonly', true);
-                        }
-                    },
-                    "json"
-                )
-            }, 1000);
+
+            // 更新
+            $('#submit').click(function() {
+                // location.href='./submit.php?key=fezpxack5ecq';
+                $.post('submit.php', {
+                    'key': 'fezpxack5ecq',
+                });
+            });
 
 
+            function check_db() {
+                db_checker = setInterval(function() {
+                    // DBの監視
+                    console.log('check data base')
+                    $.post('check.php', {
+                            'key': 'fezpxack5ecq'
+                        },
+                        function(data) {
+                            participant = data.participant;
+                            if (data.participant === 2) {
+                                if (anotherId === '' || anotherId == undefined) {
+                                    console.log(data);
+                                    anotherId = (String(myUserId) != String(data.user0)) ? data.user0 : data.user1;
+                                    console.log(myUserId, anotherId);
+                                }
+                                $("#sentence").prop('disabled', false); // 入力を有効化
+                                $('#script').html(data.sentence);
+                                line = data.line;
+                                if (data.line > 5) {
+                                    $('#status').text('終了');
+                                    // $("#sentence").prop('disabled', true);
+                                    $('#sentence').attr('readonly', true);
+                                    $('#update').fadeOut();
+                                    $('.update_ellipse').fadeOut();
+                                } else {
+                                    check_editor(data.editor); // エディタがどちらか判定
+                                }
+                            }
+
+
+                            // 
+                            if (data.done) {
+                                $('#status').text('入稿済み');
+                                $('#submit').fadeOut();
+                                $('.submit_ellipse').fadeOut();
+                                $('#update').fadeOut();
+                                $('.update_ellipse').fadeOut();
+                                clearInterval(db_checker);
+
+                                $('#edit_link').remove();
+                                $('<a></a>')
+                                .attr('id', 'story_link')
+                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
+                                .text('https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
+                                .appendTo($('#edit_key'));
+                            }
+                        }, "json");
+                }, 1000);
+            }
+            
             $('#help').on('click', function() {
                 $('#ex_sentence').fadeIn();
                 $('#script').fadeOut();
@@ -98,27 +146,41 @@
                 $('#ex_sentence').fadeOut();
                 $('#script').fadeIn();
             });
-
-
-            $('#picker').on('input', function () {
+            $('#picker').on('input', function() {
                 let hex = $(this).val();
                 $('#code').text(hex);
                 $('#code').css('color', hex);
                 $('#color_select').css('background', hex);
             });
-            // $('#color_submit').on('click', function () {
-            //     $.post('update_color.php', {
-            //         'key': '6i4skhv0',
-            //         'color': $('#picker').val()
-            //     },
-            //         function (data) {
-            //             $('#editor').fadeIn();
-            //             $('#color_select').fadeOut();
-            //         },
-            //         "json"
-            //     )
 
-            // });
+            $('#edit_link').on('click', function() {
+                console.log('c');
+                // コピーする文章の取得
+                let text = $(this).text();
+                // テキストエリアの作成
+                let elem = $('<textarea></textarea>')
+                .text(text)
+                .appendTo($(this))
+                .select(); //　テキストエリアを選択
+                document.execCommand('copy');
+                elem.remove();
+                // let $textarea = $('<textarea></textarea>');
+                // $textarea.text(text);
+                // $(this).append($textarea);
+                // //　テキストエリアを選択
+                // $textarea.select();
+                // document.execCommand('copy');
+                // $textarea.remove();
+
+                // アラート文の表示
+                $('#copy_msg').remove();
+                $('<span></span>')
+                .attr('id', 'copy_msg')
+                .text(' (copyしました)')
+                .appendTo($('#edit_key'))
+                // alert('copyしました')
+                $('#copy_msg').fadeOut(2000);
+            });
         });
     </script>
 </head>
@@ -126,7 +188,7 @@
 <body class="main1">
     <!-- <a href="./"><h1>ふたりでかく官能小説</h1></a> -->
     <!-- <div id="color_select">
-    <div class="edit_msg">＊ふたりだけの色を指定してください。</div>
+    <div id="edit_msg">＊ふたりだけの色を指定してください。</div>
         <svg class=".c_ellipse" width="300" height="440" viewBox="0 0 30 44" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
@@ -140,37 +202,35 @@
 
 
     <div id="editor" class="edit">
-        <div class="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
-        <div class="edit_key">合言葉:6i4skhv0</div>
-        <div class="edit_word">アメ玉</div>
-        <div class="edit_meaning">男性器／陰嚢</div>
+        <div id="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
+        <div id="edit_key">リンク:<span id="edit_link">https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq</span></div>
+        <div id="edit_word">イソギンチャクの触手</div>
+        <div id="edit_meaning">女性器／肛門</div>
 
         <div id="status"></div>
-        <div id="script" class="edit_script"></div>
+        <div id="script" class="edit_script"><div class="sentence">hoge</div><div class="sentence">hogehoge</div><div class="sentence">hogehogehoge</div><div class="sentence">hogehogehogehoge</div><div class="sentence">hogehogehogehogehoge</div><div class="sentence">hogehogehogehogehogehoge</div></div>
+
+        <!-- 例文 -->
         <div id="ex_sentence" class="edit_script">
             <div>
                 <span id="help_close">×</span>
                 例文
             </div>
-            夕子も、陰茎を唾液にヌメらせただけですぐ口を離し、陰のうを舐め廻し、大きく開いた口に含み睾丸をアメ玉のように舌でころがしたりした。        </div>
+            褐色の裏の花弁が、小さく暗い孔（あな）を開けて、生まれ立てのイソギンチャクの触手のように収縮して蠢く。        </div>
         <button id="help">help</button>
 
-        <textarea name="sentence" id="sentence" cols="30" rows="10" maxlength="30"></textarea>
+        <textarea name="sentence" id="sentence" disabled cols="30" rows="10" maxlength="30"></textarea>
         <svg class="update_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
-                fill="#FCF9FB" />
+            <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
         </svg>
-        <svg class="draft_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z"
-                fill="#FCF9FB" />
+        <svg class="submit_ellipse" width="30" height="44" viewBox="0 0 30 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 22C30 37.4791 25.5539 44 15 44C4.44607 44 0 37.4791 0 22C0 6.5209 4.44607 0 15 0C25.5539 0 30 6.5209 30 22Z" fill="#FCF9FB" />
         </svg>
         <button id="update">更新</button>
-        <button id="draft" onclick="location.href='./story.php?key=6i4skhv0'">入稿</button>
+        <button id="submit">入稿</button>
 
         <!-- <form action="./story.php" method="get">
-            <input id="draft" name="draft" value="入稿">
+            <input id="submit" name="submit" value="入稿">
             <input type="hidden" name="key" value="">
         </form> -->
     </div>

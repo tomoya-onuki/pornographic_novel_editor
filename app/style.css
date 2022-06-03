@@ -44,9 +44,7 @@ input[type="text"] {
     top: -62px;
 }
 
-.main0 .ui {
-    /* position: fixed; */
-}
+
 
 .my_title {
     /* ＃ふたりて書く官能小説 */
@@ -333,6 +331,7 @@ input[type="text"] {
     top: 480px;
     color: #E3E3E3;
     font-family: Source Han Serif JP, serif;
+    cursor: pointer;
 }
 #edit_key a {
     color: #E3E3E3;
@@ -365,7 +364,7 @@ input[type="text"] {
     margin-left: 80px;
     /* margin-left: 5vw; */
 
-    height: 558px;
+    height: auto;
     width: 13px;
     /* line-height: 13px; */
     /* or 100% */
