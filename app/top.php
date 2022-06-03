@@ -175,6 +175,11 @@ if (!empty($_GET['key'])) {
                             $('#update').fadeOut();
                             $('.update_ellipse').fadeOut();
                             clearInterval(db_checker);
+
+                            $('<a></a>')
+                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                .appendTo($('#edit_key'));
                         }
                     }, "json");
             });
