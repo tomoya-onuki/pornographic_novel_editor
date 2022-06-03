@@ -124,8 +124,6 @@ if (!empty($_GET['key'])) {
 
                     // DBの定期的な監視の停止
                     clearInterval(db_checker);
-                    
-                    
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
