@@ -210,12 +210,12 @@ if (!empty($_GET['key'])) {
                                 $('.update_ellipse').fadeOut();
                                 clearInterval(db_checker);
 
-                                $('#edit_link')
-                                .attr('id', 'stroy_link')
-                                // .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                .text('https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>');
-
-                                
+                                $('#edit_link').remove();
+                                $('<a></a>')
+                                .attr('id', 'story_link')
+                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
+                                .text('https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
+                                .appendTo($('#edit_key'));
                             }
                         }, "json");
                 }, 1000);
@@ -240,24 +240,20 @@ if (!empty($_GET['key'])) {
                 // コピーする文章の取得
                 let text = $(this).text();
                 // テキストエリアの作成
-                let $textarea = $('<textarea></textarea>');
-                // テキストエリアに文章を挿入
-                $textarea.text(text);
-                //　テキストエリアを挿入
-                $(this).append($textarea);
-                //　テキストエリアを選択
-                $textarea.select();
-                // コピー
+                let elem = $('<textarea></textarea>')
+                .text(text)
+                .appendTo($(this))
+                .select(); //　テキストエリアを選択
                 document.execCommand('copy');
-                // テキストエリアの削除
-                $textarea.remove();
+                elem.remove();
+
                 // アラート文の表示
+                $('#copy_msg').remove();
                 $('<span></span>')
                 .attr('id', 'copy_msg')
-                .text('copyしました')
-                .appendTo($('#edti_key'))
-
-                $('#copy_msg').fadeOut(10000);
+                .text(' (copyしました)')
+                .appendTo($('#edit_key'))
+                $('#copy_msg').fadeOut(2000);
             });
         });
     </script>
