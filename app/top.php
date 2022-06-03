@@ -121,17 +121,11 @@ if (!empty($_GET['key'])) {
                     $('#sentence').attr('readonly', false);
                     $('#update').fadeIn();
                     $('.update_ellipse').fadeIn();
-
-                    // DBの定期的な監視の停止
-                    clearInterval(db_checker);
                 } else {
                     $('#status').text('あいてのばん');
                     $('#sentence').attr('readonly', true);
                     $('#update').fadeOut();
                     $('.update_ellipse').fadeOut();
-
-                    // DBの定期的な監視の再開
-                    check_db();
                 }
             }
 
