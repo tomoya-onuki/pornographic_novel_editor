@@ -37,14 +37,22 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
     <title>ふたりで書く官能小説</title>
 
     <script>
-        // $(function() {
-        //     $('#create').on('click', function() {
-        //         $("#modal").fadeIn();
-        //     });
-        //     $('#esc').on('click', function() {
-        //         $("#modal").fadeOut();
-        //     });
-        // });
+        $(function() {
+            // $('#create').on('click', function() {
+            //     $("#modal").fadeIn();
+            // });
+            // $('#esc').on('click', function() {
+            //     $("#modal").fadeOut();
+            // });
+            $('.flex_item').each((i, elem) => {
+                $(elem).on('mouseover', function () {
+                    $(this).children('a').children('.story_mask').css('opacity', '0.8');
+                });
+                $(elem).on('mouseout', function () {
+                    $(this).children('a').children('.story_mask').css('opacity', '0.3');
+                });
+            });
+        });
     </script>
 </head>
 
