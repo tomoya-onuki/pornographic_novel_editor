@@ -213,8 +213,8 @@ if (!empty($_GET['key'])) {
                                 $('#edit_link').remove();
                                 $('<a></a>')
                                 .attr('id', 'story_link')
-                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
-                                .text('https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
+                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?=$_GET['key']?>')
+                                .text('https://team-mizu.herokuapp.com/app/story.php?key=<?=$_GET['key']?>')
                                 .appendTo($('#edit_key'));
                             }
                         }, "json");
