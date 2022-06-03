@@ -327,8 +327,12 @@ input[type="text"] {
     position: relative;
     top: 480px;
     color: #E3E3E3;
-
     font-family: Source Han Serif JP, serif;
+}
+#edit_key a {
+    color: #E3E3E3;
+    font-family: Source Han Serif JP, serif;
+    pointer-events: auto;
 }
 
 .edit_script {

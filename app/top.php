@@ -147,6 +147,7 @@ if (!empty($_GET['key'])) {
                             $('#script').html(data.sentence);
                             if (data.line > 5) {
                                 $('#status').text('終了');
+                                $("#sentence").prop('disabled', true);
                                 $('#sentence').attr('readonly', true);
                                 $('#update').fadeOut();
                                 $('.update_ellipse').fadeOut();
@@ -182,7 +183,7 @@ if (!empty($_GET['key'])) {
                     //             .appendTo($('#edit_key'));
                     //     }
                     // }, "json"
-                    );
+                );
             });
 
 
@@ -204,12 +205,15 @@ if (!empty($_GET['key'])) {
                                 $("#sentence").prop('disabled', false); // 入力を有効化
                                 check_editor(data.editor); // エディタがどちらか判定
                                 $('#script').html(data.sentence);
-                                line = data.line;
                                 if (data.line > 5) {
                                     $('#status').text('終了');
+                                    $("#sentence").prop('disabled', true);
                                     $('#sentence').attr('readonly', true);
+                                    $('#update').fadeOut();
+                                    $('.update_ellipse').fadeOut();
                                 }
                             }
+
 
                             // 
                             if (data.done) {
@@ -222,10 +226,9 @@ if (!empty($_GET['key'])) {
 
                                 $('#edit_key').empty();
                                 $('<a></a>')
-                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                .css('color', '#FFF')
-                                .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                .appendTo($('#edit_key'));
+                                    .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                    .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                    .appendTo($('#edit_key'));
                             }
                         }, "json");
                 }, 1000);
