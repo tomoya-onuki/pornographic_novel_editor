@@ -5,14 +5,15 @@ $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1))
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
 
-function random_keyword()
+function random_keyword($length)
 {
-    $length = 8;
-    return base_convert(mt_rand(pow(36, $length - 1), pow(36, $length) - 1), 10, 36);
+    return base_convert(mt_rand((int)pow(36, (int)$length - 1), (int)pow(36, (int)$length) - 1), 10, 36);
 }
 
-$key = random_keyword();
+$key = random_keyword(20); // 原稿のID
 
+session_start();
+$_SESSION['user_id'] = random_keyword(12);
 
 
 $img_array = array();
@@ -36,14 +37,14 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
     <title>ふたりで書く官能小説</title>
 
     <script>
-        $(function() {
-            $('#create').on('click', function() {
-                $("#modal").fadeIn();
-            });
-            $('#esc').on('click', function() {
-                $("#modal").fadeOut();
-            });
-        });
+        // $(function() {
+        //     $('#create').on('click', function() {
+        //         $("#modal").fadeIn();
+        //     });
+        //     $('#esc').on('click', function() {
+        //         $("#modal").fadeOut();
+        //     });
+        // });
     </script>
 </head>
 
@@ -55,22 +56,29 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
         <path d="M0.500122 712.5C0.500122 963.113 47.1052 1141.09 148.914 1256.41C250.71 1371.72 407.79 1424.5 629 1424.5C850.21 1424.5 1007.29 1371.72 1109.09 1256.41C1210.89 1141.09 1257.5 963.113 1257.5 712.5C1257.5 461.887 1210.89 283.913 1109.09 168.589C1007.29 53.2799 850.21 0.5 629 0.5C407.79 0.5 250.71 53.2799 148.914 168.589C47.1052 283.913 0.500122 461.887 0.500122 712.5Z" stroke="black" />
     </svg>
 
-    <div class="my_title">＃ふたりで書く官能小説</div>
-    <!-- <div class="my_bookbinding_ellipse ellipse"></div> -->
-    <svg class="my_bookbinding_ellipse" width="30" height="67" viewBox="0 0 30 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 33.5C30 57.0705 25.5539 67 15 67C4.44607 67 0 57.0705 0 33.5C0 9.92955 4.44607 0 15 0C25.5539 0 30 9.92955 30 33.5Z" fill="#3F3643" />
-    </svg>
-    <button class="my_bookbinding">製本する</button>
-    <!-- <div class="my_create_ellipse ellipse"></div> -->
-    <svg class="my_create_ellipse" width="30" height="67" viewBox="0 0 30 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 33.5C30 57.0705 25.5539 67 15 67C4.44607 67 0 57.0705 0 33.5C0 9.92955 4.44607 0 15 0C25.5539 0 30 9.92955 30 33.5Z" fill="#3F3643" />
-    </svg>
-    <button class="my_create" id="create">作成する</button>
+    <div class="ui">
+        <div class="my_title">＃ふたりで書く官能小説</div>
+        <!-- <div class="my_bookbinding_ellipse ellipse"></div> -->
+        <svg class="my_bookbinding_ellipse" width="30" height="67" viewBox="0 0 30 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 33.5C30 57.0705 25.5539 67 15 67C4.44607 67 0 57.0705 0 33.5C0 9.92955 4.44607 0 15 0C25.5539 0 30 9.92955 30 33.5Z" fill="#3F3643" />
+        </svg>
+        <button class="my_bookbinding">製本する</button>
+        <!-- <div class="my_create_ellipse ellipse"></div> -->
+        <svg class="my_create_ellipse" width="30" height="67" viewBox="0 0 30 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 33.5C30 57.0705 25.5539 67 15 67C4.44607 67 0 57.0705 0 33.5C0 9.92955 4.44607 0 15 0C25.5539 0 30 9.92955 30 33.5Z" fill="#3F3643" />
+        </svg>
+        <button class="my_create" id="create">作成する</button>
+        <script>
+            $("#create").on('click', function() {
+                location.href = './create.php?key=<?= $key ?>';
+            });
+        </script>
+    </div>
 
     <!-- <div>作品一覧</div> -->
     <div class="flex">
         <?php
-        $stmt = $pdo->prepare('SELECT * FROM script');
+        $stmt = $pdo->prepare('SELECT * FROM script WHERE done = true');
         $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $idx = random_int(0, count($img_array) - 1);
@@ -92,29 +100,26 @@ foreach (glob('./img/{*.jpg}', GLOB_BRACE) as $file) {
 
 
 
-    <div id="modal" class="my_create_modal">
+    <!-- <div id="modal" class="my_create_modal">
         <div class="title">合言葉で小説をはじめる。</div>
         <div class="esc" id="esc">×</div>
         <form action="create.php" method="post">
             <input id="copyTarget" class="form0" type="text" value="<?= $key ?>" readonly name="key">
             <input type="hidden" value="1" name="editor">
-            <!-- <div class="btn0_ellipse ellipse"></div> -->
             <svg class="btn0_ellipse" width="33" height="15" viewBox="0 0 33 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.5 -7.21238e-07C28.1093 -1.2287e-06 33 2.22303 33 7.5C33 12.777 28.1093 15 16.5 15C4.89067 15 -9.71718e-08 12.777 -3.27835e-07 7.5C-5.58499e-07 2.22303 4.89067 -2.13778e-07 16.5 -7.21238e-07Z" fill="#FCF9FB" />
             </svg>
             <input type="submit" value="つくる" class="btn0">
         </form>
-        <!-- <button onclick="copyToClipboard()">Copy</button> -->
         <form action="top.php" method="post">
             <input class="form1" type="text" value="" name="key">
             <input type="hidden" value="-1" name="editor">
-            <!-- <div class="btn1_ellipse ellipse"></div> -->
             <svg class="btn1_ellipse" width="44" height="15" viewBox="0 0 44 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 -9.61651e-07C37.4791 -1.63826e-06 44 2.22303 44 7.5C44 12.777 37.4791 15 22 15C6.5209 15 -9.71718e-08 12.777 -3.27835e-07 7.5C-5.58499e-07 2.22303 6.5209 -2.85037e-07 22 -9.61651e-07Z" fill="#FCF9FB" />
             </svg>
             <input type="submit" value="あわせる" class="btn1 ellipse">
         </form>
-    </div>
+    </div> -->
 
 
 

@@ -1,87 +1,4 @@
-<?php
-// データベースに接続
-$url = parse_url(getenv('DATABASE_URL'));
-$dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
-$pdo = new PDO($dsn, $url['user'], $url['pass']);
 
-session_start();
-
-function random_keyword($length)
-{
-    return base_convert(mt_rand((int)pow(36, (int)$length - 1), (int)pow(36, (int)$length) - 1), 10, 36);
-}
-
-
-// var_dump($_GET);
-$sentence = "";
-$word = "";
-$meaning = "";
-$line = 0;
-$ex_sentence = "";
-$participant = 0;
-$editor = "";
-
-$user_id_list = [];
-
-// エディタIDがセッションにない場合は作成
-if (!$_SESSION['user_id']) {
-    $_SESSION['user_id'] = random_keyword(12);
-}
-// var_dump($_GET);
-
-
-
-
-if (!empty($_GET['key'])) {
-    // 編集中の文書の情報
-    $stmt = $pdo->prepare('SELECT * FROM script WHERE key = :key');
-    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($result) {
-        $sentence = $result['sentence'];
-        $word = $result['word'];
-        $editor = $result['editor'];
-        $line = $result['line'];
-        $participant = $result['participant'];
-        $user_id_list[0] = $result['user0'];
-        $user_id_list[1] = $result['user1'];
-
-        // var_dump($result['participant']);
-        // var_dump($result['user0']);
-        // var_dump($result['user1']);
-        // var_dump($_SESSION['user_id']);
-
-        // 参加者が2人なら参加不可
-        if ($result['participant'] > 1) {
-            header("Location: ./error.php?stmt=この部屋には入れません");
-        }
-        // 参加者が1人でかつ自分でないなら参加できる
-        else if ($result['participant'] == 1 && strcmp($result['user0'], $_SESSION['user_id']) != 0) {
-            // 参加者数をインクリメント
-            $participant = $result['participant'] + 1;
-
-            // 参加者数とuser1のIDをDBに登録
-            $stmt = $pdo->prepare('UPDATE script SET (participant, user1) = (:participant, :user1) WHERE key = :key');
-            $stmt->bindParam(':participant', $participant, PDO::PARAM_INT);
-            $stmt->bindParam(':user1', $_SESSION['user_id'], PDO::PARAM_STR);
-            $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
-            $stmt->execute();
-        }
-    } else {
-        header("Location: ./error.php?stmt=部屋が見つかりません");
-    }
-
-
-    $stmt = $pdo->prepare('SELECT * FROM dict WHERE word = :word');
-    $stmt->bindParam(':word', $word, PDO::PARAM_STR);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $meaning = $result['meaning'];
-    $ex_sentence = $result['ex_sentence'];
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,24 +8,24 @@ if (!empty($_GET['key'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../app/style.css">
     <title>ふたりで書く官能小説</title>
     <script>
         $(function() {
-            const myUserId = '<?= $_SESSION['user_id'] ?>';
-            const editor = '<?= $editor ?>';
+            const myUserId = '5pezfmyik9n8';
+            const editor = 'giymtfvroc5e';
             let anotherId = '';
-            let line = <?= $line ?>;
-            let paticipant = <?= $participant ?>;
+            let line = 6;
+            let paticipant = 0;
             // DBの定期的な監視
             let db_checker;
-            check_db();
+            // check_db();
 
 
             if (paticipant === 2) {
                 $("#sentence").prop('disabled', true); // 入力を有効化
                 check_editor(editor); // エディタがどちらか判定
-                anotherId = '<?= $user_id_list[1]  ?>';
+                anotherId = 'tfl5bhm2iu6e';
             } else {
                 $('#status').text('あいてがいません');
             }
@@ -139,7 +56,7 @@ if (!empty($_GET['key'])) {
                     $.post('update.php', {
                             'sentence': new_sentence,
                             'editor': anotherId,
-                            'key': '<?= $_GET['key'] ?>',
+                            'key': 'fezpxack5ecq',
                             'line': line + 1
                         },
                         function(data) {
@@ -164,9 +81,9 @@ if (!empty($_GET['key'])) {
 
             // 更新
             $('#submit').click(function() {
-                // location.href='./submit.php?key=<?= $_GET['key'] ?>';
+                // location.href='./submit.php?key=fezpxack5ecq';
                 $.post('submit.php', {
-                    'key': '<?= $_GET['key'] ?>',
+                    'key': 'fezpxack5ecq',
                 });
             });
 
@@ -176,7 +93,7 @@ if (!empty($_GET['key'])) {
                     // DBの監視
                     console.log('check data base')
                     $.post('check.php', {
-                            'key': '<?= $_GET['key'] ?>'
+                            'key': 'fezpxack5ecq'
                         },
                         function(data) {
                             participant = data.participant;
@@ -213,14 +130,14 @@ if (!empty($_GET['key'])) {
                                 $('#edit_link').remove();
                                 $('<a></a>')
                                 .attr('id', 'story_link')
-                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?=$_GET['key']?>')
-                                .text('https://team-mizu.herokuapp.com/app/story.php?key=<?=$_GET['key']?>')
+                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
+                                .text('https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq')
                                 .appendTo($('#edit_key'));
                             }
                         }, "json");
                 }, 1000);
             }
-
+            
             $('#help').on('click', function() {
                 $('#ex_sentence').fadeIn();
                 $('#script').fadeOut();
@@ -237,6 +154,7 @@ if (!empty($_GET['key'])) {
             });
 
             $('#edit_link').on('click', function() {
+                console.log('c');
                 // コピーする文章の取得
                 let text = $(this).text();
                 // テキストエリアの作成
@@ -277,12 +195,12 @@ if (!empty($_GET['key'])) {
 
     <div id="editor" class="edit">
         <div id="edit_msg">＊必ずこの「ことば」を使って小説を書いてください。描き終わったら、左下の入稿ボタンをタッチしてください。</div>
-        <div id="edit_key">リンク:<span id="edit_link">https://team-mizu.herokuapp.com/app/top.php?key=<?= $_GET['key'] ?></span></div>
-        <div id="edit_word"><?= $word ?></div>
-        <div id="edit_meaning"><?= $meaning ?></div>
+        <div id="edit_key">リンク:<span id="edit_link">https://team-mizu.herokuapp.com/app/story.php?key=fezpxack5ecq</span></div>
+        <div id="edit_word">イソギンチャクの触手</div>
+        <div id="edit_meaning">女性器／肛門</div>
 
         <div id="status"></div>
-        <div id="script" class="edit_script"><?= $sentence ?></div>
+        <div id="script" class="edit_script"><div class="sentence">hoge</div><div class="sentence">hogehoge</div><div class="sentence">hogehogehoge</div><div class="sentence">hogehogehogehoge</div><div class="sentence">hogehogehogehogehoge</div><div class="sentence">hogehogehogehogehogehoge</div></div>
 
         <!-- 例文 -->
         <div id="ex_sentence" class="edit_script">
@@ -290,8 +208,7 @@ if (!empty($_GET['key'])) {
                 <span id="help_close">×</span>
                 例文
             </div>
-            <?= $ex_sentence ?>
-        </div>
+            褐色の裏の花弁が、小さく暗い孔（あな）を開けて、生まれ立てのイソギンチャクの触手のように収縮して蠢く。        </div>
         <button id="help">help</button>
 
         <textarea name="sentence" id="sentence" disabled cols="30" rows="10" maxlength="30"></textarea>

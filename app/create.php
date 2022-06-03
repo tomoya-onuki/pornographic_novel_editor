@@ -4,8 +4,10 @@ $url = parse_url(getenv('DATABASE_URL'));
 $dsn = sprintf('pgsql:host=%s;dbname=%s', $url['host'], substr($url['path'], 1));
 $pdo = new PDO($dsn, $url['user'], $url['pass']);
 
+session_start();
+// var_dump($_GET);
 
-if (!empty($_POST['key'])) {
+if (!empty($_GET['key'])) {
     // ランダムで単語を取得
     $stmt = $pdo->prepare('SELECT * FROM dict ORDER BY random() LIMIT 1');
     $stmt->execute();
@@ -14,18 +16,20 @@ if (!empty($_POST['key'])) {
     
     // $stmt = $pdo->prepare('UPDATE script SET word = :word WHERE key = :key');
     // $stmt->bindParam(':word', $word, PDO::PARAM_STR);
-    // $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    // $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     // $stmt->execute();
     
     $sentence = '';
     $line = 0;
     $love = 0;
-    $color = '#000000';
+    $color = '#ffffff';
     $done = false;
-    $stmt = $pdo->prepare('INSERT INTO script (key, sentence, editor, word, line, love, color, done) VALUES (:key, :sentence, :editor, :word, :line, :love, :color, :done)');
-    $stmt->bindParam(':key', $_POST['key'], PDO::PARAM_STR);
+    $stmt = $pdo->prepare('INSERT INTO script (key, sentence,  participant, user0, editor, word, line, love, color, done) VALUES (:key, :sentence, 1, :user0, :editor, :word, :line, :love, :color, :done)');
+    $stmt->bindParam(':key', $_GET['key'], PDO::PARAM_STR);
     $stmt->bindParam(':sentence', $sentence, PDO::PARAM_STR);
-    $stmt->bindParam(':editor', $_POST['editor'], PDO::PARAM_INT);
+    // $stmt->bindParam(':participant', 1, PDO::PARAM_INT);
+    $stmt->bindParam(':user0', $_SESSION['user_id'], PDO::PARAM_STR);
+    $stmt->bindParam(':editor', $_SESSION['user_id'], PDO::PARAM_STR);
     $stmt->bindParam(':word', $word, PDO::PARAM_STR);
     $stmt->bindParam(':line', $line, PDO::PARAM_INT);
     $stmt->bindParam(':love', $love, PDO::PARAM_INT);
@@ -34,7 +38,7 @@ if (!empty($_POST['key'])) {
     $stmt->execute();
 
 
-    header("Location: ./top.php", true, 307);
+    header("Location: ./top.php?key=".$_GET['key'], true, 307);
 }
 
 
