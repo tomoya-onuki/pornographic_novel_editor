@@ -331,7 +331,7 @@ input[type="text"] {
     font-family: Source Han Serif JP, serif;
 }
 
-#edit_script {
+.edit_script {
     position: absolute;
     right: 200px;
     top: 50px;
@@ -352,7 +352,7 @@ input[type="text"] {
     /* top: 234px; */
 }
 
-#edit_script .sentence {
+.edit_script .sentence {
     margin-left: 80px;
     /* margin-left: 5vw; */
 

@@ -167,21 +167,22 @@ if (!empty($_GET['key'])) {
                 $.post('submit.php', {
                         'key': '<?= $_GET['key'] ?>',
                     },
-                    function(data) {
-                        if (data.done) {
-                            $('#status').text('入稿済み');
-                            $('#submit').fadeOut();
-                            $('.submit_ellipse').fadeOut();
-                            $('#update').fadeOut();
-                            $('.update_ellipse').fadeOut();
-                            clearInterval(db_checker);
+                    // function(data) {
+                    //     if (data.done) {
+                    //         $('#status').text('入稿済み');
+                    //         $('#submit').fadeOut();
+                    //         $('.submit_ellipse').fadeOut();
+                    //         $('#update').fadeOut();
+                    //         $('.update_ellipse').fadeOut();
+                    //         clearInterval(db_checker);
 
-                            $('<a></a>')
-                                .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
-                                .appendTo($('#edit_key'));
-                        }
-                    }, "json");
+                    //         $('<a></a>')
+                    //             .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                    //             .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                    //             .appendTo($('#edit_key'));
+                    //     }
+                    // }, "json"
+                    );
             });
 
 
@@ -219,8 +220,10 @@ if (!empty($_GET['key'])) {
                                 $('.update_ellipse').fadeOut();
                                 clearInterval(db_checker);
 
+                                $('#edit_key').empty();
                                 $('<a></a>')
                                 .attr('href', 'https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
+                                .css('color', '#FFF')
                                 .text('リンク:https://team-mizu.herokuapp.com/app/story.php?key=<?= $_GET['key'] ?>')
                                 .appendTo($('#edit_key'));
                             }
@@ -269,10 +272,10 @@ if (!empty($_GET['key'])) {
         <div id="edit_meaning"><?= $meaning ?></div>
 
         <div id="status"></div>
-        <div id="script" id="edit_script"><?= $sentence ?></div>
+        <div id="script" class="edit_script"><?= $sentence ?></div>
 
         <!-- 例文 -->
-        <div id="ex_sentence" id="edit_script">
+        <div id="ex_sentence" class="edit_script">
             <div>
                 <span id="help_close">×</span>
                 例文
